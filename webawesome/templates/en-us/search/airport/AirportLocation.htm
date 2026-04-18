@@ -1,0 +1,15 @@
+{%- block htmBodyLocationAirportPage %}
+        <wa-details open>
+          <div slot="summary">Map of Airports</div>
+
+{%- block htmBodyGraphLocationAirportPage %}
+{% if resultCount > 0 %}
+        <div id="htmBodyGraphLocationAirportPage" class="htmBodyGraphLocation "></div>
+{% endif %}
+{%- endblock htmBodyGraphLocationAirportPage %}
+
+{%- block htmBodyGraphAirportPage %}
+        <div id="htmBodyGraphAirportPage" class="htmBodyGraph "></div>
+{%- endblock htmBodyGraphAirportPage %}
+        </wa-details>
+{%- endblock htmBodyLocationAirportPage %}

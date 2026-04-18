@@ -1,0 +1,11 @@
+{% include en-us/search/user/SiteUserSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchSiteUser() }}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postSiteUser() }}
+  {%- else %}
+    {{ htmForm_postSiteUser() }}
+  {%- endif %}
+{%- endif %}

@@ -1,0 +1,15 @@
+{%- block htmBodyLocationMapModelPage %}
+        <wa-details open>
+          <div slot="summary">Map of map models</div>
+
+{%- block htmBodyGraphLocationMapModelPage %}
+{% if resultCount > 0 %}
+        <div id="htmBodyGraphLocationMapModelPage" class="htmBodyGraphLocation "></div>
+{% endif %}
+{%- endblock htmBodyGraphLocationMapModelPage %}
+
+{%- block htmBodyGraphMapModelPage %}
+        <div id="htmBodyGraphMapModelPage" class="htmBodyGraph "></div>
+{%- endblock htmBodyGraphMapModelPage %}
+        </wa-details>
+{%- endblock htmBodyLocationMapModelPage %}
