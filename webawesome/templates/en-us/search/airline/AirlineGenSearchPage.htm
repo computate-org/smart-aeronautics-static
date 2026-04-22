@@ -1,0 +1,597 @@
+{% extends "en-us/PageLayout.htm" %}
+
+{%- block htmTitlePageLayout %}
+{%- block htmTitleAirlinePage %}
+    <title>{% if resultCount == 0 %}no Airline found{% else %}Airlines{% endif %}</title>
+{%- endblock htmTitleAirlinePage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/airline/Airline.css"/>
+{%- block htmStylesAirlinePage %}
+{%- endblock htmStylesAirlinePage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 2;
+      }
+{{ super() }}
+{%- block htmStyleAirlinePage %}
+{%- endblock htmStyleAirlinePage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsAirlinePage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/airline/Airline.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/airline/AirlineSearchPage.js"></script>
+{%- endblock htmScriptsAirlinePage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptAirlinePage %}
+    <script>
+
+      function jsWebsocketAirline(entityShortId, vars, $response) {
+{%- block jsWebsocketAirlinePage %}{%- endblock %}
+      }
+
+      function jsTooltipAirline(e, feature) {
+{%- block jsTooltipAirlinePage %}{%- endblock %}
+      }
+
+      function htmTooltipAirline(feature, layer) {
+        return `{%- block htmTooltipAirlinePage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipAirlinePage %}`;
+      }
+
+      function jsLegendAirline(map) {
+{%- block jsLegendAirlinePage %}
+        var div = L.DomUtil.create('div', 'info legend');
+        var htm = '';
+        window.listAirline.forEach((result, index) => {
+          if(result.location) {
+            var shapes = [];
+            if(Array.isArray(result.location))
+              shapes = shapes.concat(result.location);
+            else
+              shapes.push(result.location);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendAirline(map, shape, result, index, shapes.length);
+            });
+          }
+        });
+        div.innerHTML = htm;
+        return div;
+{%- endblock jsLegendAirlinePage %}
+      }
+
+      function htmLegendAirline(map, shape, result, index, count) {
+        var color = result.color[index];
+        var title = result.name[index];
+        var url = null;
+        var htm = '';
+        htm += `<div class="cursor-pointer " style="max-width: 400px; ">
+`;
+        htm += `{%- block htmLegendAirlinePage %}
+    <div title="${quoteattr(title)}">
+    <div style="width: 20px; ">
+      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+    </div>
+    <div class="text-overflow-ellipsis ">
+      <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
+    </div>
+    </div>
+{%- endblock htmLegendAirlinePage %}`;
+        htm += `
+</div>
+`;
+        return htm;
+      }
+
+      function jsStyleAirline(feature) {
+{%- block jsStyleAirlinePage %}
+        if(feature.geometry.type == 'Point') {
+          return {
+            radius: 8
+            , fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 1
+            , opacity: 0.7
+            , fillOpacity: 0.7
+            , contextmenu: true
+            , contextmenuItems: [
+              {
+                text: 'Show coordinates'
+                , callback: function(event) {
+                  alert(event2.target.getLatLngs());
+                }
+              }
+            ]
+          };
+        } else if(feature.geometry.type == 'LineString') {
+          return {
+            color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 5
+            , opacity: 0.7
+          };
+        } else {
+          return {
+             fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 3
+            , opacity: 0.7
+            , fillOpacity: 0.7
+          };
+        }
+{%- endblock jsStyleAirlinePage %}
+      }
+
+      function facetChangeAirlineSuccess(e) {
+        var l = e.querySelector('.pageForm .listAirline')?.value;
+        if(l)
+          window.listAirline = JSON.parse(l);
+{% block facetChangeAirlineSuccess %}{%- endblock facetAirlineSuccess %}
+      }
+      function facetChangeAirlineError(e) {
+{% block facetChangeAirlineError %}{%- endblock facetAirlineError %}
+      }
+
+      function facetSimpleRangeAirlineSuccess(e) {
+{% block facetSimpleRangeAirlineSuccess %}      facetChangeAirlineSuccess(e);{% endblock facetSimpleRangeAirlineSuccess %}
+      }
+      function facetSimpleRangeAirlineError(e) {
+{% block facetSimpleRangeAirlineError %}      facetChangeAirlineError(e);{% endblock facetSimpleRangeAirlineError %}
+      }
+      function facetSimpleRangeAirline(e) {
+        facetSimpleRange(e, facetSimpleRangeAirlineSuccess, facetSimpleRangeAirlineError);
+      }
+
+      function facetRangeTimeZoneAirlineSuccess(e) {
+{% block facetRangeTimeZoneAirlineSuccess %}      facetChangeAirlineSuccess(e);{% endblock facetRangeTimeZoneAirlineSuccess %}
+      }
+      function facetRangeTimeZoneAirlineError(e) {
+{% block facetRangeTimeZoneAirlineError %}      facetChangeAirlineError(e);{%- endblock facetRangeTimeZoneAirlineError %}
+      }
+      function facetRangeTimeZoneAirline(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneAirlineSuccess, facetRangeTimeZoneAirlineError);
+      }
+
+      function facetRangeGapChangeAirlineSuccess(e) {
+{% block facetRangeGapChangeAirlineSuccess %}      facetChangeAirlineSuccess(e);{% endblock facetRangeGapChangeAirlineSuccess %}
+      }
+      function facetRangeGapChangeAirlineError(e) {
+{% block facetRangeGapChangeAirlineError %}      facetChangeAirlineError(e);{%- endblock facetRangeGapChangeAirlineError %}
+      }
+      function facetRangeGapChangeAirline(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeAirlineSuccess, facetRangeGapChangeAirlineError);
+      }
+
+      function facetRangeStartChangeAirlineSuccess(e) {
+{% block facetRangeStartChangeAirlineSuccess %}      facetChangeAirlineSuccess(e);{% endblock facetRangeStartChangeAirlineSuccess %}
+      }
+      function facetRangeStartChangeAirlineError(e) {
+{% block facetRangeStartChangeAirlineError %}      facetChangeAirlineError(e);{%- endblock facetRangeStartChangeAirlineError %}
+      }
+      function facetRangeStartChangeAirline(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeAirlineSuccess, facetRangeStartChangeAirlineError);
+      }
+
+      function facetRangeEndChangeAirlineSuccess(e) {
+{% block facetRangeEndChangeAirlineSuccess %}      facetChangeAirlineSuccess(e);{% endblock facetRangeEndChangeAirlineSuccess %}
+      }
+      function facetRangeEndChangeAirlineError(e) {
+{% block facetRangeEndChangeAirlineError %}      facetChangeAirlineError(e);{%- endblock facetRangeEndChangeAirlineError %}
+      }
+      function facetRangeEndChangeAirline(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeAirlineSuccess, facetRangeEndChangeAirlineError);
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
+      ]).then(() => {
+        window.FONTAWESOME_STYLE = document.querySelector('.pageForm .FONTAWESOME_STYLE')?.value;
+
+        var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
+
+        if(entityShortId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.entityShortId is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listAirline')?.value;
+        if(l)
+          window.listAirline = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneAirline);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneAirline);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneAirline);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeAirline);
+        pageGraphAirline();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qAirline_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('Airline', event.target, document.querySelector('#qAirlineDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qAirline_rows')?.addEventListener('change', event => {
+          paramChange('Airline', event.target, document.querySelector('#qAirlineDiv_rows'));
+        });
+
+        document.querySelector('#qAirline_start')?.addEventListener('change', event => {
+          paramChange('Airline', event.target, document.querySelector('#qAirlineDiv_start'));
+        });
+
+
+        var submitForm_patchAirline = document.querySelector('#htmForm_patchAirline')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchAirline')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          patchAirline(null, document.querySelector('#htmForm_patchAirline')
+              , document.querySelector('#htmFormButton_patchAirline')
+              , event.target.getAttribute('data-entityShortId')
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_postAirline = document.querySelector('#htmForm_postAirline')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postAirline')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          postAirline(document.querySelector('#htmForm_postAirline')
+              , document.querySelector('#htmFormButton_postAirline')
+              , (json, target) => {
+            window.location.href = json.editPage;
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_deleteAirline = document.querySelector('#htmForm_deleteAirline')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteAirline')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          deleteAirline(event.target, event.target.getAttribute('data-entityShortId')
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_putimportAirline = document.querySelector('#htmForm_putimportAirline')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportAirline')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          putimportAirline(document.querySelector('#htmForm_putimportAirline')
+              , document.querySelector('#htmFormButton_putimportAirline')
+              , event.target.getAttribute('data-entityShortId')
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_searchpageAirline = document.querySelector('#htmForm_searchpageAirline')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageAirline')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          searchpageAirline();
+          return false;
+        });
+
+        var submitForm_deletefilterAirline = document.querySelector('#htmForm_deletefilterAirline')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterAirline')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          deletefilterAirline(event.target
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+{%- block htmScriptInitAirlinePage %}{%- endblock htmScriptInitAirlinePage %}
+      });
+    </script>
+{%- endblock htmScriptAirlinePage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketAirlinePage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketAirline(websocketAirlineInner);
+{% endif %}
+{%- endblock websocketAirlinePage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlAirlinePage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlAirlinePage %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-Airline">back to all Airlines</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-Airline" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+                  all Airlines
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search Airlines
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
+{%- block htmBodyStartPageLayout %}
+{{ super() }}
+{%- block htmBodyStartAirlinePage %}
+{% include en-us/search/airline/AirlineSidebar.htm %}
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-Airline">back to all Airlines</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-Airline" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+              all Airlines
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no Airline found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+            </div>
+            <span class="wa-heading-m ">no Airline found</span>
+            <p class="wa-caption-l ">A description of a generic airline</p>
+          </div>
+        </div>
+{% else %}
+{% include en-us/search/airline/AirlineSuggestedSearch.htm %}
+          <div class="pageContent ">
+            <form action="/en-us/api/airline" id="AirlineForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="FONTAWESOME_STYLE" class="FONTAWESOME_STYLE" type="hidden" value="{{ FONTAWESOME_STYLE }}"/>
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listAirline" id="listAirline" class="listAirline"  value='{{ toJsonArrayStringInApostrophes(listAirline) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+{% endif %}
+{% include en-us/search/airline/AirlineSearchForm.htm %}
+{%- endblock htmBodyStartAirlinePage %}
+{%- endblock htmBodyStartPageLayout %}
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/airline/AirlineSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/airline/AirlineSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleAirlinePage %}
+{% if resultCount > 0 %}
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/airline/AirlinePaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
+                    <wa-dropdown id="htmDropdown-name">
+                      <wa-button variant="brand" slot="trigger" caret>name</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAirline_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Airline').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          sort by name ascending
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAirline_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Airline').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          sort by name descending
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                    <wa-dropdown id="htmDropdown-description">
+                      <wa-button variant="brand" slot="trigger" caret>description</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAirline_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Airline').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          sort by description ascending
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortAirline_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Airline').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          sort by description descending
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                  </div>
+                  {% for item in listAirline%}
+                  <div>
+                    <a href="{{ item.displayPage }}">
+                      <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+                      <span>{{ item.name | e }}</span>
+                    </a>
+                    <a href="{{ item.displayPage }}">
+                      <span>{{ item.description | e }}</span>
+                    </a>
+                  </div>
+                  {% endfor %}
+              {% if getColumnName is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnDescription is defined %}
+                <div>
+                </div>
+              {% endif %}
+                </div>
+{% include en-us/search/airline/AirlinePaginationButtons.htm %}
+              </div>
+{% endif %}
+{%- endblock htmBodyMiddleAirlinePage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+{%- block htmBodyEndAirlinePage %}
+{%- include en-us/search/airline/AirlineLocation.htm %}
+            </div>
+          </div>
+{%- endblock htmBodyEndAirlinePage %}
+  {{ super() }}
+{%- endblock htmBodyEndPageLayout %}

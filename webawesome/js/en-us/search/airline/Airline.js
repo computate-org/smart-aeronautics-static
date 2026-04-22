@@ -1,8 +1,8 @@
 
-async function websocketAirport(success) {
+async function websocketAirline(success) {
   window.eventBus.onopen = function () {
 
-    window.eventBus.registerHandler('websocketAirport', function (error, message) {
+    window.eventBus.registerHandler('websocketAirline', function (error, message) {
       var json = JSON.parse(message['body']);
       var entityShortId = json['id'];
       var solrIds = json['solrIds'];
@@ -28,7 +28,7 @@ async function websocketAirport(success) {
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
-      $headerSpan.innerText = 'modify Airports in ' + json.timeRemaining;
+      $headerSpan.innerText = 'modify Airlines in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
       $x.setAttribute('onclick', 'document.querySelector("#card-' + entityShortId + '");');
@@ -66,7 +66,7 @@ async function websocketAirport(success) {
     });
   }
 }
-async function websocketAirportInner(apiRequest) {
+async function websocketAirlineInner(apiRequest) {
   var entityShortId = apiRequest['id'];
   var classes = apiRequest['classes'];
   var vars = apiRequest['vars'];
@@ -82,18 +82,9 @@ async function websocketAirportInner(apiRequest) {
         var inputCreated = null;
         var inputModified = null;
         var inputArchived = null;
-        var inputName = null;
-        var inputDescription = null;
-        var inputLocation = null;
-        var inputColor = null;
-        var inputAreaServed = null;
-        var inputId = null;
-        var inputNgsildTenant = null;
-        var inputNgsildPath = null;
-        var inputNgsildContext = null;
-        var inputNgsildData = null;
         var inputAddress = null;
         var inputAlternateName = null;
+        var inputCallSign = null;
         var inputCodeIATA = null;
         var inputCodeICAO = null;
         var inputDataProvider = null;
@@ -102,6 +93,15 @@ async function websocketAirportInner(apiRequest) {
         var inputOwner = null;
         var inputSeeAlso = null;
         var inputSource = null;
+        var inputName = null;
+        var inputDescription = null;
+        var inputLocation = null;
+        var inputColor = null;
+        var inputId = null;
+        var inputNgsildTenant = null;
+        var inputNgsildPath = null;
+        var inputNgsildContext = null;
+        var inputNgsildData = null;
         var inputEntityShortId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
@@ -116,515 +116,476 @@ async function websocketAirportInner(apiRequest) {
         var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
-        var inputSolrId = null;
-        var inputAreaServedColors = null;
-        var inputAreaServedTitles = null;
 
         if(vars.includes('pk'))
-          inputPk = $response.querySelector('.Airport_Page_pk');
+          inputPk = $response.querySelector('.Airline_Page_pk');
         if(vars.includes('created'))
-          inputCreated = $response.querySelector('.Airport_Page_created');
+          inputCreated = $response.querySelector('.Airline_Page_created');
         if(vars.includes('modified'))
-          inputModified = $response.querySelector('.Airport_Page_modified');
+          inputModified = $response.querySelector('.Airline_Page_modified');
         if(vars.includes('archived'))
-          inputArchived = $response.querySelector('.Airport_Page_archived');
-        if(vars.includes('name'))
-          inputName = $response.querySelector('.Airport_Page_name');
-        if(vars.includes('description'))
-          inputDescription = $response.querySelector('.Airport_Page_description');
-        if(vars.includes('location'))
-          inputLocation = $response.querySelector('.Airport_Page_location');
-        if(vars.includes('color'))
-          inputColor = $response.querySelector('.Airport_Page_color');
-        if(vars.includes('areaServed'))
-          inputAreaServed = $response.querySelector('.Airport_Page_areaServed');
-        if(vars.includes('id'))
-          inputId = $response.querySelector('.Airport_Page_id');
-        if(vars.includes('ngsildTenant'))
-          inputNgsildTenant = $response.querySelector('.Airport_Page_ngsildTenant');
-        if(vars.includes('ngsildPath'))
-          inputNgsildPath = $response.querySelector('.Airport_Page_ngsildPath');
-        if(vars.includes('ngsildContext'))
-          inputNgsildContext = $response.querySelector('.Airport_Page_ngsildContext');
-        if(vars.includes('ngsildData'))
-          inputNgsildData = $response.querySelector('.Airport_Page_ngsildData');
+          inputArchived = $response.querySelector('.Airline_Page_archived');
         if(vars.includes('address'))
-          inputAddress = $response.querySelector('.Airport_Page_address');
+          inputAddress = $response.querySelector('.Airline_Page_address');
         if(vars.includes('alternateName'))
-          inputAlternateName = $response.querySelector('.Airport_Page_alternateName');
+          inputAlternateName = $response.querySelector('.Airline_Page_alternateName');
+        if(vars.includes('callSign'))
+          inputCallSign = $response.querySelector('.Airline_Page_callSign');
         if(vars.includes('codeIATA'))
-          inputCodeIATA = $response.querySelector('.Airport_Page_codeIATA');
+          inputCodeIATA = $response.querySelector('.Airline_Page_codeIATA');
         if(vars.includes('codeICAO'))
-          inputCodeICAO = $response.querySelector('.Airport_Page_codeICAO');
+          inputCodeICAO = $response.querySelector('.Airline_Page_codeICAO');
         if(vars.includes('dataProvider'))
-          inputDataProvider = $response.querySelector('.Airport_Page_dataProvider');
+          inputDataProvider = $response.querySelector('.Airline_Page_dataProvider');
         if(vars.includes('dateCreated'))
-          inputDateCreated = $response.querySelector('.Airport_Page_dateCreated');
+          inputDateCreated = $response.querySelector('.Airline_Page_dateCreated');
         if(vars.includes('dateModified'))
-          inputDateModified = $response.querySelector('.Airport_Page_dateModified');
+          inputDateModified = $response.querySelector('.Airline_Page_dateModified');
         if(vars.includes('owner'))
-          inputOwner = $response.querySelector('.Airport_Page_owner');
+          inputOwner = $response.querySelector('.Airline_Page_owner');
         if(vars.includes('seeAlso'))
-          inputSeeAlso = $response.querySelector('.Airport_Page_seeAlso');
+          inputSeeAlso = $response.querySelector('.Airline_Page_seeAlso');
         if(vars.includes('source'))
-          inputSource = $response.querySelector('.Airport_Page_source');
+          inputSource = $response.querySelector('.Airline_Page_source');
+        if(vars.includes('name'))
+          inputName = $response.querySelector('.Airline_Page_name');
+        if(vars.includes('description'))
+          inputDescription = $response.querySelector('.Airline_Page_description');
+        if(vars.includes('location'))
+          inputLocation = $response.querySelector('.Airline_Page_location');
+        if(vars.includes('color'))
+          inputColor = $response.querySelector('.Airline_Page_color');
+        if(vars.includes('id'))
+          inputId = $response.querySelector('.Airline_Page_id');
+        if(vars.includes('ngsildTenant'))
+          inputNgsildTenant = $response.querySelector('.Airline_Page_ngsildTenant');
+        if(vars.includes('ngsildPath'))
+          inputNgsildPath = $response.querySelector('.Airline_Page_ngsildPath');
+        if(vars.includes('ngsildContext'))
+          inputNgsildContext = $response.querySelector('.Airline_Page_ngsildContext');
+        if(vars.includes('ngsildData'))
+          inputNgsildData = $response.querySelector('.Airline_Page_ngsildData');
         if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Airport_Page_entityShortId');
+          inputEntityShortId = $response.querySelector('.Airline_Page_entityShortId');
         if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.querySelector('.Airport_Page_classCanonicalName');
+          inputClassCanonicalName = $response.querySelector('.Airline_Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.querySelector('.Airport_Page_classSimpleName');
+          inputClassSimpleName = $response.querySelector('.Airline_Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Airport_Page_classCanonicalNames');
+          inputClassCanonicalNames = $response.querySelector('.Airline_Page_classCanonicalNames');
         if(vars.includes('sessionId'))
-          inputSessionId = $response.querySelector('.Airport_Page_sessionId');
+          inputSessionId = $response.querySelector('.Airline_Page_sessionId');
         if(vars.includes('userKey'))
-          inputUserKey = $response.querySelector('.Airport_Page_userKey');
+          inputUserKey = $response.querySelector('.Airline_Page_userKey');
         if(vars.includes('saves'))
-          inputSaves = $response.querySelector('.Airport_Page_saves');
+          inputSaves = $response.querySelector('.Airline_Page_saves');
         if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.querySelector('.Airport_Page_objectTitle');
+          inputObjectTitle = $response.querySelector('.Airline_Page_objectTitle');
         if(vars.includes('displayPage'))
-          inputDisplayPage = $response.querySelector('.Airport_Page_displayPage');
+          inputDisplayPage = $response.querySelector('.Airline_Page_displayPage');
         if(vars.includes('editPage'))
-          inputEditPage = $response.querySelector('.Airport_Page_editPage');
+          inputEditPage = $response.querySelector('.Airline_Page_editPage');
         if(vars.includes('userPage'))
-          inputUserPage = $response.querySelector('.Airport_Page_userPage');
+          inputUserPage = $response.querySelector('.Airline_Page_userPage');
         if(vars.includes('download'))
-          inputDownload = $response.querySelector('.Airport_Page_download');
+          inputDownload = $response.querySelector('.Airline_Page_download');
         if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.querySelector('.Airport_Page_objectSuggest');
+          inputObjectSuggest = $response.querySelector('.Airline_Page_objectSuggest');
         if(vars.includes('objectText'))
-          inputObjectText = $response.querySelector('.Airport_Page_objectText');
-        if(vars.includes('solrId'))
-          inputSolrId = $response.querySelector('.Airport_Page_solrId');
-        if(vars.includes('areaServedColors'))
-          inputAreaServedColors = $response.querySelector('.Airport_Page_areaServedColors');
-        if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.querySelector('.Airport_Page_areaServedTitles');
+          inputObjectText = $response.querySelector('.Airline_Page_objectText');
 
-        jsWebsocketAirport(entityShortId, vars, $response);
+        jsWebsocketAirline(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
-        window.listAirport = JSON.parse($response.querySelector('.pageForm .listAirport')?.value);
+        window.listAirline = JSON.parse($response.querySelector('.pageForm .listAirline')?.value);
 
 
         if(inputPk) {
-          document.querySelectorAll('.Airport_Page_pk').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_pk').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPk.getAttribute('value');
             else
               item.textContent = inputPk.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_pk'));
+          addGlow(document.querySelector('.Airline_Page_pk'));
         }
 
         if(inputCreated) {
-          document.querySelectorAll('.Airport_Page_created').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_created').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputCreated.getAttribute('value');
             else
               item.textContent = inputCreated.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_created'));
+          addGlow(document.querySelector('.Airline_Page_created'));
         }
 
         if(inputModified) {
-          document.querySelectorAll('.Airport_Page_modified').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_modified').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputModified.getAttribute('value');
             else
               item.textContent = inputModified.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_modified'));
+          addGlow(document.querySelector('.Airline_Page_modified'));
         }
 
         if(inputArchived) {
-          document.querySelectorAll('.Airport_Page_archived').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_archived').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputArchived.getAttribute('value');
             else
               item.textContent = inputArchived.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_archived'));
-        }
-
-        if(inputName) {
-          document.querySelectorAll('.Airport_Page_name').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputName.getAttribute('value');
-            else
-              item.textContent = inputName.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_name'));
-        }
-
-        if(inputDescription) {
-          document.querySelectorAll('.Airport_Page_description').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputDescription.getAttribute('value');
-            else
-              item.textContent = inputDescription.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_description'));
-        }
-
-        if(inputLocation) {
-          document.querySelectorAll('.Airport_Page_location').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputLocation.getAttribute('value');
-            else
-              item.textContent = inputLocation.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_location'));
-        }
-
-        if(inputColor) {
-          document.querySelectorAll('.Airport_Page_color').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputColor.getAttribute('value');
-            else
-              item.textContent = inputColor.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_color'));
-        }
-
-        if(inputAreaServed) {
-          document.querySelectorAll('.Airport_Page_areaServed').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServed.getAttribute('value');
-            else
-              item.textContent = inputAreaServed.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_areaServed'));
-        }
-
-        if(inputId) {
-          document.querySelectorAll('.Airport_Page_id').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputId.getAttribute('value');
-            else
-              item.textContent = inputId.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_id'));
-        }
-
-        if(inputNgsildTenant) {
-          document.querySelectorAll('.Airport_Page_ngsildTenant').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputNgsildTenant.getAttribute('value');
-            else
-              item.textContent = inputNgsildTenant.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_ngsildTenant'));
-        }
-
-        if(inputNgsildPath) {
-          document.querySelectorAll('.Airport_Page_ngsildPath').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputNgsildPath.getAttribute('value');
-            else
-              item.textContent = inputNgsildPath.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_ngsildPath'));
-        }
-
-        if(inputNgsildContext) {
-          document.querySelectorAll('.Airport_Page_ngsildContext').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputNgsildContext.getAttribute('value');
-            else
-              item.textContent = inputNgsildContext.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_ngsildContext'));
-        }
-
-        if(inputNgsildData) {
-          document.querySelectorAll('.Airport_Page_ngsildData').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputNgsildData.getAttribute('value');
-            else
-              item.textContent = inputNgsildData.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_ngsildData'));
+          addGlow(document.querySelector('.Airline_Page_archived'));
         }
 
         if(inputAddress) {
-          document.querySelectorAll('.Airport_Page_address').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_address').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAddress.getAttribute('value');
             else
               item.textContent = inputAddress.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_address'));
+          addGlow(document.querySelector('.Airline_Page_address'));
         }
 
         if(inputAlternateName) {
-          document.querySelectorAll('.Airport_Page_alternateName').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_alternateName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAlternateName.getAttribute('value');
             else
               item.textContent = inputAlternateName.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_alternateName'));
+          addGlow(document.querySelector('.Airline_Page_alternateName'));
+        }
+
+        if(inputCallSign) {
+          document.querySelectorAll('.Airline_Page_callSign').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputCallSign.getAttribute('value');
+            else
+              item.textContent = inputCallSign.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_callSign'));
         }
 
         if(inputCodeIATA) {
-          document.querySelectorAll('.Airport_Page_codeIATA').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_codeIATA').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputCodeIATA.getAttribute('value');
             else
               item.textContent = inputCodeIATA.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_codeIATA'));
+          addGlow(document.querySelector('.Airline_Page_codeIATA'));
         }
 
         if(inputCodeICAO) {
-          document.querySelectorAll('.Airport_Page_codeICAO').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_codeICAO').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputCodeICAO.getAttribute('value');
             else
               item.textContent = inputCodeICAO.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_codeICAO'));
+          addGlow(document.querySelector('.Airline_Page_codeICAO'));
         }
 
         if(inputDataProvider) {
-          document.querySelectorAll('.Airport_Page_dataProvider').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_dataProvider').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDataProvider.getAttribute('value');
             else
               item.textContent = inputDataProvider.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_dataProvider'));
+          addGlow(document.querySelector('.Airline_Page_dataProvider'));
         }
 
         if(inputDateCreated) {
-          document.querySelectorAll('.Airport_Page_dateCreated').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_dateCreated').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDateCreated.getAttribute('value');
             else
               item.textContent = inputDateCreated.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_dateCreated'));
+          addGlow(document.querySelector('.Airline_Page_dateCreated'));
         }
 
         if(inputDateModified) {
-          document.querySelectorAll('.Airport_Page_dateModified').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_dateModified').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDateModified.getAttribute('value');
             else
               item.textContent = inputDateModified.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_dateModified'));
+          addGlow(document.querySelector('.Airline_Page_dateModified'));
         }
 
         if(inputOwner) {
-          document.querySelectorAll('.Airport_Page_owner').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_owner').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputOwner.getAttribute('value');
             else
               item.textContent = inputOwner.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_owner'));
+          addGlow(document.querySelector('.Airline_Page_owner'));
         }
 
         if(inputSeeAlso) {
-          document.querySelectorAll('.Airport_Page_seeAlso').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_seeAlso').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSeeAlso.getAttribute('value');
             else
               item.textContent = inputSeeAlso.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_seeAlso'));
+          addGlow(document.querySelector('.Airline_Page_seeAlso'));
         }
 
         if(inputSource) {
-          document.querySelectorAll('.Airport_Page_source').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_source').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSource.getAttribute('value');
             else
               item.textContent = inputSource.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_source'));
+          addGlow(document.querySelector('.Airline_Page_source'));
+        }
+
+        if(inputName) {
+          document.querySelectorAll('.Airline_Page_name').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputName.getAttribute('value');
+            else
+              item.textContent = inputName.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_name'));
+        }
+
+        if(inputDescription) {
+          document.querySelectorAll('.Airline_Page_description').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDescription.getAttribute('value');
+            else
+              item.textContent = inputDescription.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_description'));
+        }
+
+        if(inputLocation) {
+          document.querySelectorAll('.Airline_Page_location').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocation.getAttribute('value');
+            else
+              item.textContent = inputLocation.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_location'));
+        }
+
+        if(inputColor) {
+          document.querySelectorAll('.Airline_Page_color').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputColor.getAttribute('value');
+            else
+              item.textContent = inputColor.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_color'));
+        }
+
+        if(inputId) {
+          document.querySelectorAll('.Airline_Page_id').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputId.getAttribute('value');
+            else
+              item.textContent = inputId.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_id'));
+        }
+
+        if(inputNgsildTenant) {
+          document.querySelectorAll('.Airline_Page_ngsildTenant').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildTenant.getAttribute('value');
+            else
+              item.textContent = inputNgsildTenant.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_ngsildTenant'));
+        }
+
+        if(inputNgsildPath) {
+          document.querySelectorAll('.Airline_Page_ngsildPath').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildPath.getAttribute('value');
+            else
+              item.textContent = inputNgsildPath.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_ngsildPath'));
+        }
+
+        if(inputNgsildContext) {
+          document.querySelectorAll('.Airline_Page_ngsildContext').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildContext.getAttribute('value');
+            else
+              item.textContent = inputNgsildContext.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_ngsildContext'));
+        }
+
+        if(inputNgsildData) {
+          document.querySelectorAll('.Airline_Page_ngsildData').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildData.getAttribute('value');
+            else
+              item.textContent = inputNgsildData.textContent;
+          });
+          addGlow(document.querySelector('.Airline_Page_ngsildData'));
         }
 
         if(inputEntityShortId) {
-          document.querySelectorAll('.Airport_Page_entityShortId').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_entityShortId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputEntityShortId.getAttribute('value');
             else
               item.textContent = inputEntityShortId.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_entityShortId'));
+          addGlow(document.querySelector('.Airline_Page_entityShortId'));
         }
 
         if(inputClassCanonicalName) {
-          document.querySelectorAll('.Airport_Page_classCanonicalName').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassCanonicalName.getAttribute('value');
             else
               item.textContent = inputClassCanonicalName.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_classCanonicalName'));
+          addGlow(document.querySelector('.Airline_Page_classCanonicalName'));
         }
 
         if(inputClassSimpleName) {
-          document.querySelectorAll('.Airport_Page_classSimpleName').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_classSimpleName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassSimpleName.getAttribute('value');
             else
               item.textContent = inputClassSimpleName.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_classSimpleName'));
+          addGlow(document.querySelector('.Airline_Page_classSimpleName'));
         }
 
         if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Airport_Page_classCanonicalNames').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_classCanonicalNames').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassCanonicalNames.getAttribute('value');
             else
               item.textContent = inputClassCanonicalNames.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_classCanonicalNames'));
+          addGlow(document.querySelector('.Airline_Page_classCanonicalNames'));
         }
 
         if(inputSessionId) {
-          document.querySelectorAll('.Airport_Page_sessionId').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_sessionId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSessionId.getAttribute('value');
             else
               item.textContent = inputSessionId.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_sessionId'));
+          addGlow(document.querySelector('.Airline_Page_sessionId'));
         }
 
         if(inputUserKey) {
-          document.querySelectorAll('.Airport_Page_userKey').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_userKey').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserKey.getAttribute('value');
             else
               item.textContent = inputUserKey.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_userKey'));
+          addGlow(document.querySelector('.Airline_Page_userKey'));
         }
 
         if(inputSaves) {
-          document.querySelectorAll('.Airport_Page_saves').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_saves').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSaves.getAttribute('value');
             else
               item.textContent = inputSaves.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_saves'));
+          addGlow(document.querySelector('.Airline_Page_saves'));
         }
 
         if(inputObjectTitle) {
-          document.querySelectorAll('.Airport_Page_objectTitle').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_objectTitle').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectTitle.getAttribute('value');
             else
               item.textContent = inputObjectTitle.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_objectTitle'));
+          addGlow(document.querySelector('.Airline_Page_objectTitle'));
         }
 
         if(inputDisplayPage) {
-          document.querySelectorAll('.Airport_Page_displayPage').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_displayPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDisplayPage.getAttribute('value');
             else
               item.textContent = inputDisplayPage.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_displayPage'));
+          addGlow(document.querySelector('.Airline_Page_displayPage'));
         }
 
         if(inputEditPage) {
-          document.querySelectorAll('.Airport_Page_editPage').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_editPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputEditPage.getAttribute('value');
             else
               item.textContent = inputEditPage.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_editPage'));
+          addGlow(document.querySelector('.Airline_Page_editPage'));
         }
 
         if(inputUserPage) {
-          document.querySelectorAll('.Airport_Page_userPage').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_userPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserPage.getAttribute('value');
             else
               item.textContent = inputUserPage.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_userPage'));
+          addGlow(document.querySelector('.Airline_Page_userPage'));
         }
 
         if(inputDownload) {
-          document.querySelectorAll('.Airport_Page_download').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_download').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDownload.getAttribute('value');
             else
               item.textContent = inputDownload.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_download'));
+          addGlow(document.querySelector('.Airline_Page_download'));
         }
 
         if(inputObjectSuggest) {
-          document.querySelectorAll('.Airport_Page_objectSuggest').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectSuggest.getAttribute('value');
             else
               item.textContent = inputObjectSuggest.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_objectSuggest'));
+          addGlow(document.querySelector('.Airline_Page_objectSuggest'));
         }
 
         if(inputObjectText) {
-          document.querySelectorAll('.Airport_Page_objectText').forEach((item, index) => {
+          document.querySelectorAll('.Airline_Page_objectText').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectText.getAttribute('value');
             else
               item.textContent = inputObjectText.textContent;
           });
-          addGlow(document.querySelector('.Airport_Page_objectText'));
+          addGlow(document.querySelector('.Airline_Page_objectText'));
         }
 
-        if(inputSolrId) {
-          document.querySelectorAll('.Airport_Page_solrId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSolrId.getAttribute('value');
-            else
-              item.textContent = inputSolrId.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_solrId'));
-        }
-
-        if(inputAreaServedColors) {
-          document.querySelectorAll('.Airport_Page_areaServedColors').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedColors.getAttribute('value');
-            else
-              item.textContent = inputAreaServedColors.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_areaServedColors'));
-        }
-
-        if(inputAreaServedTitles) {
-          document.querySelectorAll('.Airport_Page_areaServedTitles').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedTitles.getAttribute('value');
-            else
-              item.textContent = inputAreaServedTitles.textContent;
-          });
-          addGlow(document.querySelector('.Airport_Page_areaServedTitles'));
-        }
-
-          pageGraphAirport();
+          pageGraphAirline();
       });
     });
   }
 }
 
-function pageGraphAirport(apiRequest) {
+function pageGraphAirline(apiRequest) {
   var r = document.querySelector('.pageForm .pageResponse')?.value;
   if(r) {
     var json = JSON.parse(r);
@@ -656,7 +617,7 @@ function pageGraphAirport(apiRequest) {
         var data = [];
         var layout = {};
         if(range) {
-          layout['title'] = 'Airports';
+          layout['title'] = 'Airlines';
           layout['xaxis'] = {
             title: rangeVarFq.displayName
           }
@@ -719,7 +680,7 @@ function pageGraphAirport(apiRequest) {
               data.push(trace);
             });
           }
-          Plotly.react('htmBodyGraphAirportPage', data, layout);
+          Plotly.react('htmBodyGraphAirlinePage', data, layout);
         }
       }
     }
@@ -727,19 +688,19 @@ function pageGraphAirport(apiRequest) {
     // Graph Location
     window.mapLayers = {};
     window.bounds = null;
-    if(listAirport.filter(o => o.location)) {
-      window.bounds = L.latLngBounds(listAirport.filter(o => o.location).map((c) => {
+    if(listAirline.filter(o => o.location)) {
+      window.bounds = L.latLngBounds(listAirline.filter(o => o.location).map((c) => {
         return [c.location.coordinates[1], c.location.coordinates[0]];
       }));
     }
     function onEachFeature(feature, layer) {
-      let popupContent = htmTooltipAirport(feature, layer);
+      let popupContent = htmTooltipAirline(feature, layer);
       layer.bindPopup(popupContent);
       window.mapLayers[feature.properties.id] = layer;
     };
-    if(window.mapAirport) {
-      window.geoJSONAirport.clearLayers();
-      window.listAirport.forEach((result, index) => {
+    if(window.mapAirline) {
+      window.geoJSONAirline.clearLayers();
+      window.listAirline.forEach((result, index) => {
         if(result.location) {
           var shapes = [];
           if(Array.isArray(result.location))
@@ -755,40 +716,17 @@ function pageGraphAirport(apiRequest) {
             }];
             var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
-              , style: jsStyleAirport
+              , style: jsStyleAirline
               , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleAirport(feature));
+                return L.circleMarker(latlng, jsStyleAirline(feature));
               }
             });
-            window.geoJSONAirport.addLayer(layerGeoJson);
-          });
-        }
-        if(result.areaServed) {
-          var shapes = [];
-          if(Array.isArray(result.areaServed))
-            shapes = shapes.concat(result.areaServed);
-          else
-            shapes.push(result.areaServed);
-          shapes.forEach(function(shape, index) {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleAirport
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleAirport(feature));
-              }
-            });
-            window.geoJSONAirport.addLayer(layerGeoJson);
+            window.geoJSONAirline.addLayer(layerGeoJson);
           });
         }
       });
-    } else if(document.getElementById('htmBodyGraphLocationAirportPage')) {
-      window.mapAirport = L.map('htmBodyGraphLocationAirportPage', {
+    } else if(document.getElementById('htmBodyGraphLocationAirlinePage')) {
+      window.mapAirline = L.map('htmBodyGraphLocationAirlinePage', {
         position: 'topright'
         , zoomControl: true
         , scrollWheelZoom: true
@@ -804,37 +742,37 @@ function pageGraphAirport(apiRequest) {
           }
           ]
       });
-      window.mapAirport.zoomControl.setPosition('topright');
+      window.mapAirline.zoomControl.setPosition('topright');
       var data = [];
       var layout = {};
       layout['showlegend'] = true;
       layout['dragmode'] = 'zoom';
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
-      legend.onAdd = jsLegendAirport;
+      legend.onAdd = jsLegendAirline;
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(window.mapAirport);
+      }).addTo(window.mapAirline);
 
       if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
-        if(listAirport.length == 1) {
-          window.mapAirport.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
+        if(listAirline.length == 1) {
+          window.mapAirline.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
         } else {
-          window.mapAirport.fitBounds(window.bounds);
+          window.mapAirline.fitBounds(window.bounds);
         }
       } else {
         if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-          window.mapAirport.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
+          window.mapAirline.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
         else if(window['DEFAULT_MAP_ZOOM'])
-          window.mapAirport.setView(null, window['DEFAULT_MAP_ZOOM']);
+          window.mapAirline.setView(null, window['DEFAULT_MAP_ZOOM']);
         else if(window['DEFAULT_MAP_LOCATION'])
-          window.mapAirport.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
+          window.mapAirline.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
       }
 
       layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-      window.geoJSONAirport = L.geoJSON().addTo(window.mapAirport);
-      window.listAirport.forEach((result, index) => {
+      window.geoJSONAirline = L.geoJSON().addTo(window.mapAirline);
+      window.listAirline.forEach((result, index) => {
         if(result.location) {
           var shapes = [];
           if(Array.isArray(result.location))
@@ -850,46 +788,23 @@ function pageGraphAirport(apiRequest) {
             }];
             var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
-              , style: jsStyleAirport
+              , style: jsStyleAirline
               , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleAirport(feature));
+                return L.circleMarker(latlng, jsStyleAirline(feature));
               }
             });
-            window.geoJSONAirport.addLayer(layerGeoJson);
-          });
-        }
-        if(result.areaServed) {
-          var shapes = [];
-          if(Array.isArray(result.areaServed))
-            shapes = shapes.concat(result.areaServed);
-          else
-            shapes.push(result.areaServed);
-          shapes.forEach(shape => {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleAirport
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleAirport(feature));
-              }
-            });
-            window.geoJSONAirport.addLayer(layerGeoJson);
+            window.geoJSONAirline.addLayer(layerGeoJson);
           });
         }
       });
-      window.mapAirport.on('popupopen', function(e) {
+      window.mapAirline.on('popupopen', function(e) {
         if(e.popup._source) {
           var feature = e.popup._source.feature;
-          jsTooltipAirport(e, feature);
+          jsTooltipAirline(e, feature);
         }
       });
       const drawnItems = new L.FeatureGroup();
-      window.mapAirport.addLayer(drawnItems);
+      window.mapAirline.addLayer(drawnItems);
       const drawControl = new L.Control.Draw({
         position: 'topright'
         , edit: {
@@ -903,45 +818,15 @@ function pageGraphAirport(apiRequest) {
           , marker: true
         }
       });
-      window.mapAirport.addControl(drawControl);
-      window.mapAirport.on(L.Draw.Event.CREATED, function (event) {
+      window.mapAirline.addControl(drawControl);
+      window.mapAirline.on(L.Draw.Event.CREATED, function (event) {
         drawnItems.addLayer(event.layer);
         var contextmenuItems = [];
         if(event.layerType == 'marker') {
           contextmenuItems.push({
             text: 'Set location of ' + result.objectTitle
             , callback: function(event2) {
-              patchAirportLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
-            }
-          });
-        }
-        if(event.layerType == 'polygon') {
-          contextmenuItems.push({
-            text: 'Set areaServed of ' + result.objectTitle
-            , callback: function(event2) {
-              var latLngs = [];
-              event.layer.getLatLngs().forEach(ll1 => {
-                var latLngs1 = [];
-                ll1.forEach(ll2 => {
-                  var latLngs2 = [ll2['lng'], ll2['lat']];
-                  latLngs1.push(latLngs2);
-                });
-                latLngs.push(latLngs1);
-              });
-              patchAirportArea(event.layer, { coordinates: latLngs, type: "Polygon" });
-            }
-          });
-        }
-        if(event.layerType == 'polyline') {
-          contextmenuItems.push({
-            text: 'Set areaServed of ' + result.objectTitle
-            , callback: function(event2) {
-              var latLngs = [];
-              event.layer.getLatLngs().forEach(ll1 => {
-                var latLngs1 = [ll1['lng'], ll1['lat']];
-                latLngs.push(latLngs1);
-              });
-              patchAirportArea(event.layer, { coordinates: latLngs, type: "LineString" });
+              patchAirlineLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
             }
           });
         }
@@ -953,17 +838,9 @@ function pageGraphAirport(apiRequest) {
     }
   }
 }
-function patchAirportLocation(target, location) {
-  patchAirportVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
+function patchAirlineLocation(target, location) {
+  patchAirlineVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
       , 'setLocation', location
-      , target
-      , function(response, e) { addGlow(target); }
-      , function(response, e) { addError(target); }
-      );
-}
-function patchAirportArea(target, areaServed) {
-  patchAirportVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
-      , 'setAreaServed', areaServed
       , target
       , function(response, e) { addGlow(target); }
       , function(response, e) { addError(target); }
@@ -971,8 +848,8 @@ function patchAirportArea(target, areaServed) {
 }
 
 function animateStats() {
-  document.querySelector('#pageSearchVal-fqAirport_time').innerText = '';
-  searchPage('Airport', function() {
+  document.querySelector('#pageSearchVal-fqAirline_time').innerText = '';
+  searchPage('Airline', function() {
     let speedRate = parseFloat(document.querySelector('#animateStatsSpeed')?.value) * 1000;
     let xStep = parseFloat(document.querySelector('#animateStatsStep')?.value);
     let xMin = parseFloat(document.querySelector('#animateStatsMin')?.value);
@@ -984,26 +861,26 @@ function animateStats() {
       if (x > xMax || x < 0) {
         clearInterval(animateInterval);
       }
-      document.querySelector('#fqAirport_time').value = x;
-      document.querySelector('#fqAirport_time').onchange();
-      searchPage('Airport');
+      document.querySelector('#fqAirline_time').value = x;
+      document.querySelector('#fqAirline_time').onchange();
+      searchPage('Airline');
     }, speedRate);
   });
 }
 
 // Search //
 
-async function searchAirport($formFilters, success, error) {
-  var filters = searchAirportFilters($formFilters);
+async function searchAirline($formFilters, success, error) {
+  var filters = searchAirlineFilters($formFilters);
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
     error = function( jqXhr, target2 ) {};
 
-  searchAirportVals(filters, target, success, error);
+  searchAirlineVals(filters, target, success, error);
 }
 
-function searchAirportFilters($formFilters) {
+function searchAirlineFilters($formFilters) {
   var filters = [];
   if($formFilters) {
 
@@ -1029,46 +906,6 @@ function searchAirportFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-    var filterName = $formFilters.querySelector('.valueName')?.value;
-    if(filterName != null && filterName !== '')
-      filters.push({ name: 'fq', value: 'name:' + filterName });
-
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
-    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
-    if(filterLocation != null && filterLocation !== '')
-      filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-    var filterColor = $formFilters.querySelector('.valueColor')?.value;
-    if(filterColor != null && filterColor !== '')
-      filters.push({ name: 'fq', value: 'color:' + filterColor });
-
-    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
-    var filterId = $formFilters.querySelector('.valueId')?.value;
-    if(filterId != null && filterId !== '')
-      filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
-    if(filterNgsildTenant != null && filterNgsildTenant !== '')
-      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
-
-    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
-    if(filterNgsildPath != null && filterNgsildPath !== '')
-      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
-
-    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
-    if(filterNgsildContext != null && filterNgsildContext !== '')
-      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
-
-    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
-    if(filterNgsildData != null && filterNgsildData !== '')
-      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
-
     var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
     if(filterAddress != null && filterAddress !== '')
       filters.push({ name: 'fq', value: 'address:' + filterAddress });
@@ -1076,6 +913,10 @@ function searchAirportFilters($formFilters) {
     var filterAlternateName = $formFilters.querySelector('.valueAlternateName')?.value;
     if(filterAlternateName != null && filterAlternateName !== '')
       filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
+
+    var filterCallSign = $formFilters.querySelector('.valueCallSign')?.value;
+    if(filterCallSign != null && filterCallSign !== '')
+      filters.push({ name: 'fq', value: 'callSign:' + filterCallSign });
 
     var filterCodeIATA = $formFilters.querySelector('.valueCodeIATA')?.value;
     if(filterCodeIATA != null && filterCodeIATA !== '')
@@ -1108,6 +949,42 @@ function searchAirportFilters($formFilters) {
     var filterSource = $formFilters.querySelector('.valueSource')?.value;
     if(filterSource != null && filterSource !== '')
       filters.push({ name: 'fq', value: 'source:' + filterSource });
+
+    var filterName = $formFilters.querySelector('.valueName')?.value;
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterColor = $formFilters.querySelector('.valueColor')?.value;
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterId = $formFilters.querySelector('.valueId')?.value;
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
+    if(filterNgsildTenant != null && filterNgsildTenant !== '')
+      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
+
+    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
+    if(filterNgsildPath != null && filterNgsildPath !== '')
+      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
+
+    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
+    if(filterNgsildContext != null && filterNgsildContext !== '')
+      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
+
+    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
+    if(filterNgsildData != null && filterNgsildData !== '')
+      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -1164,27 +1041,15 @@ function searchAirportFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
-
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
   }
   return filters;
 }
 
-function searchAirportVals(filters, target, success, error) {
+function searchAirlineVals(filters, target, success, error) {
 
 
   fetch(
-    '/en-us/api/airport?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    '/en-us/api/airline?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
@@ -1199,7 +1064,7 @@ function searchAirportVals(filters, target, success, error) {
     .catch(response => error(response, target));
 }
 
-function suggestAirportObjectSuggest($formFilters, $list, target) {
+function suggestAirlineObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     if($list) {
       $list.innerHTML = '';
@@ -1218,14 +1083,14 @@ function suggestAirportObjectSuggest($formFilters, $list, target) {
     }
   };
   error = function( jqXhr, target2 ) {};
-  searchAirportVals($formFilters, target, success, error);
+  searchAirlineVals($formFilters, target, success, error);
 }
 
 // GET //
 
-async function getAirport(pk) {
+async function getAirline(pk) {
   fetch(
-    '/en-us/api/airport/' + entityShortId
+    '/en-us/api/airline/' + entityShortId
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
@@ -1242,8 +1107,8 @@ async function getAirport(pk) {
 
 // PATCH //
 
-async function patchAirport($formFilters, $formValues, target, entityShortId, success, error) {
-  var filters = patchAirportFilters($formFilters);
+async function patchAirline($formFilters, $formValues, target, entityShortId, success, error) {
+  var filters = patchAirlineFilters($formFilters);
 
   var vals = {};
 
@@ -1302,126 +1167,6 @@ async function patchAirport($formFilters, $formValues, target, entityShortId, su
   if(removeArchived != null && removeArchived !== '')
     vals['removeArchived'] = removeArchived;
 
-  var valueName = $formValues.querySelector('.valueName')?.value;
-  var removeName = $formValues.querySelector('.removeName')?.value === 'true';
-  var setName = removeName ? null : $formValues.querySelector('.setName')?.value;
-  var addName = $formValues.querySelector('.addName')?.value;
-  if(removeName || setName != null && setName !== '')
-    vals['setName'] = setName;
-  if(addName != null && addName !== '')
-    vals['addName'] = addName;
-  var removeName = $formValues.querySelector('.removeName')?.value;
-  if(removeName != null && removeName !== '')
-    vals['removeName'] = removeName;
-
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
-  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
-  var addDescription = $formValues.querySelector('.addDescription')?.value;
-  if(removeDescription || setDescription != null && setDescription !== '')
-    vals['setDescription'] = setDescription;
-  if(addDescription != null && addDescription !== '')
-    vals['addDescription'] = addDescription;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
-  if(removeDescription != null && removeDescription !== '')
-    vals['removeDescription'] = removeDescription;
-
-  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
-  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
-  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
-  var addLocation = $formValues.querySelector('.addLocation')?.value;
-  if(removeLocation || setLocation != null && setLocation !== '')
-    vals['setLocation'] = JSON.parse(setLocation);
-  if(addLocation != null && addLocation !== '')
-    vals['addLocation'] = addLocation;
-  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
-  if(removeLocation != null && removeLocation !== '')
-    vals['removeLocation'] = removeLocation;
-
-  var valueColor = $formValues.querySelector('.valueColor')?.value;
-  var removeColor = $formValues.querySelector('.removeColor')?.value === 'true';
-  var setColor = removeColor ? null : $formValues.querySelector('.setColor')?.value;
-  var addColor = $formValues.querySelector('.addColor')?.value;
-  if(removeColor || setColor != null && setColor !== '')
-    vals['setColor'] = setColor;
-  if(addColor != null && addColor !== '')
-    vals['addColor'] = addColor;
-  var removeColor = $formValues.querySelector('.removeColor')?.value;
-  if(removeColor != null && removeColor !== '')
-    vals['removeColor'] = removeColor;
-
-  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
-  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value === 'true';
-  var setAreaServed = removeAreaServed ? null : $formValues.querySelector('.setAreaServed')?.value;
-  var addAreaServed = $formValues.querySelector('.addAreaServed')?.value;
-  if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
-    vals['setAreaServed'] = JSON.parse(setAreaServed);
-  if(addAreaServed != null && addAreaServed !== '')
-    vals['addAreaServed'] = addAreaServed;
-  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value;
-  if(removeAreaServed != null && removeAreaServed !== '')
-    vals['removeAreaServed'] = removeAreaServed;
-
-  var valueId = $formValues.querySelector('.valueId')?.value;
-  var removeId = $formValues.querySelector('.removeId')?.value === 'true';
-  var setId = removeId ? null : $formValues.querySelector('.setId')?.value;
-  var addId = $formValues.querySelector('.addId')?.value;
-  if(removeId || setId != null && setId !== '')
-    vals['setId'] = setId;
-  if(addId != null && addId !== '')
-    vals['addId'] = addId;
-  var removeId = $formValues.querySelector('.removeId')?.value;
-  if(removeId != null && removeId !== '')
-    vals['removeId'] = removeId;
-
-  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
-  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value === 'true';
-  var setNgsildTenant = removeNgsildTenant ? null : $formValues.querySelector('.setNgsildTenant')?.value;
-  var addNgsildTenant = $formValues.querySelector('.addNgsildTenant')?.value;
-  if(removeNgsildTenant || setNgsildTenant != null && setNgsildTenant !== '')
-    vals['setNgsildTenant'] = setNgsildTenant;
-  if(addNgsildTenant != null && addNgsildTenant !== '')
-    vals['addNgsildTenant'] = addNgsildTenant;
-  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value;
-  if(removeNgsildTenant != null && removeNgsildTenant !== '')
-    vals['removeNgsildTenant'] = removeNgsildTenant;
-
-  var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
-  var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value === 'true';
-  var setNgsildPath = removeNgsildPath ? null : $formValues.querySelector('.setNgsildPath')?.value;
-  var addNgsildPath = $formValues.querySelector('.addNgsildPath')?.value;
-  if(removeNgsildPath || setNgsildPath != null && setNgsildPath !== '')
-    vals['setNgsildPath'] = setNgsildPath;
-  if(addNgsildPath != null && addNgsildPath !== '')
-    vals['addNgsildPath'] = addNgsildPath;
-  var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value;
-  if(removeNgsildPath != null && removeNgsildPath !== '')
-    vals['removeNgsildPath'] = removeNgsildPath;
-
-  var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
-  var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value === 'true';
-  var setNgsildContext = removeNgsildContext ? null : $formValues.querySelector('.setNgsildContext')?.value;
-  var addNgsildContext = $formValues.querySelector('.addNgsildContext')?.value;
-  if(removeNgsildContext || setNgsildContext != null && setNgsildContext !== '')
-    vals['setNgsildContext'] = setNgsildContext;
-  if(addNgsildContext != null && addNgsildContext !== '')
-    vals['addNgsildContext'] = addNgsildContext;
-  var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value;
-  if(removeNgsildContext != null && removeNgsildContext !== '')
-    vals['removeNgsildContext'] = removeNgsildContext;
-
-  var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
-  var removeNgsildData = $formValues.querySelector('.removeNgsildData')?.value === 'true';
-  var setNgsildData = removeNgsildData ? null : $formValues.querySelector('.setNgsildData')?.value;
-  var addNgsildData = $formValues.querySelector('.addNgsildData')?.value;
-  if(removeNgsildData || setNgsildData != null && setNgsildData !== '')
-    vals['setNgsildData'] = JSON.parse(setNgsildData);
-  if(addNgsildData != null && addNgsildData !== '')
-    vals['addNgsildData'] = addNgsildData;
-  var removeNgsildData = $formValues.querySelector('.removeNgsildData')?.value;
-  if(removeNgsildData != null && removeNgsildData !== '')
-    vals['removeNgsildData'] = removeNgsildData;
-
   var valueAddress = $formValues.querySelector('.valueAddress')?.value;
   var removeAddress = $formValues.querySelector('.removeAddress')?.value === 'true';
   var setAddress = removeAddress ? null : $formValues.querySelector('.setAddress')?.value;
@@ -1445,6 +1190,18 @@ async function patchAirport($formFilters, $formValues, target, entityShortId, su
   var removeAlternateName = $formValues.querySelector('.removeAlternateName')?.value;
   if(removeAlternateName != null && removeAlternateName !== '')
     vals['removeAlternateName'] = removeAlternateName;
+
+  var valueCallSign = $formValues.querySelector('.valueCallSign')?.value;
+  var removeCallSign = $formValues.querySelector('.removeCallSign')?.value === 'true';
+  var setCallSign = removeCallSign ? null : $formValues.querySelector('.setCallSign')?.value;
+  var addCallSign = $formValues.querySelector('.addCallSign')?.value;
+  if(removeCallSign || setCallSign != null && setCallSign !== '')
+    vals['setCallSign'] = setCallSign;
+  if(addCallSign != null && addCallSign !== '')
+    vals['addCallSign'] = addCallSign;
+  var removeCallSign = $formValues.querySelector('.removeCallSign')?.value;
+  if(removeCallSign != null && removeCallSign !== '')
+    vals['removeCallSign'] = removeCallSign;
 
   var valueCodeIATA = $formValues.querySelector('.valueCodeIATA')?.value;
   var removeCodeIATA = $formValues.querySelector('.removeCodeIATA')?.value === 'true';
@@ -1542,6 +1299,114 @@ async function patchAirport($formFilters, $formValues, target, entityShortId, su
   if(removeSource != null && removeSource !== '')
     vals['removeSource'] = removeSource;
 
+  var valueName = $formValues.querySelector('.valueName')?.value;
+  var removeName = $formValues.querySelector('.removeName')?.value === 'true';
+  var setName = removeName ? null : $formValues.querySelector('.setName')?.value;
+  var addName = $formValues.querySelector('.addName')?.value;
+  if(removeName || setName != null && setName !== '')
+    vals['setName'] = setName;
+  if(addName != null && addName !== '')
+    vals['addName'] = addName;
+  var removeName = $formValues.querySelector('.removeName')?.value;
+  if(removeName != null && removeName !== '')
+    vals['removeName'] = removeName;
+
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
+  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
+  var addDescription = $formValues.querySelector('.addDescription')?.value;
+  if(removeDescription || setDescription != null && setDescription !== '')
+    vals['setDescription'] = setDescription;
+  if(addDescription != null && addDescription !== '')
+    vals['addDescription'] = addDescription;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
+  if(removeDescription != null && removeDescription !== '')
+    vals['removeDescription'] = removeDescription;
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
+  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
+  var addLocation = $formValues.querySelector('.addLocation')?.value;
+  if(removeLocation || setLocation != null && setLocation !== '')
+    vals['setLocation'] = JSON.parse(setLocation);
+  if(addLocation != null && addLocation !== '')
+    vals['addLocation'] = addLocation;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
+  if(removeLocation != null && removeLocation !== '')
+    vals['removeLocation'] = removeLocation;
+
+  var valueColor = $formValues.querySelector('.valueColor')?.value;
+  var removeColor = $formValues.querySelector('.removeColor')?.value === 'true';
+  var setColor = removeColor ? null : $formValues.querySelector('.setColor')?.value;
+  var addColor = $formValues.querySelector('.addColor')?.value;
+  if(removeColor || setColor != null && setColor !== '')
+    vals['setColor'] = setColor;
+  if(addColor != null && addColor !== '')
+    vals['addColor'] = addColor;
+  var removeColor = $formValues.querySelector('.removeColor')?.value;
+  if(removeColor != null && removeColor !== '')
+    vals['removeColor'] = removeColor;
+
+  var valueId = $formValues.querySelector('.valueId')?.value;
+  var removeId = $formValues.querySelector('.removeId')?.value === 'true';
+  var setId = removeId ? null : $formValues.querySelector('.setId')?.value;
+  var addId = $formValues.querySelector('.addId')?.value;
+  if(removeId || setId != null && setId !== '')
+    vals['setId'] = setId;
+  if(addId != null && addId !== '')
+    vals['addId'] = addId;
+  var removeId = $formValues.querySelector('.removeId')?.value;
+  if(removeId != null && removeId !== '')
+    vals['removeId'] = removeId;
+
+  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
+  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value === 'true';
+  var setNgsildTenant = removeNgsildTenant ? null : $formValues.querySelector('.setNgsildTenant')?.value;
+  var addNgsildTenant = $formValues.querySelector('.addNgsildTenant')?.value;
+  if(removeNgsildTenant || setNgsildTenant != null && setNgsildTenant !== '')
+    vals['setNgsildTenant'] = setNgsildTenant;
+  if(addNgsildTenant != null && addNgsildTenant !== '')
+    vals['addNgsildTenant'] = addNgsildTenant;
+  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value;
+  if(removeNgsildTenant != null && removeNgsildTenant !== '')
+    vals['removeNgsildTenant'] = removeNgsildTenant;
+
+  var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
+  var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value === 'true';
+  var setNgsildPath = removeNgsildPath ? null : $formValues.querySelector('.setNgsildPath')?.value;
+  var addNgsildPath = $formValues.querySelector('.addNgsildPath')?.value;
+  if(removeNgsildPath || setNgsildPath != null && setNgsildPath !== '')
+    vals['setNgsildPath'] = setNgsildPath;
+  if(addNgsildPath != null && addNgsildPath !== '')
+    vals['addNgsildPath'] = addNgsildPath;
+  var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value;
+  if(removeNgsildPath != null && removeNgsildPath !== '')
+    vals['removeNgsildPath'] = removeNgsildPath;
+
+  var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
+  var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value === 'true';
+  var setNgsildContext = removeNgsildContext ? null : $formValues.querySelector('.setNgsildContext')?.value;
+  var addNgsildContext = $formValues.querySelector('.addNgsildContext')?.value;
+  if(removeNgsildContext || setNgsildContext != null && setNgsildContext !== '')
+    vals['setNgsildContext'] = setNgsildContext;
+  if(addNgsildContext != null && addNgsildContext !== '')
+    vals['addNgsildContext'] = addNgsildContext;
+  var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value;
+  if(removeNgsildContext != null && removeNgsildContext !== '')
+    vals['removeNgsildContext'] = removeNgsildContext;
+
+  var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
+  var removeNgsildData = $formValues.querySelector('.removeNgsildData')?.value === 'true';
+  var setNgsildData = removeNgsildData ? null : $formValues.querySelector('.setNgsildData')?.value;
+  var addNgsildData = $formValues.querySelector('.addNgsildData')?.value;
+  if(removeNgsildData || setNgsildData != null && setNgsildData !== '')
+    vals['setNgsildData'] = JSON.parse(setNgsildData);
+  if(addNgsildData != null && addNgsildData !== '')
+    vals['addNgsildData'] = addNgsildData;
+  var removeNgsildData = $formValues.querySelector('.removeNgsildData')?.value;
+  if(removeNgsildData != null && removeNgsildData !== '')
+    vals['removeNgsildData'] = removeNgsildData;
+
   var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
   var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
   var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
@@ -1638,10 +1503,10 @@ async function patchAirport($formFilters, $formValues, target, entityShortId, su
   if(removeDownload != null && removeDownload !== '')
     vals['removeDownload'] = removeDownload;
 
-  patchAirportVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
+  patchAirlineVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
 }
 
-function patchAirportFilters($formFilters) {
+function patchAirlineFilters($formFilters) {
   var filters = [];
   if($formFilters) {
     filters.push({ name: 'softCommit', value: 'true' });
@@ -1668,46 +1533,6 @@ function patchAirportFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-    var filterName = $formFilters.querySelector('.valueName')?.value;
-    if(filterName != null && filterName !== '')
-      filters.push({ name: 'fq', value: 'name:' + filterName });
-
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
-    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
-    if(filterLocation != null && filterLocation !== '')
-      filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-    var filterColor = $formFilters.querySelector('.valueColor')?.value;
-    if(filterColor != null && filterColor !== '')
-      filters.push({ name: 'fq', value: 'color:' + filterColor });
-
-    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
-    var filterId = $formFilters.querySelector('.valueId')?.value;
-    if(filterId != null && filterId !== '')
-      filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
-    if(filterNgsildTenant != null && filterNgsildTenant !== '')
-      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
-
-    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
-    if(filterNgsildPath != null && filterNgsildPath !== '')
-      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
-
-    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
-    if(filterNgsildContext != null && filterNgsildContext !== '')
-      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
-
-    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
-    if(filterNgsildData != null && filterNgsildData !== '')
-      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
-
     var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
     if(filterAddress != null && filterAddress !== '')
       filters.push({ name: 'fq', value: 'address:' + filterAddress });
@@ -1715,6 +1540,10 @@ function patchAirportFilters($formFilters) {
     var filterAlternateName = $formFilters.querySelector('.valueAlternateName')?.value;
     if(filterAlternateName != null && filterAlternateName !== '')
       filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
+
+    var filterCallSign = $formFilters.querySelector('.valueCallSign')?.value;
+    if(filterCallSign != null && filterCallSign !== '')
+      filters.push({ name: 'fq', value: 'callSign:' + filterCallSign });
 
     var filterCodeIATA = $formFilters.querySelector('.valueCodeIATA')?.value;
     if(filterCodeIATA != null && filterCodeIATA !== '')
@@ -1747,6 +1576,42 @@ function patchAirportFilters($formFilters) {
     var filterSource = $formFilters.querySelector('.valueSource')?.value;
     if(filterSource != null && filterSource !== '')
       filters.push({ name: 'fq', value: 'source:' + filterSource });
+
+    var filterName = $formFilters.querySelector('.valueName')?.value;
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterColor = $formFilters.querySelector('.valueColor')?.value;
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterId = $formFilters.querySelector('.valueId')?.value;
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
+    if(filterNgsildTenant != null && filterNgsildTenant !== '')
+      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
+
+    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
+    if(filterNgsildPath != null && filterNgsildPath !== '')
+      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
+
+    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
+    if(filterNgsildContext != null && filterNgsildContext !== '')
+      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
+
+    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
+    if(filterNgsildData != null && filterNgsildData !== '')
+      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -1803,31 +1668,19 @@ function patchAirportFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
-
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
   }
   return filters;
 }
 
-function patchAirportVal(filters, v, val, target, success, error) {
+function patchAirlineVal(filters, v, val, target, success, error) {
   var vals = {};
   vals[v] = val;
-  patchAirportVals(filters, vals, target, success, error);
+  patchAirlineVals(filters, vals, target, success, error);
 }
 
-function patchAirportVals(filters, vals, target, success, error) {
+function patchAirlineVals(filters, vals, target, success, error) {
   fetch(
-    '/en-us/api/airport?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    '/en-us/api/airline?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'PATCH'
@@ -1846,7 +1699,7 @@ function patchAirportVals(filters, vals, target, success, error) {
 
 // POST //
 
-async function postAirport($formValues, target, success, error) {
+async function postAirline($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
@@ -1894,46 +1747,6 @@ async function postAirport($formValues, target, success, error) {
   if(valueArchived != null && valueArchived !== '')
     vals['archived'] = valueArchived == 'true';
 
-  var valueName = $formValues.querySelector('.valueName')?.value;
-  if(valueName != null && valueName !== '')
-    vals['name'] = valueName;
-
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  if(valueDescription != null && valueDescription !== '')
-    vals['description'] = valueDescription;
-
-  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
-  if(valueLocation != null && valueLocation !== '')
-    vals['location'] = JSON.parse(valueLocation);
-
-  var valueColor = $formValues.querySelector('.valueColor')?.value;
-  if(valueColor != null && valueColor !== '')
-    vals['color'] = valueColor;
-
-  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
-  if(valueAreaServed != null && valueAreaServed !== '')
-    vals['areaServed'] = JSON.parse(valueAreaServed);
-
-  var valueId = $formValues.querySelector('.valueId')?.value;
-  if(valueId != null && valueId !== '')
-    vals['id'] = valueId;
-
-  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
-  if(valueNgsildTenant != null && valueNgsildTenant !== '')
-    vals['ngsildTenant'] = valueNgsildTenant;
-
-  var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
-  if(valueNgsildPath != null && valueNgsildPath !== '')
-    vals['ngsildPath'] = valueNgsildPath;
-
-  var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
-  if(valueNgsildContext != null && valueNgsildContext !== '')
-    vals['ngsildContext'] = valueNgsildContext;
-
-  var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
-  if(valueNgsildData != null && valueNgsildData !== '')
-    vals['ngsildData'] = JSON.parse(valueNgsildData);
-
   var valueAddress = $formValues.querySelector('.valueAddress')?.value;
   if(valueAddress != null && valueAddress !== '')
     vals['address'] = JSON.parse(valueAddress);
@@ -1941,6 +1754,10 @@ async function postAirport($formValues, target, success, error) {
   var valueAlternateName = $formValues.querySelector('.valueAlternateName')?.value;
   if(valueAlternateName != null && valueAlternateName !== '')
     vals['alternateName'] = valueAlternateName;
+
+  var valueCallSign = $formValues.querySelector('.valueCallSign')?.value;
+  if(valueCallSign != null && valueCallSign !== '')
+    vals['callSign'] = valueCallSign;
 
   var valueCodeIATA = $formValues.querySelector('.valueCodeIATA')?.value;
   if(valueCodeIATA != null && valueCodeIATA !== '')
@@ -1973,6 +1790,42 @@ async function postAirport($formValues, target, success, error) {
   var valueSource = $formValues.querySelector('.valueSource')?.value;
   if(valueSource != null && valueSource !== '')
     vals['source'] = valueSource;
+
+  var valueName = $formValues.querySelector('.valueName')?.value;
+  if(valueName != null && valueName !== '')
+    vals['name'] = valueName;
+
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  if(valueDescription != null && valueDescription !== '')
+    vals['description'] = valueDescription;
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  if(valueLocation != null && valueLocation !== '')
+    vals['location'] = JSON.parse(valueLocation);
+
+  var valueColor = $formValues.querySelector('.valueColor')?.value;
+  if(valueColor != null && valueColor !== '')
+    vals['color'] = valueColor;
+
+  var valueId = $formValues.querySelector('.valueId')?.value;
+  if(valueId != null && valueId !== '')
+    vals['id'] = valueId;
+
+  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
+  if(valueNgsildTenant != null && valueNgsildTenant !== '')
+    vals['ngsildTenant'] = valueNgsildTenant;
+
+  var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
+  if(valueNgsildPath != null && valueNgsildPath !== '')
+    vals['ngsildPath'] = valueNgsildPath;
+
+  var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
+  if(valueNgsildContext != null && valueNgsildContext !== '')
+    vals['ngsildContext'] = valueNgsildContext;
+
+  var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
+  if(valueNgsildData != null && valueNgsildData !== '')
+    vals['ngsildData'] = JSON.parse(valueNgsildData);
 
   var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
   if(valueEntityShortId != null && valueEntityShortId !== '')
@@ -2007,7 +1860,7 @@ async function postAirport($formValues, target, success, error) {
     vals['download'] = valueDownload;
 
   fetch(
-    '/en-us/api/airport'
+    '/en-us/api/airline'
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'POST'
@@ -2024,9 +1877,9 @@ async function postAirport($formValues, target, success, error) {
     .catch(response => error(response, target));
 }
 
-function postAirportVals(vals, target, success, error) {
+function postAirlineVals(vals, target, success, error) {
   fetch(
-    '/en-us/api/airport'
+    '/en-us/api/airline'
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'POST'
@@ -2045,7 +1898,7 @@ function postAirportVals(vals, target, success, error) {
 
 // DELETE //
 
-async function deleteAirport(target, entityShortId, success, error) {
+async function deleteAirline(target, entityShortId, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
       addGlow(target, jqXhr);
@@ -2077,7 +1930,7 @@ async function deleteAirport(target, entityShortId, success, error) {
   }
 
   fetch(
-    '/en-us/api/airport/' + encodeURIComponent(entityShortId)
+    '/en-us/api/airline/' + encodeURIComponent(entityShortId)
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
@@ -2093,15 +1946,15 @@ async function deleteAirport(target, entityShortId, success, error) {
 
 // PUTImport //
 
-async function putimportAirport($formValues, target, entityShortId, success, error) {
+async function putimportAirline($formValues, target, entityShortId, success, error) {
   var json = $formValues.querySelector('.PUTImport_searchList')?.value;
   if(json != null && json !== '')
-    putimportAirportVals(JSON.parse(json), target, success, error);
+    putimportAirlineVals(JSON.parse(json), target, success, error);
 }
 
-function putimportAirportVals(json, target, success, error) {
+function putimportAirlineVals(json, target, success, error) {
   fetch(
-    '/en-us/api/airport-import'
+    '/en-us/api/airline-import'
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'PUT'
@@ -2120,7 +1973,7 @@ function putimportAirportVals(json, target, success, error) {
 
 // DELETEFilter //
 
-async function deletefilterAirport(target, success, error) {
+async function deletefilterAirline(target, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
       addGlow(target, jqXhr);
@@ -2152,7 +2005,7 @@ async function deletefilterAirport(target, success, error) {
   }
 
   fetch(
-    '/en-us/api/airport'
+    '/en-us/api/airline'
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'

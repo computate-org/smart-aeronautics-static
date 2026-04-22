@@ -275,6 +275,17 @@ Promise.all([
     facetStatsChange('Airport', 'source', false);
   });
 
+  document.querySelector('#pageSelectSortAirport_entityShortId')?.addEventListener('change', (event) => {
+    sort('Airport', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsAirport_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Airport', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsAirport_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Airport', 'entityShortId', false);
+  });
+
   document.querySelector('#pageSelectSortAirport_classCanonicalName')?.addEventListener('change', (event) => {
     sort('Airport', 'classCanonicalName', event.currentTarget.value);
   });
@@ -427,17 +438,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsAirport_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('Airport', 'solrId', false);
-  });
-
-  document.querySelector('#pageSelectSortAirport_entityShortId')?.addEventListener('change', (event) => {
-    sort('Airport', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsAirport_entityShortId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Airport', 'entityShortId', true);
-  });
-  document.querySelector('#pageStatsAirport_entityShortId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Airport', 'entityShortId', false);
   });
 
   document.querySelector('#pageSelectSortAirport_areaServedColors')?.addEventListener('change', (event) => {
@@ -857,6 +857,24 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndAirport_source')?.addEventListener('change', (event) => {
             facetRangeEndChange('Airport', event.currentTarget);
           });
+          document.querySelector('#fqAirport_entityShortId')?.addEventListener('change', (event) => {
+            fqChange('Airport', event.currentTarget, facetChangeAirportSuccess, facetChangeAirportError);
+          });
+          document.querySelector('#buttonFacetAirport_entityShortId')?.addEventListener('click', (event) => {
+            facetFieldChange('Airport', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotAirport_entityShortId')?.addEventListener('change', (event) => {
+            facetPivotChange('Airport', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAirport_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Airport', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartAirport_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Airport', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndAirport_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Airport', event.currentTarget);
+          });
           document.querySelector('#fqAirport_displayPage')?.addEventListener('change', (event) => {
             fqChange('Airport', event.currentTarget, facetChangeAirportSuccess, facetChangeAirportError);
           });
@@ -927,24 +945,6 @@ Promise.all([
             facetRangeStartChange('Airport', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeEndAirport_download')?.addEventListener('change', (event) => {
-            facetRangeEndChange('Airport', event.currentTarget);
-          });
-          document.querySelector('#fqAirport_entityShortId')?.addEventListener('change', (event) => {
-            fqChange('Airport', event.currentTarget, facetChangeAirportSuccess, facetChangeAirportError);
-          });
-          document.querySelector('#buttonFacetAirport_entityShortId')?.addEventListener('click', (event) => {
-            facetFieldChange('Airport', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotAirport_entityShortId')?.addEventListener('change', (event) => {
-            facetPivotChange('Airport', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapAirport_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeGapChange('Airport', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartAirport_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeStartChange('Airport', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndAirport_entityShortId')?.addEventListener('change', (event) => {
             facetRangeEndChange('Airport', event.currentTarget);
           });
 });

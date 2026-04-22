@@ -261,10 +261,6 @@
           <div>
             <wa-details summary="menu" open="true">
               <div class="wa-stack ">
-                <wa-button size="small" style="width: 100%; " variant="brand" id="site-aside-left-model-button-Airport" href="{{ SITE_BASE_URL }}/en-us/search/airport">
-                  <i slot="start" class="fa-duotone fa-regular  fa-conveyor-belt"></i>
-                  Airports
-                </wa-button>
                 <wa-button size="small" style="width: 100%; " variant="brand" id="site-aside-left-model-button-SitePage" href="{{ SITE_BASE_URL }}/en-us/search/article">
                   <i slot="start" class="fa-regular fa-newspaper"></i>
                   articles
@@ -272,6 +268,22 @@
                 <wa-button size="small" style="width: 100%; " variant="brand" id="site-aside-left-model-button-MapModel" href="{{ SITE_BASE_URL }}/en-us/search/map-model">
                   <i slot="start" class="fa-duotone fa-regular fa-map-location-dot"></i>
                   map models
+                </wa-button>
+                <wa-button size="small" style="width: 100%; " variant="brand" id="site-aside-left-model-button-Airport" href="{{ SITE_BASE_URL }}/en-us/search/airport">
+                  <i slot="start" class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+                  Airports
+                </wa-button>
+                <wa-button size="small" style="width: 100%; " variant="brand" id="site-aside-left-model-button-Airline" href="{{ SITE_BASE_URL }}/en-us/search/airline">
+                  <i slot="start" class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+                  Airlines
+                </wa-button>
+                <wa-button size="small" style="width: 100%; " variant="brand" id="site-aside-left-model-button-Aircraft" href="{{ SITE_BASE_URL }}/en-us/search/aircraft">
+                  <i slot="start" class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+                  Aircrafts
+                </wa-button>
+                <wa-button size="small" style="width: 100%; " variant="brand" id="site-aside-left-model-button-Contract" href="{{ SITE_BASE_URL }}/en-us/search/contract">
+                  <i slot="start" class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+                  contracts
                 </wa-button>
               </div>
             </wa-details>
@@ -314,6 +326,9 @@
         </footer>
         
       </main>
+      {%- if pageAside is defined -%}
+      {{- pageAside -}}
+      {%- endif -%}
     {%- if WEB_COMPONENTS_PREFIX == 'wa-' %}{{''}}
     </wa-page>
     {%- else -%}

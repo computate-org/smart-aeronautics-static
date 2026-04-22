@@ -1,0 +1,28 @@
+{% include en-us/search/aircraft/AircraftSearchFormMacros.htm %}
+{% include en-us/search/time-zone/TimeZoneSearchFormMacros.htm %}
+{% include en-us/search/airport/AirportSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchAircraft() }}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postAircraft() }}
+  {%- else %}
+    {{ htmForm_postAircraft() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteAircraft() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportAircraft() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterAircraft() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}

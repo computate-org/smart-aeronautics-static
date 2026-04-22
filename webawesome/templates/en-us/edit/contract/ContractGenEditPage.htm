@@ -1,0 +1,470 @@
+{% extends "en-us/PageLayout.htm" %}
+{%- block htmTitlePageLayout %}
+{%- block htmTitleContractPage %}
+    <title>{{ result.objectTitle }}</title>
+{%- endblock htmTitleContractPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/contract/Contract.css"/>
+{%- block htmStylesContractPage %}
+{%- endblock htmStylesContractPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 4;
+      }
+{{ super() }}
+{%- block htmStyleContractPage %}
+{%- endblock htmStyleContractPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsContractPage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/contract/Contract.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/contract/ContractSearchPage.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/contract/ContractEditPage.js"></script>
+{%- endblock htmScriptsContractPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptContractPage %}
+    <script>
+
+      function jsWebsocketContract(contractId, vars, $response) {
+{%- block jsWebsocketContractPage %}{%- endblock %}
+      }
+
+      function jsTooltipContract(e, feature) {
+{%- block jsTooltipContractPage %}{%- endblock %}
+      }
+
+      function htmTooltipContract(feature, layer) {
+        return `{%- block htmTooltipContractPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipContractPage %}`;
+      }
+
+      function facetChangeContractSuccess(e) {
+        var l = e.querySelector('.pageForm .listContract')?.value;
+        if(l)
+          window.listContract = JSON.parse(l);
+{% block facetChangeContractSuccess %}{%- endblock facetContractSuccess %}
+      }
+      function facetChangeContractError(e) {
+{% block facetChangeContractError %}{%- endblock facetContractError %}
+      }
+
+      function facetSimpleRangeContractSuccess(e) {
+{% block facetSimpleRangeContractSuccess %}      facetChangeContractSuccess(e);{% endblock facetSimpleRangeContractSuccess %}
+      }
+      function facetSimpleRangeContractError(e) {
+{% block facetSimpleRangeContractError %}      facetChangeContractError(e);{% endblock facetSimpleRangeContractError %}
+      }
+      function facetSimpleRangeContract(e) {
+        facetSimpleRange(e, facetSimpleRangeContractSuccess, facetSimpleRangeContractError);
+      }
+
+      function facetRangeTimeZoneContractSuccess(e) {
+{% block facetRangeTimeZoneContractSuccess %}      facetChangeContractSuccess(e);{% endblock facetRangeTimeZoneContractSuccess %}
+      }
+      function facetRangeTimeZoneContractError(e) {
+{% block facetRangeTimeZoneContractError %}      facetChangeContractError(e);{%- endblock facetRangeTimeZoneContractError %}
+      }
+      function facetRangeTimeZoneContract(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneContractSuccess, facetRangeTimeZoneContractError);
+      }
+
+      function facetRangeGapChangeContractSuccess(e) {
+{% block facetRangeGapChangeContractSuccess %}      facetChangeContractSuccess(e);{% endblock facetRangeGapChangeContractSuccess %}
+      }
+      function facetRangeGapChangeContractError(e) {
+{% block facetRangeGapChangeContractError %}      facetChangeContractError(e);{%- endblock facetRangeGapChangeContractError %}
+      }
+      function facetRangeGapChangeContract(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeContractSuccess, facetRangeGapChangeContractError);
+      }
+
+      function facetRangeStartChangeContractSuccess(e) {
+{% block facetRangeStartChangeContractSuccess %}      facetChangeContractSuccess(e);{% endblock facetRangeStartChangeContractSuccess %}
+      }
+      function facetRangeStartChangeContractError(e) {
+{% block facetRangeStartChangeContractError %}      facetChangeContractError(e);{%- endblock facetRangeStartChangeContractError %}
+      }
+      function facetRangeStartChangeContract(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeContractSuccess, facetRangeStartChangeContractError);
+      }
+
+      function facetRangeEndChangeContractSuccess(e) {
+{% block facetRangeEndChangeContractSuccess %}      facetChangeContractSuccess(e);{% endblock facetRangeEndChangeContractSuccess %}
+      }
+      function facetRangeEndChangeContractError(e) {
+{% block facetRangeEndChangeContractError %}      facetChangeContractError(e);{%- endblock facetRangeEndChangeContractError %}
+      }
+      function facetRangeEndChangeContract(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeContractSuccess, facetRangeEndChangeContractError);
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
+      ]).then(() => {
+        window.FONTAWESOME_STYLE = document.querySelector('.pageForm .FONTAWESOME_STYLE')?.value;
+
+        var contractId = {% if result.contractId is defined %}{{ result.contractId | tojson }}{% else %}null{% endif %};
+
+        if(contractId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.contractId is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listContract')?.value;
+        if(l)
+          window.listContract = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneContract);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneContract);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneContract);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeContract);
+        pageGraphContract();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qContract_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('Contract', event.target, document.querySelector('#qContractDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qContract_rows')?.addEventListener('change', event => {
+          paramChange('Contract', event.target, document.querySelector('#qContractDiv_rows'));
+        });
+
+        document.querySelector('#qContract_start')?.addEventListener('change', event => {
+          paramChange('Contract', event.target, document.querySelector('#qContractDiv_start'));
+        });
+
+
+        var submitForm_patchContract = document.querySelector('#htmForm_patchContract')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchContract')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          patchContract(null, document.querySelector('#htmForm_patchContract')
+              , document.querySelector('#htmFormButton_patchContract')
+              , event.target.getAttribute('data-contractId')
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_postContract = document.querySelector('#htmForm_postContract')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postContract')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          postContract(document.querySelector('#htmForm_postContract')
+              , document.querySelector('#htmFormButton_postContract')
+              , (json, target) => {
+            window.location.href = json.editPage;
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_deleteContract = document.querySelector('#htmForm_deleteContract')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteContract')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          deleteContract(event.target, event.target.getAttribute('data-contractId')
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_putimportContract = document.querySelector('#htmForm_putimportContract')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportContract')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          putimportContract(document.querySelector('#htmForm_putimportContract')
+              , document.querySelector('#htmFormButton_putimportContract')
+              , event.target.getAttribute('data-contractId')
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_searchpageContract = document.querySelector('#htmForm_searchpageContract')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageContract')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          searchpageContract();
+          return false;
+        });
+
+        var submitForm_deletefilterContract = document.querySelector('#htmForm_deletefilterContract')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterContract')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          deletefilterContract(event.target
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+{%- block htmScriptInitContractPage %}{%- endblock htmScriptInitContractPage %}
+      });
+    </script>
+{%- endblock htmScriptContractPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketContractPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketContract(websocketContractInner);
+{% endif %}
+{%- endblock websocketContractPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlContractPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlContractPage %}
+
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/contract/ContractSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/contract/ContractSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-Contract">back to all contracts</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-Contract" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+                  all contracts
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  a contract
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
+{%- block htmBodyStartPageLayout %}
+    {{ super() }}
+{%- block htmBodyStartContractPage %}
+{% if resultCount > 0 %}
+          <div class="wa-flank ">
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular  fa-conveyor-belt"></i> {{ result.objectTitle | e }}</h1>
+          </div>
+{% endif %}
+{% include en-us/search/contract/ContractSearchForm.htm %}
+{%- endblock htmBodyStartContractPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleContractPage %}
+{%- include en-us/search/contract/ContractSidebar.htm %}
+        <div class="pageContent ">
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-Contract">back to all contracts</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-Contract" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+              all contracts
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no contract found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+            </div>
+            <span class="wa-heading-m ">no contract found</span>
+            <p class="wa-caption-l ">A work contract</p>
+          </div>
+        </div>
+{% else %}
+{%- include en-us/search/contract/ContractSuggestedSearch.htm %}
+{% endif %}
+{%- block htmFormContractPage %}
+          <form action="/en-us/api/contract" id="ContractForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+            <input name="FONTAWESOME_STYLE" class="FONTAWESOME_STYLE" type="hidden" value="{{ FONTAWESOME_STYLE }}"/>
+{% if result.contractId is defined %}
+            <input name="contractId" class="valueContractId" type="hidden" value="{{ result.contractId }}"/>
+            {% endif %}
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
+            <input name="listContract" id="listContract" class="listContract"  value='{{ toJsonArrayStringInApostrophes(listContract) }}' type="hidden"/>
+          </form>
+{%- if resultCount >= 1 %}
+          {{ htmForm_searchpageContract() }}
+{% endif -%}
+{%- endblock htmFormContractPage %}
+        </div>
+{%- endblock htmBodyMiddleContractPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+{%- block htmBodyEndContractPage %}
+{%- include en-us/search/contract/ContractLocation.htm %}
+{%- endblock htmBodyEndContractPage %}
+      {{ super() }}
+{%- endblock htmBodyEndPageLayout %}

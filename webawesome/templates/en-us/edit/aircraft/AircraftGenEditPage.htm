@@ -1,0 +1,688 @@
+{% extends "en-us/PageLayout.htm" %}
+{%- block htmTitlePageLayout %}
+{%- block htmTitleAircraftPage %}
+    <title>{{ result.objectTitle }}</title>
+{%- endblock htmTitleAircraftPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/aircraft/Aircraft.css"/>
+{%- block htmStylesAircraftPage %}
+{%- endblock htmStylesAircraftPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 5;
+      }
+{{ super() }}
+{%- block htmStyleAircraftPage %}
+{%- endblock htmStyleAircraftPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsAircraftPage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/aircraft/Aircraft.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/aircraft/AircraftSearchPage.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/aircraft/AircraftEditPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/time-zone/TimeZone.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/airport/Airport.js"></script>
+{%- endblock htmScriptsAircraftPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptAircraftPage %}
+    <script>
+
+      function jsWebsocketAircraft(entityShortId, vars, $response) {
+{%- block jsWebsocketAircraftPage %}{%- endblock %}
+      }
+
+      function jsTooltipAircraft(e, feature) {
+{%- block jsTooltipAircraftPage %}{%- endblock %}
+      }
+
+      function htmTooltipAircraft(feature, layer) {
+        return `{%- block htmTooltipAircraftPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipAircraftPage %}`;
+      }
+
+      function jsLegendAircraft(map) {
+{%- block jsLegendAircraftPage %}
+        var div = L.DomUtil.create('div', 'info legend');
+        var htm = '';
+        window.listAircraft.forEach((result, index) => {
+          if(result.location) {
+            var shapes = [];
+            if(Array.isArray(result.location))
+              shapes = shapes.concat(result.location);
+            else
+              shapes.push(result.location);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendAircraft(map, shape, result, index, shapes.length);
+            });
+          }
+          if(result.path) {
+            var shapes = [];
+            if(Array.isArray(result.path))
+              shapes = shapes.concat(result.path);
+            else
+              shapes.push(result.path);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendAircraft(map, shape, result, index, shapes.length);
+            });
+          }
+        });
+        div.innerHTML = htm;
+        return div;
+{%- endblock jsLegendAircraftPage %}
+      }
+
+      function htmLegendAircraft(map, shape, result, index, count) {
+        var color = result.areaServedColors[index];
+        var title = result.areaServedTitles[index];
+        var url = null;
+        var htm = '';
+        htm += `<div class="cursor-pointer " style="max-width: 400px; ">
+`;
+        htm += `{%- block htmLegendAircraftPage %}
+    <div title="${quoteattr(title)}">
+    <div style="width: 20px; ">
+      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+    </div>
+    <div class="text-overflow-ellipsis ">
+      <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
+    </div>
+    </div>
+{%- endblock htmLegendAircraftPage %}`;
+        htm += `
+</div>
+`;
+        return htm;
+      }
+
+      function jsStyleAircraft(feature) {
+{%- block jsStyleAircraftPage %}
+        if(feature.geometry.type == 'Point') {
+          return {
+            radius: 8
+            , fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 1
+            , opacity: 0.7
+            , fillOpacity: 0.7
+            , contextmenu: true
+            , contextmenuItems: [
+              {
+                text: 'Show coordinates'
+                , callback: function(event) {
+                  alert(event2.target.getLatLngs());
+                }
+              }
+            ]
+          };
+        } else if(feature.geometry.type == 'LineString') {
+          return {
+            color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 5
+            , opacity: 0.7
+          };
+        } else {
+          return {
+             fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 3
+            , opacity: 0.7
+            , fillOpacity: 0.7
+          };
+        }
+{%- endblock jsStyleAircraftPage %}
+      }
+
+      function facetChangeAircraftSuccess(e) {
+        var l = e.querySelector('.pageForm .listAircraft')?.value;
+        if(l)
+          window.listAircraft = JSON.parse(l);
+{% block facetChangeAircraftSuccess %}{%- endblock facetAircraftSuccess %}
+      }
+      function facetChangeAircraftError(e) {
+{% block facetChangeAircraftError %}{%- endblock facetAircraftError %}
+      }
+
+      function facetSimpleRangeAircraftSuccess(e) {
+{% block facetSimpleRangeAircraftSuccess %}      facetChangeAircraftSuccess(e);{% endblock facetSimpleRangeAircraftSuccess %}
+      }
+      function facetSimpleRangeAircraftError(e) {
+{% block facetSimpleRangeAircraftError %}      facetChangeAircraftError(e);{% endblock facetSimpleRangeAircraftError %}
+      }
+      function facetSimpleRangeAircraft(e) {
+        facetSimpleRange(e, facetSimpleRangeAircraftSuccess, facetSimpleRangeAircraftError);
+      }
+
+      function facetRangeTimeZoneAircraftSuccess(e) {
+{% block facetRangeTimeZoneAircraftSuccess %}      facetChangeAircraftSuccess(e);{% endblock facetRangeTimeZoneAircraftSuccess %}
+      }
+      function facetRangeTimeZoneAircraftError(e) {
+{% block facetRangeTimeZoneAircraftError %}      facetChangeAircraftError(e);{%- endblock facetRangeTimeZoneAircraftError %}
+      }
+      function facetRangeTimeZoneAircraft(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneAircraftSuccess, facetRangeTimeZoneAircraftError);
+      }
+
+      function facetRangeGapChangeAircraftSuccess(e) {
+{% block facetRangeGapChangeAircraftSuccess %}      facetChangeAircraftSuccess(e);{% endblock facetRangeGapChangeAircraftSuccess %}
+      }
+      function facetRangeGapChangeAircraftError(e) {
+{% block facetRangeGapChangeAircraftError %}      facetChangeAircraftError(e);{%- endblock facetRangeGapChangeAircraftError %}
+      }
+      function facetRangeGapChangeAircraft(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeAircraftSuccess, facetRangeGapChangeAircraftError);
+      }
+
+      function facetRangeStartChangeAircraftSuccess(e) {
+{% block facetRangeStartChangeAircraftSuccess %}      facetChangeAircraftSuccess(e);{% endblock facetRangeStartChangeAircraftSuccess %}
+      }
+      function facetRangeStartChangeAircraftError(e) {
+{% block facetRangeStartChangeAircraftError %}      facetChangeAircraftError(e);{%- endblock facetRangeStartChangeAircraftError %}
+      }
+      function facetRangeStartChangeAircraft(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeAircraftSuccess, facetRangeStartChangeAircraftError);
+      }
+
+      function facetRangeEndChangeAircraftSuccess(e) {
+{% block facetRangeEndChangeAircraftSuccess %}      facetChangeAircraftSuccess(e);{% endblock facetRangeEndChangeAircraftSuccess %}
+      }
+      function facetRangeEndChangeAircraftError(e) {
+{% block facetRangeEndChangeAircraftError %}      facetChangeAircraftError(e);{%- endblock facetRangeEndChangeAircraftError %}
+      }
+      function facetRangeEndChangeAircraft(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeAircraftSuccess, facetRangeEndChangeAircraftError);
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
+      ]).then(() => {
+        window.FONTAWESOME_STYLE = document.querySelector('.pageForm .FONTAWESOME_STYLE')?.value;
+
+        var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
+
+        if(entityShortId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.entityShortId is defined %}
+          function relate_timeZone(event) {
+            suggestAircraftTimeZone(
+                [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,id,pk,editPage,objectTitle' } ]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , event.target.getAttribute('data-method') === 'Page' ? window.result.entityShortId : null
+                , event.target.getAttribute('data-method') === 'Page' ? window.result.timeZone : null
+                , true
+                , event.target
+                );
+          }
+          document.querySelector('#Aircraft_POST_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#Aircraft_POST_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#Aircraft_PATCH_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#Aircraft_PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#Aircraft_Page_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#Aircraft_Page_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#TimeZone_POST_entityShortId')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#TimeZone_POST_entityShortId')?.addEventListener('focus', relate_timeZone);
+          if(window.result.timeZone) {
+          {% if "PATCH" in scopes -%}
+            {{'  '}}suggestAircraftTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listAircraftTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true, document.getElementById('Aircraft_Page_timeZone'));
+          {% else -%}
+          {% if "GET" in scopes -%}
+            {{'  '}}suggestAircraftTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listAircraftTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true, document.getElementById('Aircraft_Page_timeZone'));
+          {% else -%}
+            {{'  '}}suggestAircraftTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listAircraftTimeZone_Page'), window.result.entityShortId, window.result.timeZone, false, document.getElementById('Aircraft_Page_timeZone'));
+          {% endif -%}
+          {% endif -%}
+          }
+          function relate_airportId(event) {
+            suggestAircraftAirportId(
+                [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,entityShortId,entityShortId,pk,editPage,objectTitle' } ]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , event.target.getAttribute('data-method') === 'Page' ? window.result.entityShortId : null
+                , event.target.getAttribute('data-method') === 'Page' ? window.result.airportId : null
+                , true
+                , event.target
+                );
+          }
+          document.querySelector('#Aircraft_POST_airportId')?.addEventListener('input', relate_airportId);
+          document.querySelector('#Aircraft_POST_airportId')?.addEventListener('focus', relate_airportId);
+          document.querySelector('#Aircraft_PATCH_airportId')?.addEventListener('input', relate_airportId);
+          document.querySelector('#Aircraft_PATCH_airportId')?.addEventListener('focus', relate_airportId);
+          document.querySelector('#Aircraft_Page_airportId')?.addEventListener('input', relate_airportId);
+          document.querySelector('#Aircraft_Page_airportId')?.addEventListener('focus', relate_airportId);
+          document.querySelector('#Airport_POST_entityShortId')?.addEventListener('input', relate_airportId);
+          document.querySelector('#Airport_POST_entityShortId')?.addEventListener('focus', relate_airportId);
+          if(window.result.airportId) {
+          {% if "PATCH" in scopes -%}
+            {{'  '}}suggestAircraftAirportId([{'name':'fq','value':'entityShortId:' + window.result.airportId}], document.querySelector('#listAircraftAirportId_Page'), window.result.entityShortId, window.result.airportId, true, document.getElementById('Aircraft_Page_airportId'));
+          {% else -%}
+          {% if "GET" in scopes -%}
+            {{'  '}}suggestAircraftAirportId([{'name':'fq','value':'entityShortId:' + window.result.airportId}], document.querySelector('#listAircraftAirportId_Page'), window.result.entityShortId, window.result.airportId, true, document.getElementById('Aircraft_Page_airportId'));
+          {% else -%}
+            {{'  '}}suggestAircraftAirportId([{'name':'fq','value':'entityShortId:' + window.result.airportId}], document.querySelector('#listAircraftAirportId_Page'), window.result.entityShortId, window.result.airportId, false, document.getElementById('Aircraft_Page_airportId'));
+          {% endif -%}
+          {% endif -%}
+          }
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listAircraft')?.value;
+        if(l)
+          window.listAircraft = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneAircraft);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneAircraft);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneAircraft);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeAircraft);
+        pageGraphAircraft();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qAircraft_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('Aircraft', event.target, document.querySelector('#qAircraftDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qAircraft_rows')?.addEventListener('change', event => {
+          paramChange('Aircraft', event.target, document.querySelector('#qAircraftDiv_rows'));
+        });
+
+        document.querySelector('#qAircraft_start')?.addEventListener('change', event => {
+          paramChange('Aircraft', event.target, document.querySelector('#qAircraftDiv_start'));
+        });
+
+
+        var submitForm_patchAircraft = document.querySelector('#htmForm_patchAircraft')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchAircraft')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          patchAircraft(null, document.querySelector('#htmForm_patchAircraft')
+              , document.querySelector('#htmFormButton_patchAircraft')
+              , event.target.getAttribute('data-entityShortId')
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_postAircraft = document.querySelector('#htmForm_postAircraft')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postAircraft')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          postAircraft(document.querySelector('#htmForm_postAircraft')
+              , document.querySelector('#htmFormButton_postAircraft')
+              , (json, target) => {
+            window.location.href = json.editPage;
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_deleteAircraft = document.querySelector('#htmForm_deleteAircraft')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteAircraft')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          deleteAircraft(event.target, event.target.getAttribute('data-entityShortId')
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_putimportAircraft = document.querySelector('#htmForm_putimportAircraft')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportAircraft')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          putimportAircraft(document.querySelector('#htmForm_putimportAircraft')
+              , document.querySelector('#htmFormButton_putimportAircraft')
+              , event.target.getAttribute('data-entityShortId')
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        var submitForm_searchpageAircraft = document.querySelector('#htmForm_searchpageAircraft')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageAircraft')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          searchpageAircraft();
+          return false;
+        });
+
+        var submitForm_deletefilterAircraft = document.querySelector('#htmForm_deletefilterAircraft')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterAircraft')?.addEventListener('click', event => {
+          event.preventDefault();
+          event.target.setAttribute('loading', true);
+          deletefilterAircraft(event.target
+              , (json, target) => {
+            
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+          return false;
+        });
+
+        document.querySelector('#htmFormButton_postTimeZone')?.addEventListener('click', event => {
+          event.preventDefault();
+          postTimeZone(document.querySelector('#htmForm_postTimeZone')
+              , document.querySelector('#htmFormButton_postTimeZone')
+              , (json, target) => {
+                addGlow(target);
+                if(json['editPage'])
+                  window.location.href = json['editPage'];
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+        });
+
+        document.querySelector('#htmFormButton_postAirport')?.addEventListener('click', event => {
+          event.preventDefault();
+          postAirport(document.querySelector('#htmForm_postAirport')
+              , document.querySelector('#htmFormButton_postAirport')
+              , (json, target) => {
+                addGlow(target);
+                if(json['editPage'])
+                  window.location.href = json['editPage'];
+          }, (response, target) => {
+            event.target.removeAttribute('loading');
+            addErrorJson(event.target);
+            if(response.ok) {
+              response.json().then(json => {
+                document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+              });
+            } else {
+              if(response.status === 405 || response.status === 401) {
+                document.querySelector('wa-page > wa-toast').create('You are no longer signed in, please refresh the page and sign in again. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else if(response.status === 403) {
+                document.querySelector('wa-page > wa-toast').create('You are not authorized to access this resource. ', {size: 'danger', icon: 'triangle-exclamation'});
+              } else {
+                response.json().then(json => {
+                  document.querySelector('wa-page > wa-toast').create(json?.error?.message, {size: 'danger', icon: 'triangle-exclamation'});
+                }).catch(error => {
+                  document.querySelector('wa-page > wa-toast').create('An unknown error occured. ', {size: 'danger', icon: 'triangle-exclamation'});
+                });
+              }
+            }
+          });
+        });
+{%- block htmScriptInitAircraftPage %}{%- endblock htmScriptInitAircraftPage %}
+      });
+    </script>
+{%- endblock htmScriptAircraftPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketAircraftPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketAircraft(websocketAircraftInner);
+{% endif %}
+{%- endblock websocketAircraftPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlAircraftPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlAircraftPage %}
+
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/aircraft/AircraftSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/aircraft/AircraftSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-Aircraft">back to all Aircrafts</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-Aircraft" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+                  all Aircrafts
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  an Aircraft
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
+{%- block htmBodyStartPageLayout %}
+    {{ super() }}
+{%- block htmBodyStartAircraftPage %}
+{% if resultCount > 0 %}
+          <div class="wa-flank ">
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular  fa-conveyor-belt"></i> {{ result.objectTitle | e }}</h1>
+          </div>
+{% endif %}
+{% include en-us/search/aircraft/AircraftSearchForm.htm %}
+{%- endblock htmBodyStartAircraftPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleAircraftPage %}
+{%- include en-us/search/aircraft/AircraftSidebar.htm %}
+        <div class="pageContent ">
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-Aircraft">back to all Aircrafts</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-Aircraft" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+              all Aircrafts
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no Aircraft found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular  fa-conveyor-belt"></i>
+            </div>
+            <span class="wa-heading-m ">no Aircraft found</span>
+            <p class="wa-caption-l ">Represent a generic aircraft</p>
+          </div>
+        </div>
+{% else %}
+{%- include en-us/search/aircraft/AircraftSuggestedSearch.htm %}
+{% endif %}
+{%- block htmFormAircraftPage %}
+          <form action="/en-us/api/aircraft" id="AircraftForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+            <input name="FONTAWESOME_STYLE" class="FONTAWESOME_STYLE" type="hidden" value="{{ FONTAWESOME_STYLE }}"/>
+{% if result.entityShortId is defined %}
+            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
+            {% endif %}
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
+            <input name="listAircraft" id="listAircraft" class="listAircraft"  value='{{ toJsonArrayStringInApostrophes(listAircraft) }}' type="hidden"/>
+          </form>
+{%- if resultCount >= 1 %}
+          {{ htmForm_searchpageAircraft() }}
+{% endif -%}
+{%- endblock htmFormAircraftPage %}
+        </div>
+{%- endblock htmBodyMiddleAircraftPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+{%- block htmBodyEndAircraftPage %}
+{%- include en-us/search/aircraft/AircraftLocation.htm %}
+{%- endblock htmBodyEndAircraftPage %}
+      {{ super() }}
+{%- endblock htmBodyEndPageLayout %}
