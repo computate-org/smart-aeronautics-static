@@ -8,6 +8,7 @@
 {%- block htmStylesPageLayout %}
 {{ super() }}
     <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/aircraft/Aircraft.css"/>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.21.0/mapbox-gl.css" rel="stylesheet">
 {%- block htmStylesAircraftPage %}
 {%- endblock htmStylesAircraftPage %}
 {%- endblock htmStylesPageLayout %}
@@ -29,6 +30,9 @@
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/aircraft/AircraftEditPage.js"></script>
     <script src="{{staticBaseUrl}}/js/en-us/search/time-zone/TimeZone.js"></script>
     <script src="{{staticBaseUrl}}/js/en-us/search/airport/Airport.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.21.0/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/three@0.126.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
 {%- endblock htmScriptsAircraftPage %}
 {%- endblock htmScriptsPageLayout %}
 

@@ -709,24 +709,87 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH entityShortId
-          document.querySelector('#Aircraft_Page_entityShortId')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_entityShortId');
+          // PATCH altitude
+          document.querySelector('#Aircraft_Page_altitude')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_altitude');
             const valid = form.checkValidity();
             if(valid) {
               patchAircraftVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setEntityShortId', event.currentTarget.value
+                  , 'setAltitude', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Aircraft_Page_entityShortId')?.addEventListener('focus', (event) => {
+          document.querySelector('#Aircraft_Page_altitude')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Aircraft_Page_entityShortId')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_entityShortId');
+          document.querySelector('#Aircraft_Page_altitude')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_altitude');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH pitch
+          document.querySelector('#Aircraft_Page_pitch')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_pitch');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAircraftVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setPitch', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Aircraft_Page_pitch')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Aircraft_Page_pitch')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_pitch');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH yaw
+          document.querySelector('#Aircraft_Page_yaw')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_yaw');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAircraftVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setYaw', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Aircraft_Page_yaw')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Aircraft_Page_yaw')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_yaw');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH roll
+          document.querySelector('#Aircraft_Page_roll')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_roll');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAircraftVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setRoll', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Aircraft_Page_roll')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Aircraft_Page_roll')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_roll');
             const valid = form.reportValidity();
           });
 
@@ -874,6 +937,27 @@ Promise.all([
           });
           document.querySelector('#Aircraft_Page_download')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_download');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH entityShortId
+          document.querySelector('#Aircraft_Page_entityShortId')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_entityShortId');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAircraftVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setEntityShortId', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Aircraft_Page_entityShortId')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Aircraft_Page_entityShortId')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_entityShortId');
             const valid = form.reportValidity();
           });
 });

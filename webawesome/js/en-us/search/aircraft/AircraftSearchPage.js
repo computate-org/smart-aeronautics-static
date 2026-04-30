@@ -407,15 +407,48 @@ Promise.all([
     facetStatsChange('Aircraft', 'ngsildData', false);
   });
 
-  document.querySelector('#pageSelectSortAircraft_entityShortId')?.addEventListener('change', (event) => {
-    sort('Aircraft', 'entityShortId', event.currentTarget.value);
+  document.querySelector('#pageSelectSortAircraft_altitude')?.addEventListener('change', (event) => {
+    sort('Aircraft', 'altitude', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsAircraft_entityShortId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Aircraft', 'entityShortId', true);
+  document.querySelector('#pageStatsAircraft_altitude')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Aircraft', 'altitude', true);
   });
-  document.querySelector('#pageStatsAircraft_entityShortId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Aircraft', 'entityShortId', false);
+  document.querySelector('#pageStatsAircraft_altitude')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Aircraft', 'altitude', false);
+  });
+
+  document.querySelector('#pageSelectSortAircraft_pitch')?.addEventListener('change', (event) => {
+    sort('Aircraft', 'pitch', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsAircraft_pitch')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Aircraft', 'pitch', true);
+  });
+  document.querySelector('#pageStatsAircraft_pitch')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Aircraft', 'pitch', false);
+  });
+
+  document.querySelector('#pageSelectSortAircraft_yaw')?.addEventListener('change', (event) => {
+    sort('Aircraft', 'yaw', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsAircraft_yaw')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Aircraft', 'yaw', true);
+  });
+  document.querySelector('#pageStatsAircraft_yaw')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Aircraft', 'yaw', false);
+  });
+
+  document.querySelector('#pageSelectSortAircraft_roll')?.addEventListener('change', (event) => {
+    sort('Aircraft', 'roll', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsAircraft_roll')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Aircraft', 'roll', true);
+  });
+  document.querySelector('#pageStatsAircraft_roll')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Aircraft', 'roll', false);
   });
 
   document.querySelector('#pageSelectSortAircraft_classCanonicalName')?.addEventListener('change', (event) => {
@@ -570,6 +603,28 @@ Promise.all([
   });
   document.querySelector('#pageStatsAircraft_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('Aircraft', 'solrId', false);
+  });
+
+  document.querySelector('#pageSelectSortAircraft_entityShortId')?.addEventListener('change', (event) => {
+    sort('Aircraft', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsAircraft_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Aircraft', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsAircraft_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Aircraft', 'entityShortId', false);
+  });
+
+  document.querySelector('#pageSelectSortAircraft_rotation')?.addEventListener('change', (event) => {
+    sort('Aircraft', 'rotation', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsAircraft_rotation')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Aircraft', 'rotation', true);
+  });
+  document.querySelector('#pageStatsAircraft_rotation')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Aircraft', 'rotation', false);
   });
 
   document.querySelector('#pageSelectSortAircraft_areaServedColors')?.addEventListener('change', (event) => {
@@ -1133,22 +1188,76 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndAircraft_ngsildData')?.addEventListener('change', (event) => {
             facetRangeEndChange('Aircraft', event.currentTarget);
           });
-          document.querySelector('#fqAircraft_entityShortId')?.addEventListener('change', (event) => {
+          document.querySelector('#fqAircraft_altitude')?.addEventListener('change', (event) => {
             fqChange('Aircraft', event.currentTarget, facetChangeAircraftSuccess, facetChangeAircraftError);
           });
-          document.querySelector('#buttonFacetAircraft_entityShortId')?.addEventListener('click', (event) => {
+          document.querySelector('#buttonFacetAircraft_altitude')?.addEventListener('click', (event) => {
             facetFieldChange('Aircraft', event.currentTarget);
           });
-          document.querySelector('#pageFacetPivotAircraft_entityShortId')?.addEventListener('change', (event) => {
+          document.querySelector('#pageFacetPivotAircraft_altitude')?.addEventListener('change', (event) => {
             facetPivotChange('Aircraft', event.currentTarget);
           });
-          document.querySelector('#pageFacetRangeGapAircraft_entityShortId')?.addEventListener('change', (event) => {
+          document.querySelector('#pageFacetRangeGapAircraft_altitude')?.addEventListener('change', (event) => {
             facetRangeGapChange('Aircraft', event.currentTarget);
           });
-          document.querySelector('#pageFacetRangeStartAircraft_entityShortId')?.addEventListener('change', (event) => {
+          document.querySelector('#pageFacetRangeStartAircraft_altitude')?.addEventListener('change', (event) => {
             facetRangeStartChange('Aircraft', event.currentTarget);
           });
-          document.querySelector('#pageFacetRangeEndAircraft_entityShortId')?.addEventListener('change', (event) => {
+          document.querySelector('#pageFacetRangeEndAircraft_altitude')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#fqAircraft_pitch')?.addEventListener('change', (event) => {
+            fqChange('Aircraft', event.currentTarget, facetChangeAircraftSuccess, facetChangeAircraftError);
+          });
+          document.querySelector('#buttonFacetAircraft_pitch')?.addEventListener('click', (event) => {
+            facetFieldChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotAircraft_pitch')?.addEventListener('change', (event) => {
+            facetPivotChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAircraft_pitch')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartAircraft_pitch')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndAircraft_pitch')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#fqAircraft_yaw')?.addEventListener('change', (event) => {
+            fqChange('Aircraft', event.currentTarget, facetChangeAircraftSuccess, facetChangeAircraftError);
+          });
+          document.querySelector('#buttonFacetAircraft_yaw')?.addEventListener('click', (event) => {
+            facetFieldChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotAircraft_yaw')?.addEventListener('change', (event) => {
+            facetPivotChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAircraft_yaw')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartAircraft_yaw')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndAircraft_yaw')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#fqAircraft_roll')?.addEventListener('change', (event) => {
+            fqChange('Aircraft', event.currentTarget, facetChangeAircraftSuccess, facetChangeAircraftError);
+          });
+          document.querySelector('#buttonFacetAircraft_roll')?.addEventListener('click', (event) => {
+            facetFieldChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotAircraft_roll')?.addEventListener('change', (event) => {
+            facetPivotChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAircraft_roll')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartAircraft_roll')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndAircraft_roll')?.addEventListener('change', (event) => {
             facetRangeEndChange('Aircraft', event.currentTarget);
           });
           document.querySelector('#fqAircraft_displayPage')?.addEventListener('change', (event) => {
@@ -1221,6 +1330,24 @@ Promise.all([
             facetRangeStartChange('Aircraft', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeEndAircraft_download')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#fqAircraft_entityShortId')?.addEventListener('change', (event) => {
+            fqChange('Aircraft', event.currentTarget, facetChangeAircraftSuccess, facetChangeAircraftError);
+          });
+          document.querySelector('#buttonFacetAircraft_entityShortId')?.addEventListener('click', (event) => {
+            facetFieldChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotAircraft_entityShortId')?.addEventListener('change', (event) => {
+            facetPivotChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapAircraft_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartAircraft_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Aircraft', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndAircraft_entityShortId')?.addEventListener('change', (event) => {
             facetRangeEndChange('Aircraft', event.currentTarget);
           });
 });

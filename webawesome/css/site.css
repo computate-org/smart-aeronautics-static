@@ -551,3 +551,4 @@ main, footer {
   max-width: var(--auto-size-available-width);
   max-height: var(--auto-size-available-height);
 }
+.mapbox-div { height: 500px; width: 100%; }

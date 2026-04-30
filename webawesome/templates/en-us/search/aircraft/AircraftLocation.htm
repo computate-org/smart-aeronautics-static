@@ -1,15 +1,15 @@
-{%- block htmBodyLocationAircraftPage %}
+        {% block htmBodyLocationAircraftPage -%}
         <wa-details open>
           <div slot="summary">Map of Aircrafts</div>
 
-{%- block htmBodyGraphLocationAircraftPage %}
-{% if resultCount > 0 %}
-        <div id="htmBodyGraphLocationAircraftPage" class="htmBodyGraphLocation "></div>
-{% endif %}
-{%- endblock htmBodyGraphLocationAircraftPage %}
+          {% block htmBodyGraphLocationAircraftPage -%}
+          {% if resultCount > 0 -%}
+          <div id="htmBodyGraphLocationAircraftPage" class="mapbox-div htmBodyGraphLocation "></div>
+          {% endif -%}
+          {% endblock htmBodyGraphLocationAircraftPage -%}
 
-{%- block htmBodyGraphAircraftPage %}
-        <div id="htmBodyGraphAircraftPage" class="htmBodyGraph "></div>
-{%- endblock htmBodyGraphAircraftPage %}
+          {% block htmBodyGraphAircraftPage -%}
+          <div id="htmBodyGraphAircraftPage" class="htmBodyGraph "></div>
+          {% endblock htmBodyGraphAircraftPage -%}
         </wa-details>
-{%- endblock htmBodyLocationAircraftPage %}
+        {% endblock htmBodyLocationAircraftPage -%}

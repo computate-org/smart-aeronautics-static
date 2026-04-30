@@ -154,6 +154,50 @@ Promise.all([
     facetStatsChange('MapModel', 'ngsildData', false);
   });
 
+  document.querySelector('#pageSelectSortMapModel_altitude')?.addEventListener('change', (event) => {
+    sort('MapModel', 'altitude', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_altitude')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'altitude', true);
+  });
+  document.querySelector('#pageStatsMapModel_altitude')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'altitude', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_pitch')?.addEventListener('change', (event) => {
+    sort('MapModel', 'pitch', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_pitch')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'pitch', true);
+  });
+  document.querySelector('#pageStatsMapModel_pitch')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'pitch', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_yaw')?.addEventListener('change', (event) => {
+    sort('MapModel', 'yaw', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_yaw')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'yaw', true);
+  });
+  document.querySelector('#pageStatsMapModel_yaw')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'yaw', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_roll')?.addEventListener('change', (event) => {
+    sort('MapModel', 'roll', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_roll')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'roll', true);
+  });
+  document.querySelector('#pageStatsMapModel_roll')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'roll', false);
+  });
+
   document.querySelector('#pageSelectSortMapModel_classCanonicalName')?.addEventListener('change', (event) => {
     sort('MapModel', 'classCanonicalName', event.currentTarget.value);
   });

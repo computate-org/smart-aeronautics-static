@@ -448,6 +448,22 @@ function searchMapModelFilters($formFilters) {
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
+    var filterAltitude = $formFilters.querySelector('.valueAltitude')?.value;
+    if(filterAltitude != null && filterAltitude !== '')
+      filters.push({ name: 'fq', value: 'altitude:' + filterAltitude });
+
+    var filterPitch = $formFilters.querySelector('.valuePitch')?.value;
+    if(filterPitch != null && filterPitch !== '')
+      filters.push({ name: 'fq', value: 'pitch:' + filterPitch });
+
+    var filterYaw = $formFilters.querySelector('.valueYaw')?.value;
+    if(filterYaw != null && filterYaw !== '')
+      filters.push({ name: 'fq', value: 'yaw:' + filterYaw });
+
+    var filterRoll = $formFilters.querySelector('.valueRoll')?.value;
+    if(filterRoll != null && filterRoll !== '')
+      filters.push({ name: 'fq', value: 'roll:' + filterRoll });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });

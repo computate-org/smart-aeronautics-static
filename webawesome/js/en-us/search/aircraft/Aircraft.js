@@ -114,7 +114,10 @@ async function websocketAircraftInner(apiRequest) {
         var inputNgsildPath = null;
         var inputNgsildContext = null;
         var inputNgsildData = null;
-        var inputEntityShortId = null;
+        var inputAltitude = null;
+        var inputPitch = null;
+        var inputYaw = null;
+        var inputRoll = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -129,6 +132,8 @@ async function websocketAircraftInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputEntityShortId = null;
+        var inputRotation = null;
         var inputAreaServedColors = null;
         var inputAreaServedTitles = null;
 
@@ -204,8 +209,14 @@ async function websocketAircraftInner(apiRequest) {
           inputNgsildContext = $response.querySelector('.Aircraft_Page_ngsildContext');
         if(vars.includes('ngsildData'))
           inputNgsildData = $response.querySelector('.Aircraft_Page_ngsildData');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Aircraft_Page_entityShortId');
+        if(vars.includes('altitude'))
+          inputAltitude = $response.querySelector('.Aircraft_Page_altitude');
+        if(vars.includes('pitch'))
+          inputPitch = $response.querySelector('.Aircraft_Page_pitch');
+        if(vars.includes('yaw'))
+          inputYaw = $response.querySelector('.Aircraft_Page_yaw');
+        if(vars.includes('roll'))
+          inputRoll = $response.querySelector('.Aircraft_Page_roll');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Aircraft_Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -234,6 +245,10 @@ async function websocketAircraftInner(apiRequest) {
           inputObjectText = $response.querySelector('.Aircraft_Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Aircraft_Page_solrId');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Aircraft_Page_entityShortId');
+        if(vars.includes('rotation'))
+          inputRotation = $response.querySelector('.Aircraft_Page_rotation');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.querySelector('.Aircraft_Page_areaServedColors');
         if(vars.includes('areaServedTitles'))
@@ -604,14 +619,44 @@ async function websocketAircraftInner(apiRequest) {
           addGlow(document.querySelector('.Aircraft_Page_ngsildData'));
         }
 
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Aircraft_Page_entityShortId').forEach((item, index) => {
+        if(inputAltitude) {
+          document.querySelectorAll('.Aircraft_Page_altitude').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
+              item.value = inputAltitude.getAttribute('value');
             else
-              item.textContent = inputEntityShortId.textContent;
+              item.textContent = inputAltitude.textContent;
           });
-          addGlow(document.querySelector('.Aircraft_Page_entityShortId'));
+          addGlow(document.querySelector('.Aircraft_Page_altitude'));
+        }
+
+        if(inputPitch) {
+          document.querySelectorAll('.Aircraft_Page_pitch').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPitch.getAttribute('value');
+            else
+              item.textContent = inputPitch.textContent;
+          });
+          addGlow(document.querySelector('.Aircraft_Page_pitch'));
+        }
+
+        if(inputYaw) {
+          document.querySelectorAll('.Aircraft_Page_yaw').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputYaw.getAttribute('value');
+            else
+              item.textContent = inputYaw.textContent;
+          });
+          addGlow(document.querySelector('.Aircraft_Page_yaw'));
+        }
+
+        if(inputRoll) {
+          document.querySelectorAll('.Aircraft_Page_roll').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputRoll.getAttribute('value');
+            else
+              item.textContent = inputRoll.textContent;
+          });
+          addGlow(document.querySelector('.Aircraft_Page_roll'));
         }
 
         if(inputClassCanonicalName) {
@@ -752,6 +797,26 @@ async function websocketAircraftInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Aircraft_Page_solrId'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Aircraft_Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Aircraft_Page_entityShortId'));
+        }
+
+        if(inputRotation) {
+          document.querySelectorAll('.Aircraft_Page_rotation').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputRotation.getAttribute('value');
+            else
+              item.textContent = inputRotation.textContent;
+          });
+          addGlow(document.querySelector('.Aircraft_Page_rotation'));
         }
 
         if(inputAreaServedColors) {
@@ -1325,9 +1390,21 @@ function searchAircraftFilters($formFilters) {
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+    var filterAltitude = $formFilters.querySelector('.valueAltitude')?.value;
+    if(filterAltitude != null && filterAltitude !== '')
+      filters.push({ name: 'fq', value: 'altitude:' + filterAltitude });
+
+    var filterPitch = $formFilters.querySelector('.valuePitch')?.value;
+    if(filterPitch != null && filterPitch !== '')
+      filters.push({ name: 'fq', value: 'pitch:' + filterPitch });
+
+    var filterYaw = $formFilters.querySelector('.valueYaw')?.value;
+    if(filterYaw != null && filterYaw !== '')
+      filters.push({ name: 'fq', value: 'yaw:' + filterYaw });
+
+    var filterRoll = $formFilters.querySelector('.valueRoll')?.value;
+    if(filterRoll != null && filterRoll !== '')
+      filters.push({ name: 'fq', value: 'roll:' + filterRoll });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -1384,6 +1461,14 @@ function searchAircraftFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var filterRotation = $formFilters.querySelector('.valueRotation')?.value;
+    if(filterRotation != null && filterRotation !== '')
+      filters.push({ name: 'fq', value: 'rotation:' + filterRotation });
 
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -2028,17 +2113,53 @@ async function patchAircraft($formFilters, $formValues, target, entityShortId, s
   if(removeNgsildData != null && removeNgsildData !== '')
     vals['removeNgsildData'] = removeNgsildData;
 
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
-  var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
-  var addEntityShortId = $formValues.querySelector('.addEntityShortId')?.value;
-  if(removeEntityShortId || setEntityShortId != null && setEntityShortId !== '')
-    vals['setEntityShortId'] = setEntityShortId;
-  if(addEntityShortId != null && addEntityShortId !== '')
-    vals['addEntityShortId'] = addEntityShortId;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value;
-  if(removeEntityShortId != null && removeEntityShortId !== '')
-    vals['removeEntityShortId'] = removeEntityShortId;
+  var valueAltitude = $formValues.querySelector('.valueAltitude')?.value;
+  var removeAltitude = $formValues.querySelector('.removeAltitude')?.value === 'true';
+  var setAltitude = removeAltitude ? null : $formValues.querySelector('.setAltitude')?.value;
+  var addAltitude = $formValues.querySelector('.addAltitude')?.value;
+  if(removeAltitude || setAltitude != null && setAltitude !== '')
+    vals['setAltitude'] = setAltitude;
+  if(addAltitude != null && addAltitude !== '')
+    vals['addAltitude'] = addAltitude;
+  var removeAltitude = $formValues.querySelector('.removeAltitude')?.value;
+  if(removeAltitude != null && removeAltitude !== '')
+    vals['removeAltitude'] = removeAltitude;
+
+  var valuePitch = $formValues.querySelector('.valuePitch')?.value;
+  var removePitch = $formValues.querySelector('.removePitch')?.value === 'true';
+  var setPitch = removePitch ? null : $formValues.querySelector('.setPitch')?.value;
+  var addPitch = $formValues.querySelector('.addPitch')?.value;
+  if(removePitch || setPitch != null && setPitch !== '')
+    vals['setPitch'] = setPitch;
+  if(addPitch != null && addPitch !== '')
+    vals['addPitch'] = addPitch;
+  var removePitch = $formValues.querySelector('.removePitch')?.value;
+  if(removePitch != null && removePitch !== '')
+    vals['removePitch'] = removePitch;
+
+  var valueYaw = $formValues.querySelector('.valueYaw')?.value;
+  var removeYaw = $formValues.querySelector('.removeYaw')?.value === 'true';
+  var setYaw = removeYaw ? null : $formValues.querySelector('.setYaw')?.value;
+  var addYaw = $formValues.querySelector('.addYaw')?.value;
+  if(removeYaw || setYaw != null && setYaw !== '')
+    vals['setYaw'] = setYaw;
+  if(addYaw != null && addYaw !== '')
+    vals['addYaw'] = addYaw;
+  var removeYaw = $formValues.querySelector('.removeYaw')?.value;
+  if(removeYaw != null && removeYaw !== '')
+    vals['removeYaw'] = removeYaw;
+
+  var valueRoll = $formValues.querySelector('.valueRoll')?.value;
+  var removeRoll = $formValues.querySelector('.removeRoll')?.value === 'true';
+  var setRoll = removeRoll ? null : $formValues.querySelector('.setRoll')?.value;
+  var addRoll = $formValues.querySelector('.addRoll')?.value;
+  if(removeRoll || setRoll != null && setRoll !== '')
+    vals['setRoll'] = setRoll;
+  if(addRoll != null && addRoll !== '')
+    vals['addRoll'] = addRoll;
+  var removeRoll = $formValues.querySelector('.removeRoll')?.value;
+  if(removeRoll != null && removeRoll !== '')
+    vals['removeRoll'] = removeRoll;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
@@ -2123,6 +2244,18 @@ async function patchAircraft($formFilters, $formValues, target, entityShortId, s
   var removeDownload = $formValues.querySelector('.removeDownload')?.value;
   if(removeDownload != null && removeDownload !== '')
     vals['removeDownload'] = removeDownload;
+
+  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
+  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
+  var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
+  var addEntityShortId = $formValues.querySelector('.addEntityShortId')?.value;
+  if(removeEntityShortId || setEntityShortId != null && setEntityShortId !== '')
+    vals['setEntityShortId'] = setEntityShortId;
+  if(addEntityShortId != null && addEntityShortId !== '')
+    vals['addEntityShortId'] = addEntityShortId;
+  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value;
+  if(removeEntityShortId != null && removeEntityShortId !== '')
+    vals['removeEntityShortId'] = removeEntityShortId;
 
   patchAircraftVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
 }
@@ -2294,9 +2427,21 @@ function patchAircraftFilters($formFilters) {
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+    var filterAltitude = $formFilters.querySelector('.valueAltitude')?.value;
+    if(filterAltitude != null && filterAltitude !== '')
+      filters.push({ name: 'fq', value: 'altitude:' + filterAltitude });
+
+    var filterPitch = $formFilters.querySelector('.valuePitch')?.value;
+    if(filterPitch != null && filterPitch !== '')
+      filters.push({ name: 'fq', value: 'pitch:' + filterPitch });
+
+    var filterYaw = $formFilters.querySelector('.valueYaw')?.value;
+    if(filterYaw != null && filterYaw !== '')
+      filters.push({ name: 'fq', value: 'yaw:' + filterYaw });
+
+    var filterRoll = $formFilters.querySelector('.valueRoll')?.value;
+    if(filterRoll != null && filterRoll !== '')
+      filters.push({ name: 'fq', value: 'roll:' + filterRoll });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -2353,6 +2498,14 @@ function patchAircraftFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var filterRotation = $formFilters.querySelector('.valueRotation')?.value;
+    if(filterRotation != null && filterRotation !== '')
+      filters.push({ name: 'fq', value: 'rotation:' + filterRotation });
 
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -2568,9 +2721,21 @@ async function postAircraft($formValues, target, success, error) {
   if(valueNgsildData != null && valueNgsildData !== '')
     vals['ngsildData'] = JSON.parse(valueNgsildData);
 
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  if(valueEntityShortId != null && valueEntityShortId !== '')
-    vals['entityShortId'] = valueEntityShortId;
+  var valueAltitude = $formValues.querySelector('.valueAltitude')?.value;
+  if(valueAltitude != null && valueAltitude !== '')
+    vals['altitude'] = valueAltitude;
+
+  var valuePitch = $formValues.querySelector('.valuePitch')?.value;
+  if(valuePitch != null && valuePitch !== '')
+    vals['pitch'] = valuePitch;
+
+  var valueYaw = $formValues.querySelector('.valueYaw')?.value;
+  if(valueYaw != null && valueYaw !== '')
+    vals['yaw'] = valueYaw;
+
+  var valueRoll = $formValues.querySelector('.valueRoll')?.value;
+  if(valueRoll != null && valueRoll !== '')
+    vals['roll'] = valueRoll;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -2599,6 +2764,10 @@ async function postAircraft($formValues, target, success, error) {
   var valueDownload = $formValues.querySelector('.valueDownload')?.value;
   if(valueDownload != null && valueDownload !== '')
     vals['download'] = valueDownload;
+
+  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
+  if(valueEntityShortId != null && valueEntityShortId !== '')
+    vals['entityShortId'] = valueEntityShortId;
 
   fetch(
     '/en-us/api/aircraft'
