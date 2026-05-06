@@ -198,6 +198,17 @@ Promise.all([
     facetStatsChange('MapModel', 'roll', false);
   });
 
+  document.querySelector('#pageSelectSortMapModel_gltfPath')?.addEventListener('change', (event) => {
+    sort('MapModel', 'gltfPath', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_gltfPath')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'gltfPath', true);
+  });
+  document.querySelector('#pageStatsMapModel_gltfPath')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'gltfPath', false);
+  });
+
   document.querySelector('#pageSelectSortMapModel_classCanonicalName')?.addEventListener('change', (event) => {
     sort('MapModel', 'classCanonicalName', event.currentTarget.value);
   });
@@ -361,5 +372,16 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_entityShortId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'entityShortId', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_altitudeMeters')?.addEventListener('change', (event) => {
+    sort('MapModel', 'altitudeMeters', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_altitudeMeters')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'altitudeMeters', true);
+  });
+  document.querySelector('#pageStatsMapModel_altitudeMeters')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'altitudeMeters', false);
   });
 });

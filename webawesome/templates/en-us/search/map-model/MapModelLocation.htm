@@ -1,15 +1,25 @@
-{%- block htmBodyLocationMapModelPage %}
+        {% block htmBodyLocationMapModelPage -%}
         <wa-details open>
           <div slot="summary">Map of map models</div>
 
-{%- block htmBodyGraphLocationMapModelPage %}
-{% if resultCount > 0 %}
-        <div id="htmBodyGraphLocationMapModelPage" class="htmBodyGraphLocation "></div>
-{% endif %}
-{%- endblock htmBodyGraphLocationMapModelPage %}
+          {% block htmBodyGraphLocationMapModelPage -%}
+          {% if resultCount > 0 -%}
+          <div id="htmBodyGraphLocationMapModelPage" class="mapbox-div htmBodyGraphLocation "></div>
+          <script>
+            const token = '{{ MAPBOX_TOKEN }}';
+            const zoom = {{ DEFAULT_MAP_ZOOM | default('18') }};
+            const center = [-75.16784320599977, 40.04582463155066];
+            const pitch = 60;
+            const container = document.querySelector('.mapbox-div');
+            const antialias = true;
+            const style = 'mapbox://styles/mapbox/standard';
+            const map = getMapBox(container, token, zoom, center, pitch, antialias, style);
+          </script>
+          {% endif -%}
+          {% endblock htmBodyGraphLocationMapModelPage -%}
 
-{%- block htmBodyGraphMapModelPage %}
-        <div id="htmBodyGraphMapModelPage" class="htmBodyGraph "></div>
-{%- endblock htmBodyGraphMapModelPage %}
+          {% block htmBodyGraphMapModelPage -%}
+          <div id="htmBodyGraphMapModelPage" class="htmBodyGraph "></div>
+          {% endblock htmBodyGraphMapModelPage -%}
         </wa-details>
-{%- endblock htmBodyLocationMapModelPage %}
+        {% endblock htmBodyLocationMapModelPage -%}

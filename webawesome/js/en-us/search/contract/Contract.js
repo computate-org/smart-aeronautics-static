@@ -97,6 +97,32 @@ async function websocketContractInner(apiRequest) {
         var inputTotalGdpImpact = null;
         var inputEconomicOutputProjectionsDataset = null;
         var inputCumulativeInvestmentChart = null;
+        var inputArchitectsPerYear = null;
+        var inputRemoteDevelopersPerYear = null;
+        var inputOnsiteDevelopersPerYear = null;
+        var inputInstructorsPerYear = null;
+        var inputRemoteDeveloperPayPerYear = null;
+        var inputOnsiteDeveloperPayPerYear = null;
+        var inputArchitectPayPerYear = null;
+        var inputInstructorPayPerYear = null;
+        var inputSubscriptionsPerYear = null;
+        var inputSubscriptionCostsPerYear = null;
+        var inputTotalSubscriptionCostPerYear = null;
+        var inputEmployeeSubscriptionCostsPerYear = null;
+        var inputOpenshiftSSDStorageTiBPerYear = null;
+        var inputOpenshiftControlPlaneNodes = null;
+        var inputOpenshiftControlPlaneCores = null;
+        var inputOpenshiftControlPlaneHourlyPrice = null;
+        var inputOpenshiftInfraNodes = null;
+        var inputOpenshiftInfraCores = null;
+        var inputOpenshiftInfraHourlyPrice = null;
+        var inputOpenshiftWorkerNodes = null;
+        var inputOpenshiftWorkerCores = null;
+        var inputOpenshiftWorkerHourlyPrice = null;
+        var inputOpenshiftSSDStoragePrice = null;
+        var inputOpenshiftCostsPerYear = null;
+        var inputEmployeesPerYearChart = null;
+        var inputProjectExpensesChart = null;
         var inputEconomicOutputChart = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
@@ -114,6 +140,11 @@ async function websocketContractInner(apiRequest) {
         var inputSolrId = null;
         var inputDisplayName = null;
         var inputContractId = null;
+        var inputEmployeesPerYearDataset = null;
+        var inputSubscriptionCostsPerYearDataset = null;
+        var inputTotalOpenshiftControlPlaneCores = null;
+        var inputTotalOpenshiftInfraCores = null;
+        var inputTotalOpenshiftWorkerCores = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Contract_Page_pk');
@@ -153,6 +184,58 @@ async function websocketContractInner(apiRequest) {
           inputEconomicOutputProjectionsDataset = $response.querySelector('.Contract_Page_economicOutputProjectionsDataset');
         if(vars.includes('cumulativeInvestmentChart'))
           inputCumulativeInvestmentChart = $response.querySelector('.Contract_Page_cumulativeInvestmentChart');
+        if(vars.includes('architectsPerYear'))
+          inputArchitectsPerYear = $response.querySelector('.Contract_Page_architectsPerYear');
+        if(vars.includes('remoteDevelopersPerYear'))
+          inputRemoteDevelopersPerYear = $response.querySelector('.Contract_Page_remoteDevelopersPerYear');
+        if(vars.includes('onsiteDevelopersPerYear'))
+          inputOnsiteDevelopersPerYear = $response.querySelector('.Contract_Page_onsiteDevelopersPerYear');
+        if(vars.includes('instructorsPerYear'))
+          inputInstructorsPerYear = $response.querySelector('.Contract_Page_instructorsPerYear');
+        if(vars.includes('remoteDeveloperPayPerYear'))
+          inputRemoteDeveloperPayPerYear = $response.querySelector('.Contract_Page_remoteDeveloperPayPerYear');
+        if(vars.includes('onsiteDeveloperPayPerYear'))
+          inputOnsiteDeveloperPayPerYear = $response.querySelector('.Contract_Page_onsiteDeveloperPayPerYear');
+        if(vars.includes('architectPayPerYear'))
+          inputArchitectPayPerYear = $response.querySelector('.Contract_Page_architectPayPerYear');
+        if(vars.includes('instructorPayPerYear'))
+          inputInstructorPayPerYear = $response.querySelector('.Contract_Page_instructorPayPerYear');
+        if(vars.includes('subscriptionsPerYear'))
+          inputSubscriptionsPerYear = $response.querySelector('.Contract_Page_subscriptionsPerYear');
+        if(vars.includes('subscriptionCostsPerYear'))
+          inputSubscriptionCostsPerYear = $response.querySelector('.Contract_Page_subscriptionCostsPerYear');
+        if(vars.includes('totalSubscriptionCostPerYear'))
+          inputTotalSubscriptionCostPerYear = $response.querySelector('.Contract_Page_totalSubscriptionCostPerYear');
+        if(vars.includes('employeeSubscriptionCostsPerYear'))
+          inputEmployeeSubscriptionCostsPerYear = $response.querySelector('.Contract_Page_employeeSubscriptionCostsPerYear');
+        if(vars.includes('openshiftSSDStorageTiBPerYear'))
+          inputOpenshiftSSDStorageTiBPerYear = $response.querySelector('.Contract_Page_openshiftSSDStorageTiBPerYear');
+        if(vars.includes('openshiftControlPlaneNodes'))
+          inputOpenshiftControlPlaneNodes = $response.querySelector('.Contract_Page_openshiftControlPlaneNodes');
+        if(vars.includes('openshiftControlPlaneCores'))
+          inputOpenshiftControlPlaneCores = $response.querySelector('.Contract_Page_openshiftControlPlaneCores');
+        if(vars.includes('openshiftControlPlaneHourlyPrice'))
+          inputOpenshiftControlPlaneHourlyPrice = $response.querySelector('.Contract_Page_openshiftControlPlaneHourlyPrice');
+        if(vars.includes('openshiftInfraNodes'))
+          inputOpenshiftInfraNodes = $response.querySelector('.Contract_Page_openshiftInfraNodes');
+        if(vars.includes('openshiftInfraCores'))
+          inputOpenshiftInfraCores = $response.querySelector('.Contract_Page_openshiftInfraCores');
+        if(vars.includes('openshiftInfraHourlyPrice'))
+          inputOpenshiftInfraHourlyPrice = $response.querySelector('.Contract_Page_openshiftInfraHourlyPrice');
+        if(vars.includes('openshiftWorkerNodes'))
+          inputOpenshiftWorkerNodes = $response.querySelector('.Contract_Page_openshiftWorkerNodes');
+        if(vars.includes('openshiftWorkerCores'))
+          inputOpenshiftWorkerCores = $response.querySelector('.Contract_Page_openshiftWorkerCores');
+        if(vars.includes('openshiftWorkerHourlyPrice'))
+          inputOpenshiftWorkerHourlyPrice = $response.querySelector('.Contract_Page_openshiftWorkerHourlyPrice');
+        if(vars.includes('openshiftSSDStoragePrice'))
+          inputOpenshiftSSDStoragePrice = $response.querySelector('.Contract_Page_openshiftSSDStoragePrice');
+        if(vars.includes('openshiftCostsPerYear'))
+          inputOpenshiftCostsPerYear = $response.querySelector('.Contract_Page_openshiftCostsPerYear');
+        if(vars.includes('employeesPerYearChart'))
+          inputEmployeesPerYearChart = $response.querySelector('.Contract_Page_employeesPerYearChart');
+        if(vars.includes('projectExpensesChart'))
+          inputProjectExpensesChart = $response.querySelector('.Contract_Page_projectExpensesChart');
         if(vars.includes('economicOutputChart'))
           inputEconomicOutputChart = $response.querySelector('.Contract_Page_economicOutputChart');
         if(vars.includes('classCanonicalName'))
@@ -187,6 +270,16 @@ async function websocketContractInner(apiRequest) {
           inputDisplayName = $response.querySelector('.Contract_Page_displayName');
         if(vars.includes('contractId'))
           inputContractId = $response.querySelector('.Contract_Page_contractId');
+        if(vars.includes('employeesPerYearDataset'))
+          inputEmployeesPerYearDataset = $response.querySelector('.Contract_Page_employeesPerYearDataset');
+        if(vars.includes('subscriptionCostsPerYearDataset'))
+          inputSubscriptionCostsPerYearDataset = $response.querySelector('.Contract_Page_subscriptionCostsPerYearDataset');
+        if(vars.includes('totalOpenshiftControlPlaneCores'))
+          inputTotalOpenshiftControlPlaneCores = $response.querySelector('.Contract_Page_totalOpenshiftControlPlaneCores');
+        if(vars.includes('totalOpenshiftInfraCores'))
+          inputTotalOpenshiftInfraCores = $response.querySelector('.Contract_Page_totalOpenshiftInfraCores');
+        if(vars.includes('totalOpenshiftWorkerCores'))
+          inputTotalOpenshiftWorkerCores = $response.querySelector('.Contract_Page_totalOpenshiftWorkerCores');
 
         jsWebsocketContract(contractId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -387,6 +480,274 @@ async function websocketContractInner(apiRequest) {
           addGlow(document.querySelector('.Contract_Page_cumulativeInvestmentChart'));
         }
 
+        if(inputArchitectsPerYear) {
+          document.querySelectorAll('.Contract_Page_architectsPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputArchitectsPerYear.getAttribute('value');
+            else
+              item.textContent = inputArchitectsPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_architectsPerYear'));
+        }
+
+        if(inputRemoteDevelopersPerYear) {
+          document.querySelectorAll('.Contract_Page_remoteDevelopersPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputRemoteDevelopersPerYear.getAttribute('value');
+            else
+              item.textContent = inputRemoteDevelopersPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_remoteDevelopersPerYear'));
+        }
+
+        if(inputOnsiteDevelopersPerYear) {
+          document.querySelectorAll('.Contract_Page_onsiteDevelopersPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOnsiteDevelopersPerYear.getAttribute('value');
+            else
+              item.textContent = inputOnsiteDevelopersPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_onsiteDevelopersPerYear'));
+        }
+
+        if(inputInstructorsPerYear) {
+          document.querySelectorAll('.Contract_Page_instructorsPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputInstructorsPerYear.getAttribute('value');
+            else
+              item.textContent = inputInstructorsPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_instructorsPerYear'));
+        }
+
+        if(inputRemoteDeveloperPayPerYear) {
+          document.querySelectorAll('.Contract_Page_remoteDeveloperPayPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputRemoteDeveloperPayPerYear.getAttribute('value');
+            else
+              item.textContent = inputRemoteDeveloperPayPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_remoteDeveloperPayPerYear'));
+        }
+
+        if(inputOnsiteDeveloperPayPerYear) {
+          document.querySelectorAll('.Contract_Page_onsiteDeveloperPayPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOnsiteDeveloperPayPerYear.getAttribute('value');
+            else
+              item.textContent = inputOnsiteDeveloperPayPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_onsiteDeveloperPayPerYear'));
+        }
+
+        if(inputArchitectPayPerYear) {
+          document.querySelectorAll('.Contract_Page_architectPayPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputArchitectPayPerYear.getAttribute('value');
+            else
+              item.textContent = inputArchitectPayPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_architectPayPerYear'));
+        }
+
+        if(inputInstructorPayPerYear) {
+          document.querySelectorAll('.Contract_Page_instructorPayPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputInstructorPayPerYear.getAttribute('value');
+            else
+              item.textContent = inputInstructorPayPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_instructorPayPerYear'));
+        }
+
+        if(inputSubscriptionsPerYear) {
+          document.querySelectorAll('.Contract_Page_subscriptionsPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSubscriptionsPerYear.getAttribute('value');
+            else
+              item.textContent = inputSubscriptionsPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_subscriptionsPerYear'));
+        }
+
+        if(inputSubscriptionCostsPerYear) {
+          document.querySelectorAll('.Contract_Page_subscriptionCostsPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSubscriptionCostsPerYear.getAttribute('value');
+            else
+              item.textContent = inputSubscriptionCostsPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_subscriptionCostsPerYear'));
+        }
+
+        if(inputTotalSubscriptionCostPerYear) {
+          document.querySelectorAll('.Contract_Page_totalSubscriptionCostPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputTotalSubscriptionCostPerYear.getAttribute('value');
+            else
+              item.textContent = inputTotalSubscriptionCostPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_totalSubscriptionCostPerYear'));
+        }
+
+        if(inputEmployeeSubscriptionCostsPerYear) {
+          document.querySelectorAll('.Contract_Page_employeeSubscriptionCostsPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEmployeeSubscriptionCostsPerYear.getAttribute('value');
+            else
+              item.textContent = inputEmployeeSubscriptionCostsPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_employeeSubscriptionCostsPerYear'));
+        }
+
+        if(inputOpenshiftSSDStorageTiBPerYear) {
+          document.querySelectorAll('.Contract_Page_openshiftSSDStorageTiBPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftSSDStorageTiBPerYear.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftSSDStorageTiBPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftSSDStorageTiBPerYear'));
+        }
+
+        if(inputOpenshiftControlPlaneNodes) {
+          document.querySelectorAll('.Contract_Page_openshiftControlPlaneNodes').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftControlPlaneNodes.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftControlPlaneNodes.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftControlPlaneNodes'));
+        }
+
+        if(inputOpenshiftControlPlaneCores) {
+          document.querySelectorAll('.Contract_Page_openshiftControlPlaneCores').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftControlPlaneCores.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftControlPlaneCores.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftControlPlaneCores'));
+        }
+
+        if(inputOpenshiftControlPlaneHourlyPrice) {
+          document.querySelectorAll('.Contract_Page_openshiftControlPlaneHourlyPrice').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftControlPlaneHourlyPrice.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftControlPlaneHourlyPrice.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftControlPlaneHourlyPrice'));
+        }
+
+        if(inputOpenshiftInfraNodes) {
+          document.querySelectorAll('.Contract_Page_openshiftInfraNodes').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftInfraNodes.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftInfraNodes.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftInfraNodes'));
+        }
+
+        if(inputOpenshiftInfraCores) {
+          document.querySelectorAll('.Contract_Page_openshiftInfraCores').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftInfraCores.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftInfraCores.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftInfraCores'));
+        }
+
+        if(inputOpenshiftInfraHourlyPrice) {
+          document.querySelectorAll('.Contract_Page_openshiftInfraHourlyPrice').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftInfraHourlyPrice.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftInfraHourlyPrice.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftInfraHourlyPrice'));
+        }
+
+        if(inputOpenshiftWorkerNodes) {
+          document.querySelectorAll('.Contract_Page_openshiftWorkerNodes').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftWorkerNodes.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftWorkerNodes.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftWorkerNodes'));
+        }
+
+        if(inputOpenshiftWorkerCores) {
+          document.querySelectorAll('.Contract_Page_openshiftWorkerCores').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftWorkerCores.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftWorkerCores.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftWorkerCores'));
+        }
+
+        if(inputOpenshiftWorkerHourlyPrice) {
+          document.querySelectorAll('.Contract_Page_openshiftWorkerHourlyPrice').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftWorkerHourlyPrice.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftWorkerHourlyPrice.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftWorkerHourlyPrice'));
+        }
+
+        if(inputOpenshiftSSDStoragePrice) {
+          document.querySelectorAll('.Contract_Page_openshiftSSDStoragePrice').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftSSDStoragePrice.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftSSDStoragePrice.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftSSDStoragePrice'));
+        }
+
+        if(inputOpenshiftCostsPerYear) {
+          document.querySelectorAll('.Contract_Page_openshiftCostsPerYear').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputOpenshiftCostsPerYear.getAttribute('value');
+            else
+              item.textContent = inputOpenshiftCostsPerYear.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_openshiftCostsPerYear'));
+        }
+
+        if(inputEmployeesPerYearChart) {
+          document.querySelectorAll('.Contract_Page_employeesPerYearChart').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEmployeesPerYearChart.getAttribute('value');
+            else
+              item.textContent = inputEmployeesPerYearChart.textContent;
+            for (let i = 0; i < item.chart.data.datasets.length; i++) {
+              item.chart.data.datasets[i].data = JSON.parse(inputEmployeesPerYearChart.textContent).data.datasets[i].data;
+            }
+            item.chart.update();
+          });
+          addGlow(document.querySelector('.Contract_Page_employeesPerYearChart'));
+        }
+
+        if(inputProjectExpensesChart) {
+          document.querySelectorAll('.Contract_Page_projectExpensesChart').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputProjectExpensesChart.getAttribute('value');
+            else
+              item.textContent = inputProjectExpensesChart.textContent;
+            for (let i = 0; i < item.chart.data.datasets.length; i++) {
+              item.chart.data.datasets[i].data = JSON.parse(inputProjectExpensesChart.textContent).data.datasets[i].data;
+            }
+            item.chart.update();
+          });
+          addGlow(document.querySelector('.Contract_Page_projectExpensesChart'));
+        }
+
         if(inputEconomicOutputChart) {
           document.querySelectorAll('.Contract_Page_economicOutputChart').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -559,6 +920,56 @@ async function websocketContractInner(apiRequest) {
               item.textContent = inputContractId.textContent;
           });
           addGlow(document.querySelector('.Contract_Page_contractId'));
+        }
+
+        if(inputEmployeesPerYearDataset) {
+          document.querySelectorAll('.Contract_Page_employeesPerYearDataset').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEmployeesPerYearDataset.getAttribute('value');
+            else
+              item.textContent = inputEmployeesPerYearDataset.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_employeesPerYearDataset'));
+        }
+
+        if(inputSubscriptionCostsPerYearDataset) {
+          document.querySelectorAll('.Contract_Page_subscriptionCostsPerYearDataset').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSubscriptionCostsPerYearDataset.getAttribute('value');
+            else
+              item.textContent = inputSubscriptionCostsPerYearDataset.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_subscriptionCostsPerYearDataset'));
+        }
+
+        if(inputTotalOpenshiftControlPlaneCores) {
+          document.querySelectorAll('.Contract_Page_totalOpenshiftControlPlaneCores').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputTotalOpenshiftControlPlaneCores.getAttribute('value');
+            else
+              item.textContent = inputTotalOpenshiftControlPlaneCores.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_totalOpenshiftControlPlaneCores'));
+        }
+
+        if(inputTotalOpenshiftInfraCores) {
+          document.querySelectorAll('.Contract_Page_totalOpenshiftInfraCores').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputTotalOpenshiftInfraCores.getAttribute('value');
+            else
+              item.textContent = inputTotalOpenshiftInfraCores.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_totalOpenshiftInfraCores'));
+        }
+
+        if(inputTotalOpenshiftWorkerCores) {
+          document.querySelectorAll('.Contract_Page_totalOpenshiftWorkerCores').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputTotalOpenshiftWorkerCores.getAttribute('value');
+            else
+              item.textContent = inputTotalOpenshiftWorkerCores.textContent;
+          });
+          addGlow(document.querySelector('.Contract_Page_totalOpenshiftWorkerCores'));
         }
 
           pageGraphContract();
@@ -784,6 +1195,102 @@ function searchContractFilters($formFilters) {
     if(filterEconomicOutputProjectionsDataset != null && filterEconomicOutputProjectionsDataset !== '')
       filters.push({ name: 'fq', value: 'economicOutputProjectionsDataset:' + filterEconomicOutputProjectionsDataset });
 
+    var filterArchitectsPerYear = $formFilters.querySelector('.valueArchitectsPerYear')?.value;
+    if(filterArchitectsPerYear != null && filterArchitectsPerYear !== '')
+      filters.push({ name: 'fq', value: 'architectsPerYear:' + filterArchitectsPerYear });
+
+    var filterRemoteDevelopersPerYear = $formFilters.querySelector('.valueRemoteDevelopersPerYear')?.value;
+    if(filterRemoteDevelopersPerYear != null && filterRemoteDevelopersPerYear !== '')
+      filters.push({ name: 'fq', value: 'remoteDevelopersPerYear:' + filterRemoteDevelopersPerYear });
+
+    var filterOnsiteDevelopersPerYear = $formFilters.querySelector('.valueOnsiteDevelopersPerYear')?.value;
+    if(filterOnsiteDevelopersPerYear != null && filterOnsiteDevelopersPerYear !== '')
+      filters.push({ name: 'fq', value: 'onsiteDevelopersPerYear:' + filterOnsiteDevelopersPerYear });
+
+    var filterInstructorsPerYear = $formFilters.querySelector('.valueInstructorsPerYear')?.value;
+    if(filterInstructorsPerYear != null && filterInstructorsPerYear !== '')
+      filters.push({ name: 'fq', value: 'instructorsPerYear:' + filterInstructorsPerYear });
+
+    var filterRemoteDeveloperPayPerYear = $formFilters.querySelector('.valueRemoteDeveloperPayPerYear')?.value;
+    if(filterRemoteDeveloperPayPerYear != null && filterRemoteDeveloperPayPerYear !== '')
+      filters.push({ name: 'fq', value: 'remoteDeveloperPayPerYear:' + filterRemoteDeveloperPayPerYear });
+
+    var filterOnsiteDeveloperPayPerYear = $formFilters.querySelector('.valueOnsiteDeveloperPayPerYear')?.value;
+    if(filterOnsiteDeveloperPayPerYear != null && filterOnsiteDeveloperPayPerYear !== '')
+      filters.push({ name: 'fq', value: 'onsiteDeveloperPayPerYear:' + filterOnsiteDeveloperPayPerYear });
+
+    var filterArchitectPayPerYear = $formFilters.querySelector('.valueArchitectPayPerYear')?.value;
+    if(filterArchitectPayPerYear != null && filterArchitectPayPerYear !== '')
+      filters.push({ name: 'fq', value: 'architectPayPerYear:' + filterArchitectPayPerYear });
+
+    var filterInstructorPayPerYear = $formFilters.querySelector('.valueInstructorPayPerYear')?.value;
+    if(filterInstructorPayPerYear != null && filterInstructorPayPerYear !== '')
+      filters.push({ name: 'fq', value: 'instructorPayPerYear:' + filterInstructorPayPerYear });
+
+    var filterSubscriptionsPerYear = $formFilters.querySelector('.valueSubscriptionsPerYear')?.value;
+    if(filterSubscriptionsPerYear != null && filterSubscriptionsPerYear !== '')
+      filters.push({ name: 'fq', value: 'subscriptionsPerYear:' + filterSubscriptionsPerYear });
+
+    var filterSubscriptionCostsPerYear = $formFilters.querySelector('.valueSubscriptionCostsPerYear')?.value;
+    if(filterSubscriptionCostsPerYear != null && filterSubscriptionCostsPerYear !== '')
+      filters.push({ name: 'fq', value: 'subscriptionCostsPerYear:' + filterSubscriptionCostsPerYear });
+
+    var filterTotalSubscriptionCostPerYear = $formFilters.querySelector('.valueTotalSubscriptionCostPerYear')?.value;
+    if(filterTotalSubscriptionCostPerYear != null && filterTotalSubscriptionCostPerYear !== '')
+      filters.push({ name: 'fq', value: 'totalSubscriptionCostPerYear:' + filterTotalSubscriptionCostPerYear });
+
+    var filterEmployeeSubscriptionCostsPerYear = $formFilters.querySelector('.valueEmployeeSubscriptionCostsPerYear')?.value;
+    if(filterEmployeeSubscriptionCostsPerYear != null && filterEmployeeSubscriptionCostsPerYear !== '')
+      filters.push({ name: 'fq', value: 'employeeSubscriptionCostsPerYear:' + filterEmployeeSubscriptionCostsPerYear });
+
+    var filterOpenshiftSSDStorageTiBPerYear = $formFilters.querySelector('.valueOpenshiftSSDStorageTiBPerYear')?.value;
+    if(filterOpenshiftSSDStorageTiBPerYear != null && filterOpenshiftSSDStorageTiBPerYear !== '')
+      filters.push({ name: 'fq', value: 'openshiftSSDStorageTiBPerYear:' + filterOpenshiftSSDStorageTiBPerYear });
+
+    var filterOpenshiftControlPlaneNodes = $formFilters.querySelector('.valueOpenshiftControlPlaneNodes')?.value;
+    if(filterOpenshiftControlPlaneNodes != null && filterOpenshiftControlPlaneNodes !== '')
+      filters.push({ name: 'fq', value: 'openshiftControlPlaneNodes:' + filterOpenshiftControlPlaneNodes });
+
+    var filterOpenshiftControlPlaneCores = $formFilters.querySelector('.valueOpenshiftControlPlaneCores')?.value;
+    if(filterOpenshiftControlPlaneCores != null && filterOpenshiftControlPlaneCores !== '')
+      filters.push({ name: 'fq', value: 'openshiftControlPlaneCores:' + filterOpenshiftControlPlaneCores });
+
+    var filterOpenshiftControlPlaneHourlyPrice = $formFilters.querySelector('.valueOpenshiftControlPlaneHourlyPrice')?.value;
+    if(filterOpenshiftControlPlaneHourlyPrice != null && filterOpenshiftControlPlaneHourlyPrice !== '')
+      filters.push({ name: 'fq', value: 'openshiftControlPlaneHourlyPrice:' + filterOpenshiftControlPlaneHourlyPrice });
+
+    var filterOpenshiftInfraNodes = $formFilters.querySelector('.valueOpenshiftInfraNodes')?.value;
+    if(filterOpenshiftInfraNodes != null && filterOpenshiftInfraNodes !== '')
+      filters.push({ name: 'fq', value: 'openshiftInfraNodes:' + filterOpenshiftInfraNodes });
+
+    var filterOpenshiftInfraCores = $formFilters.querySelector('.valueOpenshiftInfraCores')?.value;
+    if(filterOpenshiftInfraCores != null && filterOpenshiftInfraCores !== '')
+      filters.push({ name: 'fq', value: 'openshiftInfraCores:' + filterOpenshiftInfraCores });
+
+    var filterOpenshiftInfraHourlyPrice = $formFilters.querySelector('.valueOpenshiftInfraHourlyPrice')?.value;
+    if(filterOpenshiftInfraHourlyPrice != null && filterOpenshiftInfraHourlyPrice !== '')
+      filters.push({ name: 'fq', value: 'openshiftInfraHourlyPrice:' + filterOpenshiftInfraHourlyPrice });
+
+    var filterOpenshiftWorkerNodes = $formFilters.querySelector('.valueOpenshiftWorkerNodes')?.value;
+    if(filterOpenshiftWorkerNodes != null && filterOpenshiftWorkerNodes !== '')
+      filters.push({ name: 'fq', value: 'openshiftWorkerNodes:' + filterOpenshiftWorkerNodes });
+
+    var filterOpenshiftWorkerCores = $formFilters.querySelector('.valueOpenshiftWorkerCores')?.value;
+    if(filterOpenshiftWorkerCores != null && filterOpenshiftWorkerCores !== '')
+      filters.push({ name: 'fq', value: 'openshiftWorkerCores:' + filterOpenshiftWorkerCores });
+
+    var filterOpenshiftWorkerHourlyPrice = $formFilters.querySelector('.valueOpenshiftWorkerHourlyPrice')?.value;
+    if(filterOpenshiftWorkerHourlyPrice != null && filterOpenshiftWorkerHourlyPrice !== '')
+      filters.push({ name: 'fq', value: 'openshiftWorkerHourlyPrice:' + filterOpenshiftWorkerHourlyPrice });
+
+    var filterOpenshiftSSDStoragePrice = $formFilters.querySelector('.valueOpenshiftSSDStoragePrice')?.value;
+    if(filterOpenshiftSSDStoragePrice != null && filterOpenshiftSSDStoragePrice !== '')
+      filters.push({ name: 'fq', value: 'openshiftSSDStoragePrice:' + filterOpenshiftSSDStoragePrice });
+
+    var filterOpenshiftCostsPerYear = $formFilters.querySelector('.valueOpenshiftCostsPerYear')?.value;
+    if(filterOpenshiftCostsPerYear != null && filterOpenshiftCostsPerYear !== '')
+      filters.push({ name: 'fq', value: 'openshiftCostsPerYear:' + filterOpenshiftCostsPerYear });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -847,6 +1354,26 @@ function searchContractFilters($formFilters) {
     var filterContractId = $formFilters.querySelector('.valueContractId')?.value;
     if(filterContractId != null && filterContractId !== '')
       filters.push({ name: 'fq', value: 'contractId:' + filterContractId });
+
+    var filterEmployeesPerYearDataset = $formFilters.querySelector('.valueEmployeesPerYearDataset')?.value;
+    if(filterEmployeesPerYearDataset != null && filterEmployeesPerYearDataset !== '')
+      filters.push({ name: 'fq', value: 'employeesPerYearDataset:' + filterEmployeesPerYearDataset });
+
+    var filterSubscriptionCostsPerYearDataset = $formFilters.querySelector('.valueSubscriptionCostsPerYearDataset')?.value;
+    if(filterSubscriptionCostsPerYearDataset != null && filterSubscriptionCostsPerYearDataset !== '')
+      filters.push({ name: 'fq', value: 'subscriptionCostsPerYearDataset:' + filterSubscriptionCostsPerYearDataset });
+
+    var filterTotalOpenshiftControlPlaneCores = $formFilters.querySelector('.valueTotalOpenshiftControlPlaneCores')?.value;
+    if(filterTotalOpenshiftControlPlaneCores != null && filterTotalOpenshiftControlPlaneCores !== '')
+      filters.push({ name: 'fq', value: 'totalOpenshiftControlPlaneCores:' + filterTotalOpenshiftControlPlaneCores });
+
+    var filterTotalOpenshiftInfraCores = $formFilters.querySelector('.valueTotalOpenshiftInfraCores')?.value;
+    if(filterTotalOpenshiftInfraCores != null && filterTotalOpenshiftInfraCores !== '')
+      filters.push({ name: 'fq', value: 'totalOpenshiftInfraCores:' + filterTotalOpenshiftInfraCores });
+
+    var filterTotalOpenshiftWorkerCores = $formFilters.querySelector('.valueTotalOpenshiftWorkerCores')?.value;
+    if(filterTotalOpenshiftWorkerCores != null && filterTotalOpenshiftWorkerCores !== '')
+      filters.push({ name: 'fq', value: 'totalOpenshiftWorkerCores:' + filterTotalOpenshiftWorkerCores });
   }
   return filters;
 }
@@ -1153,6 +1680,318 @@ async function patchContract($formFilters, $formValues, target, contractId, succ
   if(removeCumulativeInvestmentChart != null && removeCumulativeInvestmentChart !== '')
     vals['removeCumulativeInvestmentChart'] = removeCumulativeInvestmentChart;
 
+  var valueArchitectsPerYear = $formValues.querySelector('.valueArchitectsPerYear')?.value;
+  var removeArchitectsPerYear = $formValues.querySelector('.removeArchitectsPerYear')?.value === 'true';
+  var setArchitectsPerYear = removeArchitectsPerYear ? null : $formValues.querySelector('.setArchitectsPerYear')?.value;
+  var addArchitectsPerYear = $formValues.querySelector('.addArchitectsPerYear')?.value;
+  if(removeArchitectsPerYear || setArchitectsPerYear != null && setArchitectsPerYear !== '')
+    vals['setArchitectsPerYear'] = JSON.parse(setArchitectsPerYear);
+  if(addArchitectsPerYear != null && addArchitectsPerYear !== '')
+    vals['addArchitectsPerYear'] = addArchitectsPerYear;
+  var removeArchitectsPerYear = $formValues.querySelector('.removeArchitectsPerYear')?.value;
+  if(removeArchitectsPerYear != null && removeArchitectsPerYear !== '')
+    vals['removeArchitectsPerYear'] = removeArchitectsPerYear;
+
+  var valueRemoteDevelopersPerYear = $formValues.querySelector('.valueRemoteDevelopersPerYear')?.value;
+  var removeRemoteDevelopersPerYear = $formValues.querySelector('.removeRemoteDevelopersPerYear')?.value === 'true';
+  var setRemoteDevelopersPerYear = removeRemoteDevelopersPerYear ? null : $formValues.querySelector('.setRemoteDevelopersPerYear')?.value;
+  var addRemoteDevelopersPerYear = $formValues.querySelector('.addRemoteDevelopersPerYear')?.value;
+  if(removeRemoteDevelopersPerYear || setRemoteDevelopersPerYear != null && setRemoteDevelopersPerYear !== '')
+    vals['setRemoteDevelopersPerYear'] = JSON.parse(setRemoteDevelopersPerYear);
+  if(addRemoteDevelopersPerYear != null && addRemoteDevelopersPerYear !== '')
+    vals['addRemoteDevelopersPerYear'] = addRemoteDevelopersPerYear;
+  var removeRemoteDevelopersPerYear = $formValues.querySelector('.removeRemoteDevelopersPerYear')?.value;
+  if(removeRemoteDevelopersPerYear != null && removeRemoteDevelopersPerYear !== '')
+    vals['removeRemoteDevelopersPerYear'] = removeRemoteDevelopersPerYear;
+
+  var valueOnsiteDevelopersPerYear = $formValues.querySelector('.valueOnsiteDevelopersPerYear')?.value;
+  var removeOnsiteDevelopersPerYear = $formValues.querySelector('.removeOnsiteDevelopersPerYear')?.value === 'true';
+  var setOnsiteDevelopersPerYear = removeOnsiteDevelopersPerYear ? null : $formValues.querySelector('.setOnsiteDevelopersPerYear')?.value;
+  var addOnsiteDevelopersPerYear = $formValues.querySelector('.addOnsiteDevelopersPerYear')?.value;
+  if(removeOnsiteDevelopersPerYear || setOnsiteDevelopersPerYear != null && setOnsiteDevelopersPerYear !== '')
+    vals['setOnsiteDevelopersPerYear'] = JSON.parse(setOnsiteDevelopersPerYear);
+  if(addOnsiteDevelopersPerYear != null && addOnsiteDevelopersPerYear !== '')
+    vals['addOnsiteDevelopersPerYear'] = addOnsiteDevelopersPerYear;
+  var removeOnsiteDevelopersPerYear = $formValues.querySelector('.removeOnsiteDevelopersPerYear')?.value;
+  if(removeOnsiteDevelopersPerYear != null && removeOnsiteDevelopersPerYear !== '')
+    vals['removeOnsiteDevelopersPerYear'] = removeOnsiteDevelopersPerYear;
+
+  var valueInstructorsPerYear = $formValues.querySelector('.valueInstructorsPerYear')?.value;
+  var removeInstructorsPerYear = $formValues.querySelector('.removeInstructorsPerYear')?.value === 'true';
+  var setInstructorsPerYear = removeInstructorsPerYear ? null : $formValues.querySelector('.setInstructorsPerYear')?.value;
+  var addInstructorsPerYear = $formValues.querySelector('.addInstructorsPerYear')?.value;
+  if(removeInstructorsPerYear || setInstructorsPerYear != null && setInstructorsPerYear !== '')
+    vals['setInstructorsPerYear'] = JSON.parse(setInstructorsPerYear);
+  if(addInstructorsPerYear != null && addInstructorsPerYear !== '')
+    vals['addInstructorsPerYear'] = addInstructorsPerYear;
+  var removeInstructorsPerYear = $formValues.querySelector('.removeInstructorsPerYear')?.value;
+  if(removeInstructorsPerYear != null && removeInstructorsPerYear !== '')
+    vals['removeInstructorsPerYear'] = removeInstructorsPerYear;
+
+  var valueRemoteDeveloperPayPerYear = $formValues.querySelector('.valueRemoteDeveloperPayPerYear')?.value;
+  var removeRemoteDeveloperPayPerYear = $formValues.querySelector('.removeRemoteDeveloperPayPerYear')?.value === 'true';
+  var setRemoteDeveloperPayPerYear = removeRemoteDeveloperPayPerYear ? null : $formValues.querySelector('.setRemoteDeveloperPayPerYear')?.value;
+  var addRemoteDeveloperPayPerYear = $formValues.querySelector('.addRemoteDeveloperPayPerYear')?.value;
+  if(removeRemoteDeveloperPayPerYear || setRemoteDeveloperPayPerYear != null && setRemoteDeveloperPayPerYear !== '')
+    vals['setRemoteDeveloperPayPerYear'] = setRemoteDeveloperPayPerYear;
+  if(addRemoteDeveloperPayPerYear != null && addRemoteDeveloperPayPerYear !== '')
+    vals['addRemoteDeveloperPayPerYear'] = addRemoteDeveloperPayPerYear;
+  var removeRemoteDeveloperPayPerYear = $formValues.querySelector('.removeRemoteDeveloperPayPerYear')?.value;
+  if(removeRemoteDeveloperPayPerYear != null && removeRemoteDeveloperPayPerYear !== '')
+    vals['removeRemoteDeveloperPayPerYear'] = removeRemoteDeveloperPayPerYear;
+
+  var valueOnsiteDeveloperPayPerYear = $formValues.querySelector('.valueOnsiteDeveloperPayPerYear')?.value;
+  var removeOnsiteDeveloperPayPerYear = $formValues.querySelector('.removeOnsiteDeveloperPayPerYear')?.value === 'true';
+  var setOnsiteDeveloperPayPerYear = removeOnsiteDeveloperPayPerYear ? null : $formValues.querySelector('.setOnsiteDeveloperPayPerYear')?.value;
+  var addOnsiteDeveloperPayPerYear = $formValues.querySelector('.addOnsiteDeveloperPayPerYear')?.value;
+  if(removeOnsiteDeveloperPayPerYear || setOnsiteDeveloperPayPerYear != null && setOnsiteDeveloperPayPerYear !== '')
+    vals['setOnsiteDeveloperPayPerYear'] = setOnsiteDeveloperPayPerYear;
+  if(addOnsiteDeveloperPayPerYear != null && addOnsiteDeveloperPayPerYear !== '')
+    vals['addOnsiteDeveloperPayPerYear'] = addOnsiteDeveloperPayPerYear;
+  var removeOnsiteDeveloperPayPerYear = $formValues.querySelector('.removeOnsiteDeveloperPayPerYear')?.value;
+  if(removeOnsiteDeveloperPayPerYear != null && removeOnsiteDeveloperPayPerYear !== '')
+    vals['removeOnsiteDeveloperPayPerYear'] = removeOnsiteDeveloperPayPerYear;
+
+  var valueArchitectPayPerYear = $formValues.querySelector('.valueArchitectPayPerYear')?.value;
+  var removeArchitectPayPerYear = $formValues.querySelector('.removeArchitectPayPerYear')?.value === 'true';
+  var setArchitectPayPerYear = removeArchitectPayPerYear ? null : $formValues.querySelector('.setArchitectPayPerYear')?.value;
+  var addArchitectPayPerYear = $formValues.querySelector('.addArchitectPayPerYear')?.value;
+  if(removeArchitectPayPerYear || setArchitectPayPerYear != null && setArchitectPayPerYear !== '')
+    vals['setArchitectPayPerYear'] = setArchitectPayPerYear;
+  if(addArchitectPayPerYear != null && addArchitectPayPerYear !== '')
+    vals['addArchitectPayPerYear'] = addArchitectPayPerYear;
+  var removeArchitectPayPerYear = $formValues.querySelector('.removeArchitectPayPerYear')?.value;
+  if(removeArchitectPayPerYear != null && removeArchitectPayPerYear !== '')
+    vals['removeArchitectPayPerYear'] = removeArchitectPayPerYear;
+
+  var valueInstructorPayPerYear = $formValues.querySelector('.valueInstructorPayPerYear')?.value;
+  var removeInstructorPayPerYear = $formValues.querySelector('.removeInstructorPayPerYear')?.value === 'true';
+  var setInstructorPayPerYear = removeInstructorPayPerYear ? null : $formValues.querySelector('.setInstructorPayPerYear')?.value;
+  var addInstructorPayPerYear = $formValues.querySelector('.addInstructorPayPerYear')?.value;
+  if(removeInstructorPayPerYear || setInstructorPayPerYear != null && setInstructorPayPerYear !== '')
+    vals['setInstructorPayPerYear'] = setInstructorPayPerYear;
+  if(addInstructorPayPerYear != null && addInstructorPayPerYear !== '')
+    vals['addInstructorPayPerYear'] = addInstructorPayPerYear;
+  var removeInstructorPayPerYear = $formValues.querySelector('.removeInstructorPayPerYear')?.value;
+  if(removeInstructorPayPerYear != null && removeInstructorPayPerYear !== '')
+    vals['removeInstructorPayPerYear'] = removeInstructorPayPerYear;
+
+  var valueSubscriptionsPerYear = $formValues.querySelector('.valueSubscriptionsPerYear')?.value;
+  var removeSubscriptionsPerYear = $formValues.querySelector('.removeSubscriptionsPerYear')?.value === 'true';
+  var setSubscriptionsPerYear = removeSubscriptionsPerYear ? null : $formValues.querySelector('.setSubscriptionsPerYear')?.value;
+  var addSubscriptionsPerYear = $formValues.querySelector('.addSubscriptionsPerYear')?.value;
+  if(removeSubscriptionsPerYear || setSubscriptionsPerYear != null && setSubscriptionsPerYear !== '')
+    vals['setSubscriptionsPerYear'] = JSON.parse(setSubscriptionsPerYear);
+  if(addSubscriptionsPerYear != null && addSubscriptionsPerYear !== '')
+    vals['addSubscriptionsPerYear'] = addSubscriptionsPerYear;
+  var removeSubscriptionsPerYear = $formValues.querySelector('.removeSubscriptionsPerYear')?.value;
+  if(removeSubscriptionsPerYear != null && removeSubscriptionsPerYear !== '')
+    vals['removeSubscriptionsPerYear'] = removeSubscriptionsPerYear;
+
+  var valueSubscriptionCostsPerYear = $formValues.querySelector('.valueSubscriptionCostsPerYear')?.value;
+  var removeSubscriptionCostsPerYear = $formValues.querySelector('.removeSubscriptionCostsPerYear')?.value === 'true';
+  var setSubscriptionCostsPerYear = removeSubscriptionCostsPerYear ? null : $formValues.querySelector('.setSubscriptionCostsPerYear')?.value;
+  var addSubscriptionCostsPerYear = $formValues.querySelector('.addSubscriptionCostsPerYear')?.value;
+  if(removeSubscriptionCostsPerYear || setSubscriptionCostsPerYear != null && setSubscriptionCostsPerYear !== '')
+    vals['setSubscriptionCostsPerYear'] = JSON.parse(setSubscriptionCostsPerYear);
+  if(addSubscriptionCostsPerYear != null && addSubscriptionCostsPerYear !== '')
+    vals['addSubscriptionCostsPerYear'] = addSubscriptionCostsPerYear;
+  var removeSubscriptionCostsPerYear = $formValues.querySelector('.removeSubscriptionCostsPerYear')?.value;
+  if(removeSubscriptionCostsPerYear != null && removeSubscriptionCostsPerYear !== '')
+    vals['removeSubscriptionCostsPerYear'] = removeSubscriptionCostsPerYear;
+
+  var valueTotalSubscriptionCostPerYear = $formValues.querySelector('.valueTotalSubscriptionCostPerYear')?.value;
+  var removeTotalSubscriptionCostPerYear = $formValues.querySelector('.removeTotalSubscriptionCostPerYear')?.value === 'true';
+  var setTotalSubscriptionCostPerYear = removeTotalSubscriptionCostPerYear ? null : $formValues.querySelector('.setTotalSubscriptionCostPerYear')?.value;
+  var addTotalSubscriptionCostPerYear = $formValues.querySelector('.addTotalSubscriptionCostPerYear')?.value;
+  if(removeTotalSubscriptionCostPerYear || setTotalSubscriptionCostPerYear != null && setTotalSubscriptionCostPerYear !== '')
+    vals['setTotalSubscriptionCostPerYear'] = setTotalSubscriptionCostPerYear;
+  if(addTotalSubscriptionCostPerYear != null && addTotalSubscriptionCostPerYear !== '')
+    vals['addTotalSubscriptionCostPerYear'] = addTotalSubscriptionCostPerYear;
+  var removeTotalSubscriptionCostPerYear = $formValues.querySelector('.removeTotalSubscriptionCostPerYear')?.value;
+  if(removeTotalSubscriptionCostPerYear != null && removeTotalSubscriptionCostPerYear !== '')
+    vals['removeTotalSubscriptionCostPerYear'] = removeTotalSubscriptionCostPerYear;
+
+  var valueEmployeeSubscriptionCostsPerYear = $formValues.querySelector('.valueEmployeeSubscriptionCostsPerYear')?.value;
+  var removeEmployeeSubscriptionCostsPerYear = $formValues.querySelector('.removeEmployeeSubscriptionCostsPerYear')?.value === 'true';
+  var setEmployeeSubscriptionCostsPerYear = removeEmployeeSubscriptionCostsPerYear ? null : $formValues.querySelector('.setEmployeeSubscriptionCostsPerYear')?.value;
+  var addEmployeeSubscriptionCostsPerYear = $formValues.querySelector('.addEmployeeSubscriptionCostsPerYear')?.value;
+  if(removeEmployeeSubscriptionCostsPerYear || setEmployeeSubscriptionCostsPerYear != null && setEmployeeSubscriptionCostsPerYear !== '')
+    vals['setEmployeeSubscriptionCostsPerYear'] = JSON.parse(setEmployeeSubscriptionCostsPerYear);
+  if(addEmployeeSubscriptionCostsPerYear != null && addEmployeeSubscriptionCostsPerYear !== '')
+    vals['addEmployeeSubscriptionCostsPerYear'] = addEmployeeSubscriptionCostsPerYear;
+  var removeEmployeeSubscriptionCostsPerYear = $formValues.querySelector('.removeEmployeeSubscriptionCostsPerYear')?.value;
+  if(removeEmployeeSubscriptionCostsPerYear != null && removeEmployeeSubscriptionCostsPerYear !== '')
+    vals['removeEmployeeSubscriptionCostsPerYear'] = removeEmployeeSubscriptionCostsPerYear;
+
+  var valueOpenshiftSSDStorageTiBPerYear = $formValues.querySelector('.valueOpenshiftSSDStorageTiBPerYear')?.value;
+  var removeOpenshiftSSDStorageTiBPerYear = $formValues.querySelector('.removeOpenshiftSSDStorageTiBPerYear')?.value === 'true';
+  var setOpenshiftSSDStorageTiBPerYear = removeOpenshiftSSDStorageTiBPerYear ? null : $formValues.querySelector('.setOpenshiftSSDStorageTiBPerYear')?.value;
+  var addOpenshiftSSDStorageTiBPerYear = $formValues.querySelector('.addOpenshiftSSDStorageTiBPerYear')?.value;
+  if(removeOpenshiftSSDStorageTiBPerYear || setOpenshiftSSDStorageTiBPerYear != null && setOpenshiftSSDStorageTiBPerYear !== '')
+    vals['setOpenshiftSSDStorageTiBPerYear'] = JSON.parse(setOpenshiftSSDStorageTiBPerYear);
+  if(addOpenshiftSSDStorageTiBPerYear != null && addOpenshiftSSDStorageTiBPerYear !== '')
+    vals['addOpenshiftSSDStorageTiBPerYear'] = addOpenshiftSSDStorageTiBPerYear;
+  var removeOpenshiftSSDStorageTiBPerYear = $formValues.querySelector('.removeOpenshiftSSDStorageTiBPerYear')?.value;
+  if(removeOpenshiftSSDStorageTiBPerYear != null && removeOpenshiftSSDStorageTiBPerYear !== '')
+    vals['removeOpenshiftSSDStorageTiBPerYear'] = removeOpenshiftSSDStorageTiBPerYear;
+
+  var valueOpenshiftControlPlaneNodes = $formValues.querySelector('.valueOpenshiftControlPlaneNodes')?.value;
+  var removeOpenshiftControlPlaneNodes = $formValues.querySelector('.removeOpenshiftControlPlaneNodes')?.value === 'true';
+  var setOpenshiftControlPlaneNodes = removeOpenshiftControlPlaneNodes ? null : $formValues.querySelector('.setOpenshiftControlPlaneNodes')?.value;
+  var addOpenshiftControlPlaneNodes = $formValues.querySelector('.addOpenshiftControlPlaneNodes')?.value;
+  if(removeOpenshiftControlPlaneNodes || setOpenshiftControlPlaneNodes != null && setOpenshiftControlPlaneNodes !== '')
+    vals['setOpenshiftControlPlaneNodes'] = setOpenshiftControlPlaneNodes;
+  if(addOpenshiftControlPlaneNodes != null && addOpenshiftControlPlaneNodes !== '')
+    vals['addOpenshiftControlPlaneNodes'] = addOpenshiftControlPlaneNodes;
+  var removeOpenshiftControlPlaneNodes = $formValues.querySelector('.removeOpenshiftControlPlaneNodes')?.value;
+  if(removeOpenshiftControlPlaneNodes != null && removeOpenshiftControlPlaneNodes !== '')
+    vals['removeOpenshiftControlPlaneNodes'] = removeOpenshiftControlPlaneNodes;
+
+  var valueOpenshiftControlPlaneCores = $formValues.querySelector('.valueOpenshiftControlPlaneCores')?.value;
+  var removeOpenshiftControlPlaneCores = $formValues.querySelector('.removeOpenshiftControlPlaneCores')?.value === 'true';
+  var setOpenshiftControlPlaneCores = removeOpenshiftControlPlaneCores ? null : $formValues.querySelector('.setOpenshiftControlPlaneCores')?.value;
+  var addOpenshiftControlPlaneCores = $formValues.querySelector('.addOpenshiftControlPlaneCores')?.value;
+  if(removeOpenshiftControlPlaneCores || setOpenshiftControlPlaneCores != null && setOpenshiftControlPlaneCores !== '')
+    vals['setOpenshiftControlPlaneCores'] = setOpenshiftControlPlaneCores;
+  if(addOpenshiftControlPlaneCores != null && addOpenshiftControlPlaneCores !== '')
+    vals['addOpenshiftControlPlaneCores'] = addOpenshiftControlPlaneCores;
+  var removeOpenshiftControlPlaneCores = $formValues.querySelector('.removeOpenshiftControlPlaneCores')?.value;
+  if(removeOpenshiftControlPlaneCores != null && removeOpenshiftControlPlaneCores !== '')
+    vals['removeOpenshiftControlPlaneCores'] = removeOpenshiftControlPlaneCores;
+
+  var valueOpenshiftControlPlaneHourlyPrice = $formValues.querySelector('.valueOpenshiftControlPlaneHourlyPrice')?.value;
+  var removeOpenshiftControlPlaneHourlyPrice = $formValues.querySelector('.removeOpenshiftControlPlaneHourlyPrice')?.value === 'true';
+  var setOpenshiftControlPlaneHourlyPrice = removeOpenshiftControlPlaneHourlyPrice ? null : $formValues.querySelector('.setOpenshiftControlPlaneHourlyPrice')?.value;
+  var addOpenshiftControlPlaneHourlyPrice = $formValues.querySelector('.addOpenshiftControlPlaneHourlyPrice')?.value;
+  if(removeOpenshiftControlPlaneHourlyPrice || setOpenshiftControlPlaneHourlyPrice != null && setOpenshiftControlPlaneHourlyPrice !== '')
+    vals['setOpenshiftControlPlaneHourlyPrice'] = setOpenshiftControlPlaneHourlyPrice;
+  if(addOpenshiftControlPlaneHourlyPrice != null && addOpenshiftControlPlaneHourlyPrice !== '')
+    vals['addOpenshiftControlPlaneHourlyPrice'] = addOpenshiftControlPlaneHourlyPrice;
+  var removeOpenshiftControlPlaneHourlyPrice = $formValues.querySelector('.removeOpenshiftControlPlaneHourlyPrice')?.value;
+  if(removeOpenshiftControlPlaneHourlyPrice != null && removeOpenshiftControlPlaneHourlyPrice !== '')
+    vals['removeOpenshiftControlPlaneHourlyPrice'] = removeOpenshiftControlPlaneHourlyPrice;
+
+  var valueOpenshiftInfraNodes = $formValues.querySelector('.valueOpenshiftInfraNodes')?.value;
+  var removeOpenshiftInfraNodes = $formValues.querySelector('.removeOpenshiftInfraNodes')?.value === 'true';
+  var setOpenshiftInfraNodes = removeOpenshiftInfraNodes ? null : $formValues.querySelector('.setOpenshiftInfraNodes')?.value;
+  var addOpenshiftInfraNodes = $formValues.querySelector('.addOpenshiftInfraNodes')?.value;
+  if(removeOpenshiftInfraNodes || setOpenshiftInfraNodes != null && setOpenshiftInfraNodes !== '')
+    vals['setOpenshiftInfraNodes'] = setOpenshiftInfraNodes;
+  if(addOpenshiftInfraNodes != null && addOpenshiftInfraNodes !== '')
+    vals['addOpenshiftInfraNodes'] = addOpenshiftInfraNodes;
+  var removeOpenshiftInfraNodes = $formValues.querySelector('.removeOpenshiftInfraNodes')?.value;
+  if(removeOpenshiftInfraNodes != null && removeOpenshiftInfraNodes !== '')
+    vals['removeOpenshiftInfraNodes'] = removeOpenshiftInfraNodes;
+
+  var valueOpenshiftInfraCores = $formValues.querySelector('.valueOpenshiftInfraCores')?.value;
+  var removeOpenshiftInfraCores = $formValues.querySelector('.removeOpenshiftInfraCores')?.value === 'true';
+  var setOpenshiftInfraCores = removeOpenshiftInfraCores ? null : $formValues.querySelector('.setOpenshiftInfraCores')?.value;
+  var addOpenshiftInfraCores = $formValues.querySelector('.addOpenshiftInfraCores')?.value;
+  if(removeOpenshiftInfraCores || setOpenshiftInfraCores != null && setOpenshiftInfraCores !== '')
+    vals['setOpenshiftInfraCores'] = setOpenshiftInfraCores;
+  if(addOpenshiftInfraCores != null && addOpenshiftInfraCores !== '')
+    vals['addOpenshiftInfraCores'] = addOpenshiftInfraCores;
+  var removeOpenshiftInfraCores = $formValues.querySelector('.removeOpenshiftInfraCores')?.value;
+  if(removeOpenshiftInfraCores != null && removeOpenshiftInfraCores !== '')
+    vals['removeOpenshiftInfraCores'] = removeOpenshiftInfraCores;
+
+  var valueOpenshiftInfraHourlyPrice = $formValues.querySelector('.valueOpenshiftInfraHourlyPrice')?.value;
+  var removeOpenshiftInfraHourlyPrice = $formValues.querySelector('.removeOpenshiftInfraHourlyPrice')?.value === 'true';
+  var setOpenshiftInfraHourlyPrice = removeOpenshiftInfraHourlyPrice ? null : $formValues.querySelector('.setOpenshiftInfraHourlyPrice')?.value;
+  var addOpenshiftInfraHourlyPrice = $formValues.querySelector('.addOpenshiftInfraHourlyPrice')?.value;
+  if(removeOpenshiftInfraHourlyPrice || setOpenshiftInfraHourlyPrice != null && setOpenshiftInfraHourlyPrice !== '')
+    vals['setOpenshiftInfraHourlyPrice'] = setOpenshiftInfraHourlyPrice;
+  if(addOpenshiftInfraHourlyPrice != null && addOpenshiftInfraHourlyPrice !== '')
+    vals['addOpenshiftInfraHourlyPrice'] = addOpenshiftInfraHourlyPrice;
+  var removeOpenshiftInfraHourlyPrice = $formValues.querySelector('.removeOpenshiftInfraHourlyPrice')?.value;
+  if(removeOpenshiftInfraHourlyPrice != null && removeOpenshiftInfraHourlyPrice !== '')
+    vals['removeOpenshiftInfraHourlyPrice'] = removeOpenshiftInfraHourlyPrice;
+
+  var valueOpenshiftWorkerNodes = $formValues.querySelector('.valueOpenshiftWorkerNodes')?.value;
+  var removeOpenshiftWorkerNodes = $formValues.querySelector('.removeOpenshiftWorkerNodes')?.value === 'true';
+  var setOpenshiftWorkerNodes = removeOpenshiftWorkerNodes ? null : $formValues.querySelector('.setOpenshiftWorkerNodes')?.value;
+  var addOpenshiftWorkerNodes = $formValues.querySelector('.addOpenshiftWorkerNodes')?.value;
+  if(removeOpenshiftWorkerNodes || setOpenshiftWorkerNodes != null && setOpenshiftWorkerNodes !== '')
+    vals['setOpenshiftWorkerNodes'] = setOpenshiftWorkerNodes;
+  if(addOpenshiftWorkerNodes != null && addOpenshiftWorkerNodes !== '')
+    vals['addOpenshiftWorkerNodes'] = addOpenshiftWorkerNodes;
+  var removeOpenshiftWorkerNodes = $formValues.querySelector('.removeOpenshiftWorkerNodes')?.value;
+  if(removeOpenshiftWorkerNodes != null && removeOpenshiftWorkerNodes !== '')
+    vals['removeOpenshiftWorkerNodes'] = removeOpenshiftWorkerNodes;
+
+  var valueOpenshiftWorkerCores = $formValues.querySelector('.valueOpenshiftWorkerCores')?.value;
+  var removeOpenshiftWorkerCores = $formValues.querySelector('.removeOpenshiftWorkerCores')?.value === 'true';
+  var setOpenshiftWorkerCores = removeOpenshiftWorkerCores ? null : $formValues.querySelector('.setOpenshiftWorkerCores')?.value;
+  var addOpenshiftWorkerCores = $formValues.querySelector('.addOpenshiftWorkerCores')?.value;
+  if(removeOpenshiftWorkerCores || setOpenshiftWorkerCores != null && setOpenshiftWorkerCores !== '')
+    vals['setOpenshiftWorkerCores'] = setOpenshiftWorkerCores;
+  if(addOpenshiftWorkerCores != null && addOpenshiftWorkerCores !== '')
+    vals['addOpenshiftWorkerCores'] = addOpenshiftWorkerCores;
+  var removeOpenshiftWorkerCores = $formValues.querySelector('.removeOpenshiftWorkerCores')?.value;
+  if(removeOpenshiftWorkerCores != null && removeOpenshiftWorkerCores !== '')
+    vals['removeOpenshiftWorkerCores'] = removeOpenshiftWorkerCores;
+
+  var valueOpenshiftWorkerHourlyPrice = $formValues.querySelector('.valueOpenshiftWorkerHourlyPrice')?.value;
+  var removeOpenshiftWorkerHourlyPrice = $formValues.querySelector('.removeOpenshiftWorkerHourlyPrice')?.value === 'true';
+  var setOpenshiftWorkerHourlyPrice = removeOpenshiftWorkerHourlyPrice ? null : $formValues.querySelector('.setOpenshiftWorkerHourlyPrice')?.value;
+  var addOpenshiftWorkerHourlyPrice = $formValues.querySelector('.addOpenshiftWorkerHourlyPrice')?.value;
+  if(removeOpenshiftWorkerHourlyPrice || setOpenshiftWorkerHourlyPrice != null && setOpenshiftWorkerHourlyPrice !== '')
+    vals['setOpenshiftWorkerHourlyPrice'] = setOpenshiftWorkerHourlyPrice;
+  if(addOpenshiftWorkerHourlyPrice != null && addOpenshiftWorkerHourlyPrice !== '')
+    vals['addOpenshiftWorkerHourlyPrice'] = addOpenshiftWorkerHourlyPrice;
+  var removeOpenshiftWorkerHourlyPrice = $formValues.querySelector('.removeOpenshiftWorkerHourlyPrice')?.value;
+  if(removeOpenshiftWorkerHourlyPrice != null && removeOpenshiftWorkerHourlyPrice !== '')
+    vals['removeOpenshiftWorkerHourlyPrice'] = removeOpenshiftWorkerHourlyPrice;
+
+  var valueOpenshiftSSDStoragePrice = $formValues.querySelector('.valueOpenshiftSSDStoragePrice')?.value;
+  var removeOpenshiftSSDStoragePrice = $formValues.querySelector('.removeOpenshiftSSDStoragePrice')?.value === 'true';
+  var setOpenshiftSSDStoragePrice = removeOpenshiftSSDStoragePrice ? null : $formValues.querySelector('.setOpenshiftSSDStoragePrice')?.value;
+  var addOpenshiftSSDStoragePrice = $formValues.querySelector('.addOpenshiftSSDStoragePrice')?.value;
+  if(removeOpenshiftSSDStoragePrice || setOpenshiftSSDStoragePrice != null && setOpenshiftSSDStoragePrice !== '')
+    vals['setOpenshiftSSDStoragePrice'] = setOpenshiftSSDStoragePrice;
+  if(addOpenshiftSSDStoragePrice != null && addOpenshiftSSDStoragePrice !== '')
+    vals['addOpenshiftSSDStoragePrice'] = addOpenshiftSSDStoragePrice;
+  var removeOpenshiftSSDStoragePrice = $formValues.querySelector('.removeOpenshiftSSDStoragePrice')?.value;
+  if(removeOpenshiftSSDStoragePrice != null && removeOpenshiftSSDStoragePrice !== '')
+    vals['removeOpenshiftSSDStoragePrice'] = removeOpenshiftSSDStoragePrice;
+
+  var valueOpenshiftCostsPerYear = $formValues.querySelector('.valueOpenshiftCostsPerYear')?.value;
+  var removeOpenshiftCostsPerYear = $formValues.querySelector('.removeOpenshiftCostsPerYear')?.value === 'true';
+  var setOpenshiftCostsPerYear = removeOpenshiftCostsPerYear ? null : $formValues.querySelector('.setOpenshiftCostsPerYear')?.value;
+  var addOpenshiftCostsPerYear = $formValues.querySelector('.addOpenshiftCostsPerYear')?.value;
+  if(removeOpenshiftCostsPerYear || setOpenshiftCostsPerYear != null && setOpenshiftCostsPerYear !== '')
+    vals['setOpenshiftCostsPerYear'] = JSON.parse(setOpenshiftCostsPerYear);
+  if(addOpenshiftCostsPerYear != null && addOpenshiftCostsPerYear !== '')
+    vals['addOpenshiftCostsPerYear'] = addOpenshiftCostsPerYear;
+  var removeOpenshiftCostsPerYear = $formValues.querySelector('.removeOpenshiftCostsPerYear')?.value;
+  if(removeOpenshiftCostsPerYear != null && removeOpenshiftCostsPerYear !== '')
+    vals['removeOpenshiftCostsPerYear'] = removeOpenshiftCostsPerYear;
+
+  var valueEmployeesPerYearChart = $formValues.querySelector('.valueEmployeesPerYearChart')?.value;
+  var removeEmployeesPerYearChart = $formValues.querySelector('.removeEmployeesPerYearChart')?.value === 'true';
+  var setEmployeesPerYearChart = removeEmployeesPerYearChart ? null : $formValues.querySelector('.setEmployeesPerYearChart')?.value;
+  var addEmployeesPerYearChart = $formValues.querySelector('.addEmployeesPerYearChart')?.value;
+  if(removeEmployeesPerYearChart || setEmployeesPerYearChart != null && setEmployeesPerYearChart !== '')
+    vals['setEmployeesPerYearChart'] = JSON.parse(setEmployeesPerYearChart);
+  if(addEmployeesPerYearChart != null && addEmployeesPerYearChart !== '')
+    vals['addEmployeesPerYearChart'] = addEmployeesPerYearChart;
+  var removeEmployeesPerYearChart = $formValues.querySelector('.removeEmployeesPerYearChart')?.value;
+  if(removeEmployeesPerYearChart != null && removeEmployeesPerYearChart !== '')
+    vals['removeEmployeesPerYearChart'] = removeEmployeesPerYearChart;
+
+  var valueProjectExpensesChart = $formValues.querySelector('.valueProjectExpensesChart')?.value;
+  var removeProjectExpensesChart = $formValues.querySelector('.removeProjectExpensesChart')?.value === 'true';
+  var setProjectExpensesChart = removeProjectExpensesChart ? null : $formValues.querySelector('.setProjectExpensesChart')?.value;
+  var addProjectExpensesChart = $formValues.querySelector('.addProjectExpensesChart')?.value;
+  if(removeProjectExpensesChart || setProjectExpensesChart != null && setProjectExpensesChart !== '')
+    vals['setProjectExpensesChart'] = JSON.parse(setProjectExpensesChart);
+  if(addProjectExpensesChart != null && addProjectExpensesChart !== '')
+    vals['addProjectExpensesChart'] = addProjectExpensesChart;
+  var removeProjectExpensesChart = $formValues.querySelector('.removeProjectExpensesChart')?.value;
+  if(removeProjectExpensesChart != null && removeProjectExpensesChart !== '')
+    vals['removeProjectExpensesChart'] = removeProjectExpensesChart;
+
   var valueEconomicOutputChart = $formValues.querySelector('.valueEconomicOutputChart')?.value;
   var removeEconomicOutputChart = $formValues.querySelector('.removeEconomicOutputChart')?.value === 'true';
   var setEconomicOutputChart = removeEconomicOutputChart ? null : $formValues.querySelector('.setEconomicOutputChart')?.value;
@@ -1273,6 +2112,66 @@ async function patchContract($formFilters, $formValues, target, contractId, succ
   if(removeContractId != null && removeContractId !== '')
     vals['removeContractId'] = removeContractId;
 
+  var valueEmployeesPerYearDataset = $formValues.querySelector('.valueEmployeesPerYearDataset')?.value;
+  var removeEmployeesPerYearDataset = $formValues.querySelector('.removeEmployeesPerYearDataset')?.value === 'true';
+  var setEmployeesPerYearDataset = removeEmployeesPerYearDataset ? null : $formValues.querySelector('.setEmployeesPerYearDataset')?.value;
+  var addEmployeesPerYearDataset = $formValues.querySelector('.addEmployeesPerYearDataset')?.value;
+  if(removeEmployeesPerYearDataset || setEmployeesPerYearDataset != null && setEmployeesPerYearDataset !== '')
+    vals['setEmployeesPerYearDataset'] = JSON.parse(setEmployeesPerYearDataset);
+  if(addEmployeesPerYearDataset != null && addEmployeesPerYearDataset !== '')
+    vals['addEmployeesPerYearDataset'] = addEmployeesPerYearDataset;
+  var removeEmployeesPerYearDataset = $formValues.querySelector('.removeEmployeesPerYearDataset')?.value;
+  if(removeEmployeesPerYearDataset != null && removeEmployeesPerYearDataset !== '')
+    vals['removeEmployeesPerYearDataset'] = removeEmployeesPerYearDataset;
+
+  var valueSubscriptionCostsPerYearDataset = $formValues.querySelector('.valueSubscriptionCostsPerYearDataset')?.value;
+  var removeSubscriptionCostsPerYearDataset = $formValues.querySelector('.removeSubscriptionCostsPerYearDataset')?.value === 'true';
+  var setSubscriptionCostsPerYearDataset = removeSubscriptionCostsPerYearDataset ? null : $formValues.querySelector('.setSubscriptionCostsPerYearDataset')?.value;
+  var addSubscriptionCostsPerYearDataset = $formValues.querySelector('.addSubscriptionCostsPerYearDataset')?.value;
+  if(removeSubscriptionCostsPerYearDataset || setSubscriptionCostsPerYearDataset != null && setSubscriptionCostsPerYearDataset !== '')
+    vals['setSubscriptionCostsPerYearDataset'] = JSON.parse(setSubscriptionCostsPerYearDataset);
+  if(addSubscriptionCostsPerYearDataset != null && addSubscriptionCostsPerYearDataset !== '')
+    vals['addSubscriptionCostsPerYearDataset'] = addSubscriptionCostsPerYearDataset;
+  var removeSubscriptionCostsPerYearDataset = $formValues.querySelector('.removeSubscriptionCostsPerYearDataset')?.value;
+  if(removeSubscriptionCostsPerYearDataset != null && removeSubscriptionCostsPerYearDataset !== '')
+    vals['removeSubscriptionCostsPerYearDataset'] = removeSubscriptionCostsPerYearDataset;
+
+  var valueTotalOpenshiftControlPlaneCores = $formValues.querySelector('.valueTotalOpenshiftControlPlaneCores')?.value;
+  var removeTotalOpenshiftControlPlaneCores = $formValues.querySelector('.removeTotalOpenshiftControlPlaneCores')?.value === 'true';
+  var setTotalOpenshiftControlPlaneCores = removeTotalOpenshiftControlPlaneCores ? null : $formValues.querySelector('.setTotalOpenshiftControlPlaneCores')?.value;
+  var addTotalOpenshiftControlPlaneCores = $formValues.querySelector('.addTotalOpenshiftControlPlaneCores')?.value;
+  if(removeTotalOpenshiftControlPlaneCores || setTotalOpenshiftControlPlaneCores != null && setTotalOpenshiftControlPlaneCores !== '')
+    vals['setTotalOpenshiftControlPlaneCores'] = setTotalOpenshiftControlPlaneCores;
+  if(addTotalOpenshiftControlPlaneCores != null && addTotalOpenshiftControlPlaneCores !== '')
+    vals['addTotalOpenshiftControlPlaneCores'] = addTotalOpenshiftControlPlaneCores;
+  var removeTotalOpenshiftControlPlaneCores = $formValues.querySelector('.removeTotalOpenshiftControlPlaneCores')?.value;
+  if(removeTotalOpenshiftControlPlaneCores != null && removeTotalOpenshiftControlPlaneCores !== '')
+    vals['removeTotalOpenshiftControlPlaneCores'] = removeTotalOpenshiftControlPlaneCores;
+
+  var valueTotalOpenshiftInfraCores = $formValues.querySelector('.valueTotalOpenshiftInfraCores')?.value;
+  var removeTotalOpenshiftInfraCores = $formValues.querySelector('.removeTotalOpenshiftInfraCores')?.value === 'true';
+  var setTotalOpenshiftInfraCores = removeTotalOpenshiftInfraCores ? null : $formValues.querySelector('.setTotalOpenshiftInfraCores')?.value;
+  var addTotalOpenshiftInfraCores = $formValues.querySelector('.addTotalOpenshiftInfraCores')?.value;
+  if(removeTotalOpenshiftInfraCores || setTotalOpenshiftInfraCores != null && setTotalOpenshiftInfraCores !== '')
+    vals['setTotalOpenshiftInfraCores'] = setTotalOpenshiftInfraCores;
+  if(addTotalOpenshiftInfraCores != null && addTotalOpenshiftInfraCores !== '')
+    vals['addTotalOpenshiftInfraCores'] = addTotalOpenshiftInfraCores;
+  var removeTotalOpenshiftInfraCores = $formValues.querySelector('.removeTotalOpenshiftInfraCores')?.value;
+  if(removeTotalOpenshiftInfraCores != null && removeTotalOpenshiftInfraCores !== '')
+    vals['removeTotalOpenshiftInfraCores'] = removeTotalOpenshiftInfraCores;
+
+  var valueTotalOpenshiftWorkerCores = $formValues.querySelector('.valueTotalOpenshiftWorkerCores')?.value;
+  var removeTotalOpenshiftWorkerCores = $formValues.querySelector('.removeTotalOpenshiftWorkerCores')?.value === 'true';
+  var setTotalOpenshiftWorkerCores = removeTotalOpenshiftWorkerCores ? null : $formValues.querySelector('.setTotalOpenshiftWorkerCores')?.value;
+  var addTotalOpenshiftWorkerCores = $formValues.querySelector('.addTotalOpenshiftWorkerCores')?.value;
+  if(removeTotalOpenshiftWorkerCores || setTotalOpenshiftWorkerCores != null && setTotalOpenshiftWorkerCores !== '')
+    vals['setTotalOpenshiftWorkerCores'] = setTotalOpenshiftWorkerCores;
+  if(addTotalOpenshiftWorkerCores != null && addTotalOpenshiftWorkerCores !== '')
+    vals['addTotalOpenshiftWorkerCores'] = addTotalOpenshiftWorkerCores;
+  var removeTotalOpenshiftWorkerCores = $formValues.querySelector('.removeTotalOpenshiftWorkerCores')?.value;
+  if(removeTotalOpenshiftWorkerCores != null && removeTotalOpenshiftWorkerCores !== '')
+    vals['removeTotalOpenshiftWorkerCores'] = removeTotalOpenshiftWorkerCores;
+
   patchContractVals(contractId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'contractId:' + contractId}], vals, target, success, error);
 }
 
@@ -1359,6 +2258,102 @@ function patchContractFilters($formFilters) {
     if(filterEconomicOutputProjectionsDataset != null && filterEconomicOutputProjectionsDataset !== '')
       filters.push({ name: 'fq', value: 'economicOutputProjectionsDataset:' + filterEconomicOutputProjectionsDataset });
 
+    var filterArchitectsPerYear = $formFilters.querySelector('.valueArchitectsPerYear')?.value;
+    if(filterArchitectsPerYear != null && filterArchitectsPerYear !== '')
+      filters.push({ name: 'fq', value: 'architectsPerYear:' + filterArchitectsPerYear });
+
+    var filterRemoteDevelopersPerYear = $formFilters.querySelector('.valueRemoteDevelopersPerYear')?.value;
+    if(filterRemoteDevelopersPerYear != null && filterRemoteDevelopersPerYear !== '')
+      filters.push({ name: 'fq', value: 'remoteDevelopersPerYear:' + filterRemoteDevelopersPerYear });
+
+    var filterOnsiteDevelopersPerYear = $formFilters.querySelector('.valueOnsiteDevelopersPerYear')?.value;
+    if(filterOnsiteDevelopersPerYear != null && filterOnsiteDevelopersPerYear !== '')
+      filters.push({ name: 'fq', value: 'onsiteDevelopersPerYear:' + filterOnsiteDevelopersPerYear });
+
+    var filterInstructorsPerYear = $formFilters.querySelector('.valueInstructorsPerYear')?.value;
+    if(filterInstructorsPerYear != null && filterInstructorsPerYear !== '')
+      filters.push({ name: 'fq', value: 'instructorsPerYear:' + filterInstructorsPerYear });
+
+    var filterRemoteDeveloperPayPerYear = $formFilters.querySelector('.valueRemoteDeveloperPayPerYear')?.value;
+    if(filterRemoteDeveloperPayPerYear != null && filterRemoteDeveloperPayPerYear !== '')
+      filters.push({ name: 'fq', value: 'remoteDeveloperPayPerYear:' + filterRemoteDeveloperPayPerYear });
+
+    var filterOnsiteDeveloperPayPerYear = $formFilters.querySelector('.valueOnsiteDeveloperPayPerYear')?.value;
+    if(filterOnsiteDeveloperPayPerYear != null && filterOnsiteDeveloperPayPerYear !== '')
+      filters.push({ name: 'fq', value: 'onsiteDeveloperPayPerYear:' + filterOnsiteDeveloperPayPerYear });
+
+    var filterArchitectPayPerYear = $formFilters.querySelector('.valueArchitectPayPerYear')?.value;
+    if(filterArchitectPayPerYear != null && filterArchitectPayPerYear !== '')
+      filters.push({ name: 'fq', value: 'architectPayPerYear:' + filterArchitectPayPerYear });
+
+    var filterInstructorPayPerYear = $formFilters.querySelector('.valueInstructorPayPerYear')?.value;
+    if(filterInstructorPayPerYear != null && filterInstructorPayPerYear !== '')
+      filters.push({ name: 'fq', value: 'instructorPayPerYear:' + filterInstructorPayPerYear });
+
+    var filterSubscriptionsPerYear = $formFilters.querySelector('.valueSubscriptionsPerYear')?.value;
+    if(filterSubscriptionsPerYear != null && filterSubscriptionsPerYear !== '')
+      filters.push({ name: 'fq', value: 'subscriptionsPerYear:' + filterSubscriptionsPerYear });
+
+    var filterSubscriptionCostsPerYear = $formFilters.querySelector('.valueSubscriptionCostsPerYear')?.value;
+    if(filterSubscriptionCostsPerYear != null && filterSubscriptionCostsPerYear !== '')
+      filters.push({ name: 'fq', value: 'subscriptionCostsPerYear:' + filterSubscriptionCostsPerYear });
+
+    var filterTotalSubscriptionCostPerYear = $formFilters.querySelector('.valueTotalSubscriptionCostPerYear')?.value;
+    if(filterTotalSubscriptionCostPerYear != null && filterTotalSubscriptionCostPerYear !== '')
+      filters.push({ name: 'fq', value: 'totalSubscriptionCostPerYear:' + filterTotalSubscriptionCostPerYear });
+
+    var filterEmployeeSubscriptionCostsPerYear = $formFilters.querySelector('.valueEmployeeSubscriptionCostsPerYear')?.value;
+    if(filterEmployeeSubscriptionCostsPerYear != null && filterEmployeeSubscriptionCostsPerYear !== '')
+      filters.push({ name: 'fq', value: 'employeeSubscriptionCostsPerYear:' + filterEmployeeSubscriptionCostsPerYear });
+
+    var filterOpenshiftSSDStorageTiBPerYear = $formFilters.querySelector('.valueOpenshiftSSDStorageTiBPerYear')?.value;
+    if(filterOpenshiftSSDStorageTiBPerYear != null && filterOpenshiftSSDStorageTiBPerYear !== '')
+      filters.push({ name: 'fq', value: 'openshiftSSDStorageTiBPerYear:' + filterOpenshiftSSDStorageTiBPerYear });
+
+    var filterOpenshiftControlPlaneNodes = $formFilters.querySelector('.valueOpenshiftControlPlaneNodes')?.value;
+    if(filterOpenshiftControlPlaneNodes != null && filterOpenshiftControlPlaneNodes !== '')
+      filters.push({ name: 'fq', value: 'openshiftControlPlaneNodes:' + filterOpenshiftControlPlaneNodes });
+
+    var filterOpenshiftControlPlaneCores = $formFilters.querySelector('.valueOpenshiftControlPlaneCores')?.value;
+    if(filterOpenshiftControlPlaneCores != null && filterOpenshiftControlPlaneCores !== '')
+      filters.push({ name: 'fq', value: 'openshiftControlPlaneCores:' + filterOpenshiftControlPlaneCores });
+
+    var filterOpenshiftControlPlaneHourlyPrice = $formFilters.querySelector('.valueOpenshiftControlPlaneHourlyPrice')?.value;
+    if(filterOpenshiftControlPlaneHourlyPrice != null && filterOpenshiftControlPlaneHourlyPrice !== '')
+      filters.push({ name: 'fq', value: 'openshiftControlPlaneHourlyPrice:' + filterOpenshiftControlPlaneHourlyPrice });
+
+    var filterOpenshiftInfraNodes = $formFilters.querySelector('.valueOpenshiftInfraNodes')?.value;
+    if(filterOpenshiftInfraNodes != null && filterOpenshiftInfraNodes !== '')
+      filters.push({ name: 'fq', value: 'openshiftInfraNodes:' + filterOpenshiftInfraNodes });
+
+    var filterOpenshiftInfraCores = $formFilters.querySelector('.valueOpenshiftInfraCores')?.value;
+    if(filterOpenshiftInfraCores != null && filterOpenshiftInfraCores !== '')
+      filters.push({ name: 'fq', value: 'openshiftInfraCores:' + filterOpenshiftInfraCores });
+
+    var filterOpenshiftInfraHourlyPrice = $formFilters.querySelector('.valueOpenshiftInfraHourlyPrice')?.value;
+    if(filterOpenshiftInfraHourlyPrice != null && filterOpenshiftInfraHourlyPrice !== '')
+      filters.push({ name: 'fq', value: 'openshiftInfraHourlyPrice:' + filterOpenshiftInfraHourlyPrice });
+
+    var filterOpenshiftWorkerNodes = $formFilters.querySelector('.valueOpenshiftWorkerNodes')?.value;
+    if(filterOpenshiftWorkerNodes != null && filterOpenshiftWorkerNodes !== '')
+      filters.push({ name: 'fq', value: 'openshiftWorkerNodes:' + filterOpenshiftWorkerNodes });
+
+    var filterOpenshiftWorkerCores = $formFilters.querySelector('.valueOpenshiftWorkerCores')?.value;
+    if(filterOpenshiftWorkerCores != null && filterOpenshiftWorkerCores !== '')
+      filters.push({ name: 'fq', value: 'openshiftWorkerCores:' + filterOpenshiftWorkerCores });
+
+    var filterOpenshiftWorkerHourlyPrice = $formFilters.querySelector('.valueOpenshiftWorkerHourlyPrice')?.value;
+    if(filterOpenshiftWorkerHourlyPrice != null && filterOpenshiftWorkerHourlyPrice !== '')
+      filters.push({ name: 'fq', value: 'openshiftWorkerHourlyPrice:' + filterOpenshiftWorkerHourlyPrice });
+
+    var filterOpenshiftSSDStoragePrice = $formFilters.querySelector('.valueOpenshiftSSDStoragePrice')?.value;
+    if(filterOpenshiftSSDStoragePrice != null && filterOpenshiftSSDStoragePrice !== '')
+      filters.push({ name: 'fq', value: 'openshiftSSDStoragePrice:' + filterOpenshiftSSDStoragePrice });
+
+    var filterOpenshiftCostsPerYear = $formFilters.querySelector('.valueOpenshiftCostsPerYear')?.value;
+    if(filterOpenshiftCostsPerYear != null && filterOpenshiftCostsPerYear !== '')
+      filters.push({ name: 'fq', value: 'openshiftCostsPerYear:' + filterOpenshiftCostsPerYear });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -1422,6 +2417,26 @@ function patchContractFilters($formFilters) {
     var filterContractId = $formFilters.querySelector('.valueContractId')?.value;
     if(filterContractId != null && filterContractId !== '')
       filters.push({ name: 'fq', value: 'contractId:' + filterContractId });
+
+    var filterEmployeesPerYearDataset = $formFilters.querySelector('.valueEmployeesPerYearDataset')?.value;
+    if(filterEmployeesPerYearDataset != null && filterEmployeesPerYearDataset !== '')
+      filters.push({ name: 'fq', value: 'employeesPerYearDataset:' + filterEmployeesPerYearDataset });
+
+    var filterSubscriptionCostsPerYearDataset = $formFilters.querySelector('.valueSubscriptionCostsPerYearDataset')?.value;
+    if(filterSubscriptionCostsPerYearDataset != null && filterSubscriptionCostsPerYearDataset !== '')
+      filters.push({ name: 'fq', value: 'subscriptionCostsPerYearDataset:' + filterSubscriptionCostsPerYearDataset });
+
+    var filterTotalOpenshiftControlPlaneCores = $formFilters.querySelector('.valueTotalOpenshiftControlPlaneCores')?.value;
+    if(filterTotalOpenshiftControlPlaneCores != null && filterTotalOpenshiftControlPlaneCores !== '')
+      filters.push({ name: 'fq', value: 'totalOpenshiftControlPlaneCores:' + filterTotalOpenshiftControlPlaneCores });
+
+    var filterTotalOpenshiftInfraCores = $formFilters.querySelector('.valueTotalOpenshiftInfraCores')?.value;
+    if(filterTotalOpenshiftInfraCores != null && filterTotalOpenshiftInfraCores !== '')
+      filters.push({ name: 'fq', value: 'totalOpenshiftInfraCores:' + filterTotalOpenshiftInfraCores });
+
+    var filterTotalOpenshiftWorkerCores = $formFilters.querySelector('.valueTotalOpenshiftWorkerCores')?.value;
+    if(filterTotalOpenshiftWorkerCores != null && filterTotalOpenshiftWorkerCores !== '')
+      filters.push({ name: 'fq', value: 'totalOpenshiftWorkerCores:' + filterTotalOpenshiftWorkerCores });
   }
   return filters;
 }
@@ -1561,6 +2576,110 @@ async function postContract($formValues, target, success, error) {
   if(valueCumulativeInvestmentChart != null && valueCumulativeInvestmentChart !== '')
     vals['cumulativeInvestmentChart'] = JSON.parse(valueCumulativeInvestmentChart);
 
+  var valueArchitectsPerYear = $formValues.querySelector('.valueArchitectsPerYear')?.value;
+  if(valueArchitectsPerYear != null && valueArchitectsPerYear !== '')
+    vals['architectsPerYear'] = JSON.parse(valueArchitectsPerYear);
+
+  var valueRemoteDevelopersPerYear = $formValues.querySelector('.valueRemoteDevelopersPerYear')?.value;
+  if(valueRemoteDevelopersPerYear != null && valueRemoteDevelopersPerYear !== '')
+    vals['remoteDevelopersPerYear'] = JSON.parse(valueRemoteDevelopersPerYear);
+
+  var valueOnsiteDevelopersPerYear = $formValues.querySelector('.valueOnsiteDevelopersPerYear')?.value;
+  if(valueOnsiteDevelopersPerYear != null && valueOnsiteDevelopersPerYear !== '')
+    vals['onsiteDevelopersPerYear'] = JSON.parse(valueOnsiteDevelopersPerYear);
+
+  var valueInstructorsPerYear = $formValues.querySelector('.valueInstructorsPerYear')?.value;
+  if(valueInstructorsPerYear != null && valueInstructorsPerYear !== '')
+    vals['instructorsPerYear'] = JSON.parse(valueInstructorsPerYear);
+
+  var valueRemoteDeveloperPayPerYear = $formValues.querySelector('.valueRemoteDeveloperPayPerYear')?.value;
+  if(valueRemoteDeveloperPayPerYear != null && valueRemoteDeveloperPayPerYear !== '')
+    vals['remoteDeveloperPayPerYear'] = valueRemoteDeveloperPayPerYear;
+
+  var valueOnsiteDeveloperPayPerYear = $formValues.querySelector('.valueOnsiteDeveloperPayPerYear')?.value;
+  if(valueOnsiteDeveloperPayPerYear != null && valueOnsiteDeveloperPayPerYear !== '')
+    vals['onsiteDeveloperPayPerYear'] = valueOnsiteDeveloperPayPerYear;
+
+  var valueArchitectPayPerYear = $formValues.querySelector('.valueArchitectPayPerYear')?.value;
+  if(valueArchitectPayPerYear != null && valueArchitectPayPerYear !== '')
+    vals['architectPayPerYear'] = valueArchitectPayPerYear;
+
+  var valueInstructorPayPerYear = $formValues.querySelector('.valueInstructorPayPerYear')?.value;
+  if(valueInstructorPayPerYear != null && valueInstructorPayPerYear !== '')
+    vals['instructorPayPerYear'] = valueInstructorPayPerYear;
+
+  var valueSubscriptionsPerYear = $formValues.querySelector('.valueSubscriptionsPerYear')?.value;
+  if(valueSubscriptionsPerYear != null && valueSubscriptionsPerYear !== '')
+    vals['subscriptionsPerYear'] = JSON.parse(valueSubscriptionsPerYear);
+
+  var valueSubscriptionCostsPerYear = $formValues.querySelector('.valueSubscriptionCostsPerYear')?.value;
+  if(valueSubscriptionCostsPerYear != null && valueSubscriptionCostsPerYear !== '')
+    vals['subscriptionCostsPerYear'] = JSON.parse(valueSubscriptionCostsPerYear);
+
+  var valueTotalSubscriptionCostPerYear = $formValues.querySelector('.valueTotalSubscriptionCostPerYear')?.value;
+  if(valueTotalSubscriptionCostPerYear != null && valueTotalSubscriptionCostPerYear !== '')
+    vals['totalSubscriptionCostPerYear'] = valueTotalSubscriptionCostPerYear;
+
+  var valueEmployeeSubscriptionCostsPerYear = $formValues.querySelector('.valueEmployeeSubscriptionCostsPerYear')?.value;
+  if(valueEmployeeSubscriptionCostsPerYear != null && valueEmployeeSubscriptionCostsPerYear !== '')
+    vals['employeeSubscriptionCostsPerYear'] = JSON.parse(valueEmployeeSubscriptionCostsPerYear);
+
+  var valueOpenshiftSSDStorageTiBPerYear = $formValues.querySelector('.valueOpenshiftSSDStorageTiBPerYear')?.value;
+  if(valueOpenshiftSSDStorageTiBPerYear != null && valueOpenshiftSSDStorageTiBPerYear !== '')
+    vals['openshiftSSDStorageTiBPerYear'] = JSON.parse(valueOpenshiftSSDStorageTiBPerYear);
+
+  var valueOpenshiftControlPlaneNodes = $formValues.querySelector('.valueOpenshiftControlPlaneNodes')?.value;
+  if(valueOpenshiftControlPlaneNodes != null && valueOpenshiftControlPlaneNodes !== '')
+    vals['openshiftControlPlaneNodes'] = valueOpenshiftControlPlaneNodes;
+
+  var valueOpenshiftControlPlaneCores = $formValues.querySelector('.valueOpenshiftControlPlaneCores')?.value;
+  if(valueOpenshiftControlPlaneCores != null && valueOpenshiftControlPlaneCores !== '')
+    vals['openshiftControlPlaneCores'] = valueOpenshiftControlPlaneCores;
+
+  var valueOpenshiftControlPlaneHourlyPrice = $formValues.querySelector('.valueOpenshiftControlPlaneHourlyPrice')?.value;
+  if(valueOpenshiftControlPlaneHourlyPrice != null && valueOpenshiftControlPlaneHourlyPrice !== '')
+    vals['openshiftControlPlaneHourlyPrice'] = valueOpenshiftControlPlaneHourlyPrice;
+
+  var valueOpenshiftInfraNodes = $formValues.querySelector('.valueOpenshiftInfraNodes')?.value;
+  if(valueOpenshiftInfraNodes != null && valueOpenshiftInfraNodes !== '')
+    vals['openshiftInfraNodes'] = valueOpenshiftInfraNodes;
+
+  var valueOpenshiftInfraCores = $formValues.querySelector('.valueOpenshiftInfraCores')?.value;
+  if(valueOpenshiftInfraCores != null && valueOpenshiftInfraCores !== '')
+    vals['openshiftInfraCores'] = valueOpenshiftInfraCores;
+
+  var valueOpenshiftInfraHourlyPrice = $formValues.querySelector('.valueOpenshiftInfraHourlyPrice')?.value;
+  if(valueOpenshiftInfraHourlyPrice != null && valueOpenshiftInfraHourlyPrice !== '')
+    vals['openshiftInfraHourlyPrice'] = valueOpenshiftInfraHourlyPrice;
+
+  var valueOpenshiftWorkerNodes = $formValues.querySelector('.valueOpenshiftWorkerNodes')?.value;
+  if(valueOpenshiftWorkerNodes != null && valueOpenshiftWorkerNodes !== '')
+    vals['openshiftWorkerNodes'] = valueOpenshiftWorkerNodes;
+
+  var valueOpenshiftWorkerCores = $formValues.querySelector('.valueOpenshiftWorkerCores')?.value;
+  if(valueOpenshiftWorkerCores != null && valueOpenshiftWorkerCores !== '')
+    vals['openshiftWorkerCores'] = valueOpenshiftWorkerCores;
+
+  var valueOpenshiftWorkerHourlyPrice = $formValues.querySelector('.valueOpenshiftWorkerHourlyPrice')?.value;
+  if(valueOpenshiftWorkerHourlyPrice != null && valueOpenshiftWorkerHourlyPrice !== '')
+    vals['openshiftWorkerHourlyPrice'] = valueOpenshiftWorkerHourlyPrice;
+
+  var valueOpenshiftSSDStoragePrice = $formValues.querySelector('.valueOpenshiftSSDStoragePrice')?.value;
+  if(valueOpenshiftSSDStoragePrice != null && valueOpenshiftSSDStoragePrice !== '')
+    vals['openshiftSSDStoragePrice'] = valueOpenshiftSSDStoragePrice;
+
+  var valueOpenshiftCostsPerYear = $formValues.querySelector('.valueOpenshiftCostsPerYear')?.value;
+  if(valueOpenshiftCostsPerYear != null && valueOpenshiftCostsPerYear !== '')
+    vals['openshiftCostsPerYear'] = JSON.parse(valueOpenshiftCostsPerYear);
+
+  var valueEmployeesPerYearChart = $formValues.querySelector('.valueEmployeesPerYearChart')?.value;
+  if(valueEmployeesPerYearChart != null && valueEmployeesPerYearChart !== '')
+    vals['employeesPerYearChart'] = JSON.parse(valueEmployeesPerYearChart);
+
+  var valueProjectExpensesChart = $formValues.querySelector('.valueProjectExpensesChart')?.value;
+  if(valueProjectExpensesChart != null && valueProjectExpensesChart !== '')
+    vals['projectExpensesChart'] = JSON.parse(valueProjectExpensesChart);
+
   var valueEconomicOutputChart = $formValues.querySelector('.valueEconomicOutputChart')?.value;
   if(valueEconomicOutputChart != null && valueEconomicOutputChart !== '')
     vals['economicOutputChart'] = JSON.parse(valueEconomicOutputChart);
@@ -1600,6 +2719,26 @@ async function postContract($formValues, target, success, error) {
   var valueContractId = $formValues.querySelector('.valueContractId')?.value;
   if(valueContractId != null && valueContractId !== '')
     vals['contractId'] = valueContractId;
+
+  var valueEmployeesPerYearDataset = $formValues.querySelector('.valueEmployeesPerYearDataset')?.value;
+  if(valueEmployeesPerYearDataset != null && valueEmployeesPerYearDataset !== '')
+    vals['employeesPerYearDataset'] = JSON.parse(valueEmployeesPerYearDataset);
+
+  var valueSubscriptionCostsPerYearDataset = $formValues.querySelector('.valueSubscriptionCostsPerYearDataset')?.value;
+  if(valueSubscriptionCostsPerYearDataset != null && valueSubscriptionCostsPerYearDataset !== '')
+    vals['subscriptionCostsPerYearDataset'] = JSON.parse(valueSubscriptionCostsPerYearDataset);
+
+  var valueTotalOpenshiftControlPlaneCores = $formValues.querySelector('.valueTotalOpenshiftControlPlaneCores')?.value;
+  if(valueTotalOpenshiftControlPlaneCores != null && valueTotalOpenshiftControlPlaneCores !== '')
+    vals['totalOpenshiftControlPlaneCores'] = valueTotalOpenshiftControlPlaneCores;
+
+  var valueTotalOpenshiftInfraCores = $formValues.querySelector('.valueTotalOpenshiftInfraCores')?.value;
+  if(valueTotalOpenshiftInfraCores != null && valueTotalOpenshiftInfraCores !== '')
+    vals['totalOpenshiftInfraCores'] = valueTotalOpenshiftInfraCores;
+
+  var valueTotalOpenshiftWorkerCores = $formValues.querySelector('.valueTotalOpenshiftWorkerCores')?.value;
+  if(valueTotalOpenshiftWorkerCores != null && valueTotalOpenshiftWorkerCores !== '')
+    vals['totalOpenshiftWorkerCores'] = valueTotalOpenshiftWorkerCores;
 
   fetch(
     '/en-us/api/contract'

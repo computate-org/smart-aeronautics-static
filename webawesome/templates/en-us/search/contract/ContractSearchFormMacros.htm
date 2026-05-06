@@ -686,7 +686,957 @@
 {%- macro htmCumulativeInvestmentChartContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputCumulativeInvestmentChartContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputArchitectsPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_architectsPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] architects per year"
+                      label="architects per year"
+                      hint="The number of architects on the project per year. "
+                      id="Contract_{{classApiMethodMethod}}_architectsPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_architectsPerYear setArchitectsPerYear classContract inputContract{{ result.contractId }}ArchitectsPerYear "
+                      name="setArchitectsPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_architectsPerYear setArchitectsPerYear classContract inputContract{{ result.contractId }}ArchitectsPerYear "
+                      name="setArchitectsPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_architectsPerYear valueArchitectsPerYear classContract inputContract{{ result.contractId }}ArchitectsPerYear "
+                      name="architectsPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonArrayString(result.architectsPerYear) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmArchitectsPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputArchitectsPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputRemoteDevelopersPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_remoteDevelopersPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] remote developers per year"
+                      label="remote developers per year"
+                      hint="The number of remote developers on the project per year. "
+                      id="Contract_{{classApiMethodMethod}}_remoteDevelopersPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_remoteDevelopersPerYear setRemoteDevelopersPerYear classContract inputContract{{ result.contractId }}RemoteDevelopersPerYear "
+                      name="setRemoteDevelopersPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_remoteDevelopersPerYear setRemoteDevelopersPerYear classContract inputContract{{ result.contractId }}RemoteDevelopersPerYear "
+                      name="setRemoteDevelopersPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_remoteDevelopersPerYear valueRemoteDevelopersPerYear classContract inputContract{{ result.contractId }}RemoteDevelopersPerYear "
+                      name="remoteDevelopersPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonArrayString(result.remoteDevelopersPerYear) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmRemoteDevelopersPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputRemoteDevelopersPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOnsiteDevelopersPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_onsiteDevelopersPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] onsite developers per year"
+                      label="onsite developers per year"
+                      hint="The number of onsite developers on the project per year. "
+                      id="Contract_{{classApiMethodMethod}}_onsiteDevelopersPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_onsiteDevelopersPerYear setOnsiteDevelopersPerYear classContract inputContract{{ result.contractId }}OnsiteDevelopersPerYear "
+                      name="setOnsiteDevelopersPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_onsiteDevelopersPerYear setOnsiteDevelopersPerYear classContract inputContract{{ result.contractId }}OnsiteDevelopersPerYear "
+                      name="setOnsiteDevelopersPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_onsiteDevelopersPerYear valueOnsiteDevelopersPerYear classContract inputContract{{ result.contractId }}OnsiteDevelopersPerYear "
+                      name="onsiteDevelopersPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonArrayString(result.onsiteDevelopersPerYear) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOnsiteDevelopersPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputInstructorsPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_instructorsPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] instructors per year"
+                      label="instructors per year"
+                      hint="The number of instructors on the project per year. "
+                      id="Contract_{{classApiMethodMethod}}_instructorsPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_instructorsPerYear setInstructorsPerYear classContract inputContract{{ result.contractId }}InstructorsPerYear "
+                      name="setInstructorsPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_instructorsPerYear setInstructorsPerYear classContract inputContract{{ result.contractId }}InstructorsPerYear "
+                      name="setInstructorsPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_instructorsPerYear valueInstructorsPerYear classContract inputContract{{ result.contractId }}InstructorsPerYear "
+                      name="instructorsPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonArrayString(result.instructorsPerYear) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmInstructorsPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputInstructorsPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputRemoteDeveloperPayPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_remoteDeveloperPayPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] remote developer pay per year"
+                      label="remote developer pay per year"
+                      type="number"
+                      step="1"
+                      hint="The total costs for paying a SPINE software developer on the project per year. "
+                      id="Contract_{{classApiMethodMethod}}_remoteDeveloperPayPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_remoteDeveloperPayPerYear setRemoteDeveloperPayPerYear classContract inputContract{{ result.contractId }}RemoteDeveloperPayPerYear "
+                      name="setRemoteDeveloperPayPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_remoteDeveloperPayPerYear setRemoteDeveloperPayPerYear classContract inputContract{{ result.contractId }}RemoteDeveloperPayPerYear "
+                      name="setRemoteDeveloperPayPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_remoteDeveloperPayPerYear valueRemoteDeveloperPayPerYear classContract inputContract{{ result.contractId }}RemoteDeveloperPayPerYear "
+                      name="remoteDeveloperPayPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.remoteDeveloperPayPerYear | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputRemoteDeveloperPayPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_onsiteDeveloperPayPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] onsite developer pay per year"
+                      label="onsite developer pay per year"
+                      type="number"
+                      step="1"
+                      hint="The total costs for paying a SPINE software developer on the project per year. "
+                      id="Contract_{{classApiMethodMethod}}_onsiteDeveloperPayPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_onsiteDeveloperPayPerYear setOnsiteDeveloperPayPerYear classContract inputContract{{ result.contractId }}OnsiteDeveloperPayPerYear "
+                      name="setOnsiteDeveloperPayPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_onsiteDeveloperPayPerYear setOnsiteDeveloperPayPerYear classContract inputContract{{ result.contractId }}OnsiteDeveloperPayPerYear "
+                      name="setOnsiteDeveloperPayPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_onsiteDeveloperPayPerYear valueOnsiteDeveloperPayPerYear classContract inputContract{{ result.contractId }}OnsiteDeveloperPayPerYear "
+                      name="onsiteDeveloperPayPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.onsiteDeveloperPayPerYear | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputArchitectPayPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_architectPayPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] architect pay per year"
+                      label="architect pay per year"
+                      type="number"
+                      step="1"
+                      hint="The total costs for paying a SPINE software architect on the project per year. "
+                      id="Contract_{{classApiMethodMethod}}_architectPayPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_architectPayPerYear setArchitectPayPerYear classContract inputContract{{ result.contractId }}ArchitectPayPerYear "
+                      name="setArchitectPayPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_architectPayPerYear setArchitectPayPerYear classContract inputContract{{ result.contractId }}ArchitectPayPerYear "
+                      name="setArchitectPayPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_architectPayPerYear valueArchitectPayPerYear classContract inputContract{{ result.contractId }}ArchitectPayPerYear "
+                      name="architectPayPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.architectPayPerYear | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmArchitectPayPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputArchitectPayPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputInstructorPayPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_instructorPayPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] instructor pay per year"
+                      label="instructor pay per year"
+                      type="number"
+                      step="1"
+                      hint="The total costs for paying a SPINE instructor on the project per year. "
+                      id="Contract_{{classApiMethodMethod}}_instructorPayPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_instructorPayPerYear setInstructorPayPerYear classContract inputContract{{ result.contractId }}InstructorPayPerYear "
+                      name="setInstructorPayPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_instructorPayPerYear setInstructorPayPerYear classContract inputContract{{ result.contractId }}InstructorPayPerYear "
+                      name="setInstructorPayPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_instructorPayPerYear valueInstructorPayPerYear classContract inputContract{{ result.contractId }}InstructorPayPerYear "
+                      name="instructorPayPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.instructorPayPerYear | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmInstructorPayPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputInstructorPayPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputSubscriptionsPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_subscriptionsPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] employee subscriptions per year"
+                      label="employee subscriptions per year"
+                      hint="The software subscriptions for each employee per year. "
+                      id="Contract_{{classApiMethodMethod}}_subscriptionsPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_subscriptionsPerYear setSubscriptionsPerYear classContract inputContract{{ result.contractId }}SubscriptionsPerYear "
+                      name="setSubscriptionsPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_subscriptionsPerYear setSubscriptionsPerYear classContract inputContract{{ result.contractId }}SubscriptionsPerYear "
+                      name="setSubscriptionsPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_subscriptionsPerYear valueSubscriptionsPerYear classContract inputContract{{ result.contractId }}SubscriptionsPerYear "
+                      name="subscriptionsPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonArrayString(result.subscriptionsPerYear) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmSubscriptionsPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputSubscriptionsPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputSubscriptionCostsPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_subscriptionCostsPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] subscription costs per year"
+                      label="subscription costs per year"
+                      hint="The individual software subscription costs per year. "
+                      id="Contract_{{classApiMethodMethod}}_subscriptionCostsPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_subscriptionCostsPerYear setSubscriptionCostsPerYear classContract inputContract{{ result.contractId }}SubscriptionCostsPerYear "
+                      name="setSubscriptionCostsPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_subscriptionCostsPerYear setSubscriptionCostsPerYear classContract inputContract{{ result.contractId }}SubscriptionCostsPerYear "
+                      name="setSubscriptionCostsPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_subscriptionCostsPerYear valueSubscriptionCostsPerYear classContract inputContract{{ result.contractId }}SubscriptionCostsPerYear "
+                      name="subscriptionCostsPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonArrayString(result.subscriptionCostsPerYear) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmSubscriptionCostsPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputSubscriptionCostsPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputTotalSubscriptionCostPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_totalSubscriptionCostPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] subscription costs per year"
+                      label="subscription costs per year"
+                      type="number"
+                      step="1"
+                      hint="The individual software subscription costs per year. "
+                      id="Contract_{{classApiMethodMethod}}_totalSubscriptionCostPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_totalSubscriptionCostPerYear setTotalSubscriptionCostPerYear classContract inputContract{{ result.contractId }}TotalSubscriptionCostPerYear "
+                      name="setTotalSubscriptionCostPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_totalSubscriptionCostPerYear setTotalSubscriptionCostPerYear classContract inputContract{{ result.contractId }}TotalSubscriptionCostPerYear "
+                      name="setTotalSubscriptionCostPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_totalSubscriptionCostPerYear valueTotalSubscriptionCostPerYear classContract inputContract{{ result.contractId }}TotalSubscriptionCostPerYear "
+                      name="totalSubscriptionCostPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.totalSubscriptionCostPerYear | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputTotalSubscriptionCostPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_employeeSubscriptionCostsPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] subscription costs per year"
+                      label="subscription costs per year"
+                      hint="The individual software subscription costs per year. "
+                      id="Contract_{{classApiMethodMethod}}_employeeSubscriptionCostsPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_employeeSubscriptionCostsPerYear setEmployeeSubscriptionCostsPerYear classContract inputContract{{ result.contractId }}EmployeeSubscriptionCostsPerYear "
+                      name="setEmployeeSubscriptionCostsPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_employeeSubscriptionCostsPerYear setEmployeeSubscriptionCostsPerYear classContract inputContract{{ result.contractId }}EmployeeSubscriptionCostsPerYear "
+                      name="setEmployeeSubscriptionCostsPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_employeeSubscriptionCostsPerYear valueEmployeeSubscriptionCostsPerYear classContract inputContract{{ result.contractId }}EmployeeSubscriptionCostsPerYear "
+                      name="employeeSubscriptionCostsPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonArrayString(result.employeeSubscriptionCostsPerYear) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftSSDStorageTiBPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] OpenShift storage per year"
+                      label="OpenShift storage per year"
+                      hint="The amount of storage required for the OpenShift cluster in TiB. "
+                      id="Contract_{{classApiMethodMethod}}_openshiftSSDStorageTiBPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftSSDStorageTiBPerYear setOpenshiftSSDStorageTiBPerYear classContract inputContract{{ result.contractId }}OpenshiftSSDStorageTiBPerYear "
+                      name="setOpenshiftSSDStorageTiBPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftSSDStorageTiBPerYear setOpenshiftSSDStorageTiBPerYear classContract inputContract{{ result.contractId }}OpenshiftSSDStorageTiBPerYear "
+                      name="setOpenshiftSSDStorageTiBPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftSSDStorageTiBPerYear valueOpenshiftSSDStorageTiBPerYear classContract inputContract{{ result.contractId }}OpenshiftSSDStorageTiBPerYear "
+                      name="openshiftSSDStorageTiBPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonArrayString(result.openshiftSSDStorageTiBPerYear) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftControlPlaneNodesContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftControlPlaneNodes">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] OpenShift control plane nodes"
+                      label="OpenShift control plane nodes"
+                      type="number"
+                      hint="The total OpenShift control plane nodes"
+                      id="Contract_{{classApiMethodMethod}}_openshiftControlPlaneNodes"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftControlPlaneNodes setOpenshiftControlPlaneNodes classContract inputContract{{ result.contractId }}OpenshiftControlPlaneNodes "
+                      name="setOpenshiftControlPlaneNodes"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftControlPlaneNodes setOpenshiftControlPlaneNodes classContract inputContract{{ result.contractId }}OpenshiftControlPlaneNodes "
+                      name="setOpenshiftControlPlaneNodes"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftControlPlaneNodes valueOpenshiftControlPlaneNodes classContract inputContract{{ result.contractId }}OpenshiftControlPlaneNodes "
+                      name="openshiftControlPlaneNodes"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftControlPlaneNodes | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftControlPlaneNodesContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftControlPlaneCoresContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftControlPlaneCores">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] OpenShift control plane cores"
+                      label="OpenShift control plane cores"
+                      type="number"
+                      hint="The number of OpenShift control plane cores per node"
+                      id="Contract_{{classApiMethodMethod}}_openshiftControlPlaneCores"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftControlPlaneCores setOpenshiftControlPlaneCores classContract inputContract{{ result.contractId }}OpenshiftControlPlaneCores "
+                      name="setOpenshiftControlPlaneCores"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftControlPlaneCores setOpenshiftControlPlaneCores classContract inputContract{{ result.contractId }}OpenshiftControlPlaneCores "
+                      name="setOpenshiftControlPlaneCores"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftControlPlaneCores valueOpenshiftControlPlaneCores classContract inputContract{{ result.contractId }}OpenshiftControlPlaneCores "
+                      name="openshiftControlPlaneCores"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftControlPlaneCores | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftControlPlaneCoresContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftControlPlaneHourlyPrice">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] OpenShift control plane hourly price"
+                      label="OpenShift control plane hourly price"
+                      type="number"
+                      step="1"
+                      hint="The hourly price of OpenShift control plane cores"
+                      id="Contract_{{classApiMethodMethod}}_openshiftControlPlaneHourlyPrice"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftControlPlaneHourlyPrice setOpenshiftControlPlaneHourlyPrice classContract inputContract{{ result.contractId }}OpenshiftControlPlaneHourlyPrice "
+                      name="setOpenshiftControlPlaneHourlyPrice"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftControlPlaneHourlyPrice setOpenshiftControlPlaneHourlyPrice classContract inputContract{{ result.contractId }}OpenshiftControlPlaneHourlyPrice "
+                      name="setOpenshiftControlPlaneHourlyPrice"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftControlPlaneHourlyPrice valueOpenshiftControlPlaneHourlyPrice classContract inputContract{{ result.contractId }}OpenshiftControlPlaneHourlyPrice "
+                      name="openshiftControlPlaneHourlyPrice"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftControlPlaneHourlyPrice | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftInfraNodesContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftInfraNodes">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] OpenShift infra nodes"
+                      label="OpenShift infra nodes"
+                      type="number"
+                      hint="The total OpenShift infra nodes"
+                      id="Contract_{{classApiMethodMethod}}_openshiftInfraNodes"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftInfraNodes setOpenshiftInfraNodes classContract inputContract{{ result.contractId }}OpenshiftInfraNodes "
+                      name="setOpenshiftInfraNodes"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftInfraNodes setOpenshiftInfraNodes classContract inputContract{{ result.contractId }}OpenshiftInfraNodes "
+                      name="setOpenshiftInfraNodes"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftInfraNodes valueOpenshiftInfraNodes classContract inputContract{{ result.contractId }}OpenshiftInfraNodes "
+                      name="openshiftInfraNodes"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftInfraNodes | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftInfraNodesContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftInfraNodesContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftInfraCoresContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftInfraCores">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] OpenShift infra cores"
+                      label="OpenShift infra cores"
+                      type="number"
+                      hint="The number of OpenShift infra cores per node"
+                      id="Contract_{{classApiMethodMethod}}_openshiftInfraCores"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftInfraCores setOpenshiftInfraCores classContract inputContract{{ result.contractId }}OpenshiftInfraCores "
+                      name="setOpenshiftInfraCores"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftInfraCores setOpenshiftInfraCores classContract inputContract{{ result.contractId }}OpenshiftInfraCores "
+                      name="setOpenshiftInfraCores"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftInfraCores valueOpenshiftInfraCores classContract inputContract{{ result.contractId }}OpenshiftInfraCores "
+                      name="openshiftInfraCores"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftInfraCores | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftInfraCoresContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftInfraCoresContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftInfraHourlyPrice">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] OpenShift infra node hourly price"
+                      label="OpenShift infra node hourly price"
+                      type="number"
+                      step="1"
+                      hint="The hourly price of OpenShift infra node cores"
+                      id="Contract_{{classApiMethodMethod}}_openshiftInfraHourlyPrice"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftInfraHourlyPrice setOpenshiftInfraHourlyPrice classContract inputContract{{ result.contractId }}OpenshiftInfraHourlyPrice "
+                      name="setOpenshiftInfraHourlyPrice"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftInfraHourlyPrice setOpenshiftInfraHourlyPrice classContract inputContract{{ result.contractId }}OpenshiftInfraHourlyPrice "
+                      name="setOpenshiftInfraHourlyPrice"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftInfraHourlyPrice valueOpenshiftInfraHourlyPrice classContract inputContract{{ result.contractId }}OpenshiftInfraHourlyPrice "
+                      name="openshiftInfraHourlyPrice"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftInfraHourlyPrice | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftWorkerNodesContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftWorkerNodes">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] OpenShift worker nodes"
+                      label="OpenShift worker nodes"
+                      type="number"
+                      hint="The total OpenShift worker nodes"
+                      id="Contract_{{classApiMethodMethod}}_openshiftWorkerNodes"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftWorkerNodes setOpenshiftWorkerNodes classContract inputContract{{ result.contractId }}OpenshiftWorkerNodes "
+                      name="setOpenshiftWorkerNodes"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftWorkerNodes setOpenshiftWorkerNodes classContract inputContract{{ result.contractId }}OpenshiftWorkerNodes "
+                      name="setOpenshiftWorkerNodes"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftWorkerNodes valueOpenshiftWorkerNodes classContract inputContract{{ result.contractId }}OpenshiftWorkerNodes "
+                      name="openshiftWorkerNodes"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftWorkerNodes | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftWorkerNodesContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftWorkerNodesContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftWorkerCoresContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftWorkerCores">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Integer] OpenShift worker cores"
+                      label="OpenShift worker cores"
+                      type="number"
+                      hint="The number of OpenShift worker cores per node"
+                      id="Contract_{{classApiMethodMethod}}_openshiftWorkerCores"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftWorkerCores setOpenshiftWorkerCores classContract inputContract{{ result.contractId }}OpenshiftWorkerCores "
+                      name="setOpenshiftWorkerCores"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftWorkerCores setOpenshiftWorkerCores classContract inputContract{{ result.contractId }}OpenshiftWorkerCores "
+                      name="setOpenshiftWorkerCores"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftWorkerCores valueOpenshiftWorkerCores classContract inputContract{{ result.contractId }}OpenshiftWorkerCores "
+                      name="openshiftWorkerCores"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftWorkerCores | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftWorkerCoresContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftWorkerCoresContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftWorkerHourlyPrice">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] OpenShift worker node hourly price"
+                      label="OpenShift worker node hourly price"
+                      type="number"
+                      step="1"
+                      hint="The hourly price of OpenShift worker node cores"
+                      id="Contract_{{classApiMethodMethod}}_openshiftWorkerHourlyPrice"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftWorkerHourlyPrice setOpenshiftWorkerHourlyPrice classContract inputContract{{ result.contractId }}OpenshiftWorkerHourlyPrice "
+                      name="setOpenshiftWorkerHourlyPrice"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftWorkerHourlyPrice setOpenshiftWorkerHourlyPrice classContract inputContract{{ result.contractId }}OpenshiftWorkerHourlyPrice "
+                      name="setOpenshiftWorkerHourlyPrice"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftWorkerHourlyPrice valueOpenshiftWorkerHourlyPrice classContract inputContract{{ result.contractId }}OpenshiftWorkerHourlyPrice "
+                      name="openshiftWorkerHourlyPrice"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftWorkerHourlyPrice | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftSSDStoragePriceContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftSSDStoragePrice">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] OpenShift SSD storage price"
+                      label="OpenShift SSD storage price"
+                      type="number"
+                      step="1"
+                      hint="The OpenShift SSD storage price per GiB. "
+                      id="Contract_{{classApiMethodMethod}}_openshiftSSDStoragePrice"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftSSDStoragePrice setOpenshiftSSDStoragePrice classContract inputContract{{ result.contractId }}OpenshiftSSDStoragePrice "
+                      name="setOpenshiftSSDStoragePrice"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftSSDStoragePrice setOpenshiftSSDStoragePrice classContract inputContract{{ result.contractId }}OpenshiftSSDStoragePrice "
+                      name="setOpenshiftSSDStoragePrice"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftSSDStoragePrice valueOpenshiftSSDStoragePrice classContract inputContract{{ result.contractId }}OpenshiftSSDStoragePrice "
+                      name="openshiftSSDStoragePrice"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.openshiftSSDStoragePrice | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftSSDStoragePriceContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOpenshiftCostsPerYearContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_openshiftCostsPerYear">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] subscription costs per year"
+                      label="subscription costs per year"
+                      hint="The individual software subscription costs per year. "
+                      id="Contract_{{classApiMethodMethod}}_openshiftCostsPerYear"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-contractId={{ result.contractId | tojson }}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftCostsPerYear setOpenshiftCostsPerYear classContract inputContract{{ result.contractId }}OpenshiftCostsPerYear "
+                      name="setOpenshiftCostsPerYear"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftCostsPerYear setOpenshiftCostsPerYear classContract inputContract{{ result.contractId }}OpenshiftCostsPerYear "
+                      name="setOpenshiftCostsPerYear"
+    {%- else %}
+                      class="label-on-left Contract_{{classApiMethodMethod}}_openshiftCostsPerYear valueOpenshiftCostsPerYear classContract inputContract{{ result.contractId }}OpenshiftCostsPerYear "
+                      name="openshiftCostsPerYear"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonArrayString(result.openshiftCostsPerYear) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOpenshiftCostsPerYearContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOpenshiftCostsPerYearContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputEmployeesPerYearChartContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+                {% if 'Page' == classApiMethodMethod -%}
+                </div>
+                <div
+                      class="wa-stack"
+                    >
+                  {% endif -%}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_employeesPerYearChart">
+  {%- endif %}
+                  {% if 'Page' == classApiMethodMethod -%}
+                  <wa-line-chart
+                      class="Contract_{{classApiMethodMethod}}_employeesPerYearChart inputContract{{ result.contractId }}EmployeesPerYearChart "
+                      id="Contract_{{classApiMethodMethod}}_employeesPerYearChart"
+                      div=""
+                      class="wa-stack"
+                      label="employees per year"
+                      description="A chart of the number of employees per year. "
+                      >
+                    <script type="application/json">
+                      {{ toJsonObjectString(result.employeesPerYearChart) }}
+                    </script>
+                  </wa-line-chart>
+                  {% endif -%}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmEmployeesPerYearChartContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputEmployeesPerYearChartContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputProjectExpensesChartContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_projectExpensesChart">
+  {%- endif %}
+                  {% if 'Page' == classApiMethodMethod -%}
+                  <wa-line-chart
+                      class="Contract_{{classApiMethodMethod}}_projectExpensesChart inputContract{{ result.contractId }}ProjectExpensesChart "
+                      id="Contract_{{classApiMethodMethod}}_projectExpensesChart"
+                      label="project expenses"
+                      description="A chart of the project expenses per year. "
+                      >
+                    <script type="application/json">
+                      {{ toJsonObjectString(result.projectExpensesChart) }}
+                    </script>
+                  </wa-line-chart>
+                  {% endif -%}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmProjectExpensesChartContractPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputProjectExpensesChartContractPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputEconomicOutputChartContractPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+                {% if 'Page' == classApiMethodMethod -%}
+                </div>
+                <div
+                      class="wa-stack"
+                    >
+                  {% endif -%}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_economicOutputChart">
   {%- endif %}
@@ -694,6 +1644,8 @@
                   <wa-line-chart
                       class="Contract_{{classApiMethodMethod}}_economicOutputChart inputContract{{ result.contractId }}EconomicOutputChart "
                       id="Contract_{{classApiMethodMethod}}_economicOutputChart"
+                      div=""
+                      class="wa-stack"
                       label="economic output projections"
                       description="A chart of the economic output projections per year. "
                       >
@@ -885,7 +1837,283 @@
                 {{ htmCumulativeInvestmentChartContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
+              </div>
+            </wa-details>
 
+            <wa-details open class="HtmRow" id="project-expenses">
+              <div slot="summary">
+                <span>project expenses</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmArchitectsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArchitectsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmArchitectsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmRemoteDevelopersPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmRemoteDevelopersPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmRemoteDevelopersPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmInstructorsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmInstructorsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmInstructorsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmArchitectPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArchitectPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmArchitectPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmInstructorPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmInstructorPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmInstructorPayPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmSubscriptionsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmSubscriptionsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmSubscriptionsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmSubscriptionCostsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmSubscriptionCostsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmSubscriptionCostsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftInfraNodesContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftInfraNodesContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftInfraNodesContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftInfraCoresContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftInfraCoresContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftInfraCoresContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftWorkerNodesContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftWorkerNodesContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftWorkerNodesContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftWorkerCoresContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftWorkerCoresContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftWorkerCoresContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftCostsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftCostsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftCostsPerYearContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmEmployeesPerYearChartContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmEmployeesPerYearChartContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmEmployeesPerYearChartContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmProjectExpensesChartContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmProjectExpensesChartContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmProjectExpensesChartContractPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="project-economic-output">
+              <div slot="summary">
+                <span>project economic output</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
                 {{ htmEconomicOutputChartContractPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
@@ -1077,7 +2305,283 @@
                 {{ htmCumulativeInvestmentChartContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
+              </div>
+            </wa-details>
 
+            <wa-details open class="HtmRow" id="project-expenses">
+              <div slot="summary">
+                <span>project expenses</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "POST" in scopes -%}
+                {{ htmArchitectsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArchitectsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmArchitectsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmRemoteDevelopersPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmRemoteDevelopersPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmRemoteDevelopersPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmInstructorsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmInstructorsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmInstructorsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmArchitectPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArchitectPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmArchitectPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmInstructorPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmInstructorPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmInstructorPayPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmSubscriptionsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmSubscriptionsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmSubscriptionsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmSubscriptionCostsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmSubscriptionCostsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmSubscriptionCostsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+
+              <div class="grid-with-subgrid-2col ">
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftInfraNodesContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftInfraNodesContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftInfraNodesContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftInfraCoresContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftInfraCoresContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftInfraCoresContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftWorkerNodesContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftWorkerNodesContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftWorkerNodesContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftWorkerCoresContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftWorkerCoresContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftWorkerCoresContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmOpenshiftCostsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftCostsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftCostsPerYearContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmEmployeesPerYearChartContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmEmployeesPerYearChartContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmEmployeesPerYearChartContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmProjectExpensesChartContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmProjectExpensesChartContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmProjectExpensesChartContractPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="project-economic-output">
+              <div slot="summary">
+                <span>project economic output</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
                 {% if "POST" in scopes -%}
                 {{ htmEconomicOutputChartContractPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
@@ -1350,7 +2854,283 @@
                 {{ htmCumulativeInvestmentChartContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
+              </div>
+            </wa-details>
 
+            <wa-details open class="HtmRow" id="project-expenses">
+              <div slot="summary">
+                <span>project expenses</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmArchitectsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArchitectsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmArchitectsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmRemoteDevelopersPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmRemoteDevelopersPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmRemoteDevelopersPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOnsiteDevelopersPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmInstructorsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmInstructorsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmInstructorsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmRemoteDeveloperPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOnsiteDeveloperPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmArchitectPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArchitectPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmArchitectPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmInstructorPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmInstructorPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmInstructorPayPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmSubscriptionsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmSubscriptionsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmSubscriptionsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmSubscriptionCostsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmSubscriptionCostsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmSubscriptionCostsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmTotalSubscriptionCostPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmEmployeeSubscriptionCostsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftSSDStorageTiBPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftControlPlaneNodesContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftControlPlaneCoresContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftControlPlaneHourlyPriceContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftInfraNodesContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftInfraNodesContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftInfraNodesContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftInfraCoresContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftInfraCoresContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftInfraCoresContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftInfraHourlyPriceContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftWorkerNodesContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftWorkerNodesContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftWorkerNodesContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftWorkerCoresContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftWorkerCoresContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftWorkerCoresContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftWorkerHourlyPriceContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftSSDStoragePriceContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmOpenshiftCostsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmOpenshiftCostsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmOpenshiftCostsPerYearContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmEmployeesPerYearChartContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmEmployeesPerYearChartContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmEmployeesPerYearChartContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmProjectExpensesChartContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmProjectExpensesChartContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmProjectExpensesChartContractPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="project-economic-output">
+              <div slot="summary">
+                <span>project economic output</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
                 {{ htmEconomicOutputChartContractPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}

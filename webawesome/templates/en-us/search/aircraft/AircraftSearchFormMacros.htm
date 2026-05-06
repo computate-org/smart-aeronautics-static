@@ -1496,6 +1496,42 @@
 {%- macro htmRollAircraftPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputRollAircraftPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputGltfPathAircraftPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_gltfPath">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] GLTF path"
+                      label="GLTF path"
+                      hint="The path within the static content where the 3D GLTF file for this model is found. "
+                      id="Aircraft_{{classApiMethodMethod}}_gltfPath"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left Aircraft_{{classApiMethodMethod}}_gltfPath setGltfPath classAircraft inputAircraft{{ result.entityShortId }}GltfPath "
+                      name="setGltfPath"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left Aircraft_{{classApiMethodMethod}}_gltfPath setGltfPath classAircraft inputAircraft{{ result.entityShortId }}GltfPath "
+                      name="setGltfPath"
+    {%- else %}
+                      class="label-on-left Aircraft_{{classApiMethodMethod}}_gltfPath valueGltfPath classAircraft inputAircraft{{ result.entityShortId }}GltfPath "
+                      name="gltfPath"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.gltfPath | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmGltfPathAircraftPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputGltfPathAircraftPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 
 {%- macro htmFormButton_patchAircraft() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchAircraft" duration="5000" closable class="wa-header-l ">
@@ -1888,6 +1924,16 @@
                 {{ htmRollAircraftPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {{ htmRollAircraftPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmGltfPathAircraftPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmGltfPathAircraftPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmGltfPathAircraftPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -2289,6 +2335,16 @@
                 {{ htmRollAircraftPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {{ htmRollAircraftPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmGltfPathAircraftPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmGltfPathAircraftPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmGltfPathAircraftPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -2771,6 +2827,16 @@
                 {{ htmRollAircraftPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {{ htmRollAircraftPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmGltfPathAircraftPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmGltfPathAircraftPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
+                {% else -%}
+                {{ htmGltfPathAircraftPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>

@@ -364,6 +364,510 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH architectsPerYear
+          document.querySelector('#Contract_Page_architectsPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_architectsPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setArchitectsPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_architectsPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_architectsPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_architectsPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH remoteDevelopersPerYear
+          document.querySelector('#Contract_Page_remoteDevelopersPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_remoteDevelopersPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setRemoteDevelopersPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_remoteDevelopersPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_remoteDevelopersPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_remoteDevelopersPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH onsiteDevelopersPerYear
+          document.querySelector('#Contract_Page_onsiteDevelopersPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_onsiteDevelopersPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOnsiteDevelopersPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_onsiteDevelopersPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_onsiteDevelopersPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_onsiteDevelopersPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH instructorsPerYear
+          document.querySelector('#Contract_Page_instructorsPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_instructorsPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setInstructorsPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_instructorsPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_instructorsPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_instructorsPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH remoteDeveloperPayPerYear
+          document.querySelector('#Contract_Page_remoteDeveloperPayPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_remoteDeveloperPayPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setRemoteDeveloperPayPerYear', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_remoteDeveloperPayPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_remoteDeveloperPayPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_remoteDeveloperPayPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH onsiteDeveloperPayPerYear
+          document.querySelector('#Contract_Page_onsiteDeveloperPayPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_onsiteDeveloperPayPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOnsiteDeveloperPayPerYear', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_onsiteDeveloperPayPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_onsiteDeveloperPayPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_onsiteDeveloperPayPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH architectPayPerYear
+          document.querySelector('#Contract_Page_architectPayPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_architectPayPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setArchitectPayPerYear', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_architectPayPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_architectPayPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_architectPayPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH instructorPayPerYear
+          document.querySelector('#Contract_Page_instructorPayPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_instructorPayPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setInstructorPayPerYear', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_instructorPayPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_instructorPayPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_instructorPayPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH subscriptionsPerYear
+          document.querySelector('#Contract_Page_subscriptionsPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_subscriptionsPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setSubscriptionsPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_subscriptionsPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_subscriptionsPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_subscriptionsPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH subscriptionCostsPerYear
+          document.querySelector('#Contract_Page_subscriptionCostsPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_subscriptionCostsPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setSubscriptionCostsPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_subscriptionCostsPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_subscriptionCostsPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_subscriptionCostsPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH totalSubscriptionCostPerYear
+          document.querySelector('#Contract_Page_totalSubscriptionCostPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_totalSubscriptionCostPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setTotalSubscriptionCostPerYear', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_totalSubscriptionCostPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_totalSubscriptionCostPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_totalSubscriptionCostPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH employeeSubscriptionCostsPerYear
+          document.querySelector('#Contract_Page_employeeSubscriptionCostsPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_employeeSubscriptionCostsPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setEmployeeSubscriptionCostsPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_employeeSubscriptionCostsPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_employeeSubscriptionCostsPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_employeeSubscriptionCostsPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftSSDStorageTiBPerYear
+          document.querySelector('#Contract_Page_openshiftSSDStorageTiBPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftSSDStorageTiBPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftSSDStorageTiBPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftSSDStorageTiBPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftSSDStorageTiBPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftSSDStorageTiBPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftControlPlaneNodes
+          document.querySelector('#Contract_Page_openshiftControlPlaneNodes')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftControlPlaneNodes');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftControlPlaneNodes', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftControlPlaneNodes')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftControlPlaneNodes')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftControlPlaneNodes');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftControlPlaneCores
+          document.querySelector('#Contract_Page_openshiftControlPlaneCores')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftControlPlaneCores');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftControlPlaneCores', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftControlPlaneCores')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftControlPlaneCores')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftControlPlaneCores');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftControlPlaneHourlyPrice
+          document.querySelector('#Contract_Page_openshiftControlPlaneHourlyPrice')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftControlPlaneHourlyPrice');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftControlPlaneHourlyPrice', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftControlPlaneHourlyPrice')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftControlPlaneHourlyPrice')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftControlPlaneHourlyPrice');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftInfraNodes
+          document.querySelector('#Contract_Page_openshiftInfraNodes')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftInfraNodes');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftInfraNodes', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftInfraNodes')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftInfraNodes')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftInfraNodes');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftInfraCores
+          document.querySelector('#Contract_Page_openshiftInfraCores')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftInfraCores');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftInfraCores', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftInfraCores')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftInfraCores')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftInfraCores');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftInfraHourlyPrice
+          document.querySelector('#Contract_Page_openshiftInfraHourlyPrice')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftInfraHourlyPrice');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftInfraHourlyPrice', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftInfraHourlyPrice')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftInfraHourlyPrice')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftInfraHourlyPrice');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftWorkerNodes
+          document.querySelector('#Contract_Page_openshiftWorkerNodes')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftWorkerNodes');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftWorkerNodes', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftWorkerNodes')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftWorkerNodes')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftWorkerNodes');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftWorkerCores
+          document.querySelector('#Contract_Page_openshiftWorkerCores')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftWorkerCores');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftWorkerCores', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftWorkerCores')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftWorkerCores')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftWorkerCores');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftWorkerHourlyPrice
+          document.querySelector('#Contract_Page_openshiftWorkerHourlyPrice')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftWorkerHourlyPrice');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftWorkerHourlyPrice', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftWorkerHourlyPrice')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftWorkerHourlyPrice')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftWorkerHourlyPrice');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftSSDStoragePrice
+          document.querySelector('#Contract_Page_openshiftSSDStoragePrice')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftSSDStoragePrice');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftSSDStoragePrice', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftSSDStoragePrice')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftSSDStoragePrice')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftSSDStoragePrice');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftCostsPerYear
+          document.querySelector('#Contract_Page_openshiftCostsPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftCostsPerYear');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftCostsPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftCostsPerYear')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftCostsPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftCostsPerYear');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
           document.querySelector('#Contract_Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
@@ -550,6 +1054,111 @@ Promise.all([
           });
           document.querySelector('#Contract_Page_contractId')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_contractId');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH employeesPerYearDataset
+          document.querySelector('#Contract_Page_employeesPerYearDataset')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_employeesPerYearDataset');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setEmployeesPerYearDataset', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_employeesPerYearDataset')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_employeesPerYearDataset')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_employeesPerYearDataset');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH subscriptionCostsPerYearDataset
+          document.querySelector('#Contract_Page_subscriptionCostsPerYearDataset')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_subscriptionCostsPerYearDataset');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setSubscriptionCostsPerYearDataset', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_subscriptionCostsPerYearDataset')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_subscriptionCostsPerYearDataset')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_subscriptionCostsPerYearDataset');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH totalOpenshiftControlPlaneCores
+          document.querySelector('#Contract_Page_totalOpenshiftControlPlaneCores')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_totalOpenshiftControlPlaneCores');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setTotalOpenshiftControlPlaneCores', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_totalOpenshiftControlPlaneCores')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_totalOpenshiftControlPlaneCores')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_totalOpenshiftControlPlaneCores');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH totalOpenshiftInfraCores
+          document.querySelector('#Contract_Page_totalOpenshiftInfraCores')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_totalOpenshiftInfraCores');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setTotalOpenshiftInfraCores', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_totalOpenshiftInfraCores')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_totalOpenshiftInfraCores')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_totalOpenshiftInfraCores');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH totalOpenshiftWorkerCores
+          document.querySelector('#Contract_Page_totalOpenshiftWorkerCores')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_totalOpenshiftWorkerCores');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setTotalOpenshiftWorkerCores', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_totalOpenshiftWorkerCores')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_totalOpenshiftWorkerCores')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_totalOpenshiftWorkerCores');
             const valid = form.reportValidity();
           });
 });

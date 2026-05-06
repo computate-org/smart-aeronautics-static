@@ -793,6 +793,27 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH gltfPath
+          document.querySelector('#Aircraft_Page_gltfPath')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_gltfPath');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchAircraftVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setGltfPath', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Aircraft_Page_gltfPath')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Aircraft_Page_gltfPath')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_gltfPath');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
           document.querySelector('#Aircraft_Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');

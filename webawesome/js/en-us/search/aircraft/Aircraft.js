@@ -118,6 +118,7 @@ async function websocketAircraftInner(apiRequest) {
         var inputPitch = null;
         var inputYaw = null;
         var inputRoll = null;
+        var inputGltfPath = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -133,9 +134,10 @@ async function websocketAircraftInner(apiRequest) {
         var inputObjectText = null;
         var inputSolrId = null;
         var inputEntityShortId = null;
+        var inputAltitudeMeters = null;
         var inputRotation = null;
         var inputAreaServedColors = null;
-        var inputAreaServedTitles = null;
+        var inputAreaServedLinks = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Aircraft_Page_pk');
@@ -217,6 +219,8 @@ async function websocketAircraftInner(apiRequest) {
           inputYaw = $response.querySelector('.Aircraft_Page_yaw');
         if(vars.includes('roll'))
           inputRoll = $response.querySelector('.Aircraft_Page_roll');
+        if(vars.includes('gltfPath'))
+          inputGltfPath = $response.querySelector('.Aircraft_Page_gltfPath');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Aircraft_Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -247,12 +251,14 @@ async function websocketAircraftInner(apiRequest) {
           inputSolrId = $response.querySelector('.Aircraft_Page_solrId');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.querySelector('.Aircraft_Page_entityShortId');
+        if(vars.includes('altitudeMeters'))
+          inputAltitudeMeters = $response.querySelector('.Aircraft_Page_altitudeMeters');
         if(vars.includes('rotation'))
           inputRotation = $response.querySelector('.Aircraft_Page_rotation');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.querySelector('.Aircraft_Page_areaServedColors');
-        if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.querySelector('.Aircraft_Page_areaServedTitles');
+        if(vars.includes('areaServedLinks'))
+          inputAreaServedLinks = $response.querySelector('.Aircraft_Page_areaServedLinks');
 
         jsWebsocketAircraft(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -659,6 +665,16 @@ async function websocketAircraftInner(apiRequest) {
           addGlow(document.querySelector('.Aircraft_Page_roll'));
         }
 
+        if(inputGltfPath) {
+          document.querySelectorAll('.Aircraft_Page_gltfPath').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputGltfPath.getAttribute('value');
+            else
+              item.textContent = inputGltfPath.textContent;
+          });
+          addGlow(document.querySelector('.Aircraft_Page_gltfPath'));
+        }
+
         if(inputClassCanonicalName) {
           document.querySelectorAll('.Aircraft_Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -809,6 +825,16 @@ async function websocketAircraftInner(apiRequest) {
           addGlow(document.querySelector('.Aircraft_Page_entityShortId'));
         }
 
+        if(inputAltitudeMeters) {
+          document.querySelectorAll('.Aircraft_Page_altitudeMeters').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAltitudeMeters.getAttribute('value');
+            else
+              item.textContent = inputAltitudeMeters.textContent;
+          });
+          addGlow(document.querySelector('.Aircraft_Page_altitudeMeters'));
+        }
+
         if(inputRotation) {
           document.querySelectorAll('.Aircraft_Page_rotation').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -829,14 +855,14 @@ async function websocketAircraftInner(apiRequest) {
           addGlow(document.querySelector('.Aircraft_Page_areaServedColors'));
         }
 
-        if(inputAreaServedTitles) {
-          document.querySelectorAll('.Aircraft_Page_areaServedTitles').forEach((item, index) => {
+        if(inputAreaServedLinks) {
+          document.querySelectorAll('.Aircraft_Page_areaServedLinks').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedTitles.getAttribute('value');
+              item.value = inputAreaServedLinks.getAttribute('value');
             else
-              item.textContent = inputAreaServedTitles.textContent;
+              item.textContent = inputAreaServedLinks.textContent;
           });
-          addGlow(document.querySelector('.Aircraft_Page_areaServedTitles'));
+          addGlow(document.querySelector('.Aircraft_Page_areaServedLinks'));
         }
 
           pageGraphAircraft();
@@ -945,233 +971,11 @@ function pageGraphAircraft(apiRequest) {
       }
     }
 
-    // Graph Location
-    window.mapLayers = {};
-    window.bounds = null;
-    if(listAircraft.filter(o => o.location)) {
-      window.bounds = L.latLngBounds(listAircraft.filter(o => o.location).map((c) => {
-        return [c.location.coordinates[1], c.location.coordinates[0]];
-      }));
-    }
-    function onEachFeature(feature, layer) {
-      let popupContent = htmTooltipAircraft(feature, layer);
-      layer.bindPopup(popupContent);
-      window.mapLayers[feature.properties.id] = layer;
-    };
-    if(window.mapAircraft) {
-      window.geoJSONAircraft.clearLayers();
-      window.listAircraft.forEach((result, index) => {
-        if(result.location) {
-          var shapes = [];
-          if(Array.isArray(result.location))
-            shapes = shapes.concat(result.location);
-          else
-            shapes.push(result.location);
-          shapes.forEach(function(shape, index) {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleAircraft
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleAircraft(feature));
-              }
-            });
-            window.geoJSONAircraft.addLayer(layerGeoJson);
-          });
-        }
-        if(result.path) {
-          var shapes = [];
-          if(Array.isArray(result.path))
-            shapes = shapes.concat(result.path);
-          else
-            shapes.push(result.path);
-          shapes.forEach(function(shape, index) {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleAircraft
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleAircraft(feature));
-              }
-            });
-            window.geoJSONAircraft.addLayer(layerGeoJson);
-          });
-        }
-      });
-    } else if(document.getElementById('htmBodyGraphLocationAircraftPage')) {
-      window.mapAircraft = L.map('htmBodyGraphLocationAircraftPage', {
-        position: 'topright'
-        , zoomControl: true
-        , scrollWheelZoom: true
-        , closePopupOnClick: false
-        , contextmenu: true
-        , contextmenuWidth: 140
-        , contextmenuItems: [
-          {
-            text: 'Show coordinates'
-            , callback: function(event) {
-              alert(event.latlng);
-            }
-          }
-          ]
-      });
-      window.mapAircraft.zoomControl.setPosition('topright');
-      var data = [];
-      var layout = {};
-      layout['showlegend'] = true;
-      layout['dragmode'] = 'zoom';
-      layout['uirevision'] = 'true';
-      var legend = L.control({position: 'bottomright'});
-      legend.onAdd = jsLegendAircraft;
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(window.mapAircraft);
+    window.listAircraft.forEach((result, index) => {
+      
+      updateMapBoxModel(result, index, 'entityShortId', 'location', 'altitudeMeters', 'pitch', 'yaw', 'roll', 'rotation', 'gltfPath');
+    });
 
-      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
-        if(listAircraft.length == 1) {
-          window.mapAircraft.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
-        } else {
-          window.mapAircraft.fitBounds(window.bounds);
-        }
-      } else {
-        if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
-          window.mapAircraft.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
-        else if(window['DEFAULT_MAP_ZOOM'])
-          window.mapAircraft.setView(null, window['DEFAULT_MAP_ZOOM']);
-        else if(window['DEFAULT_MAP_LOCATION'])
-          window.mapAircraft.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
-      }
-
-      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
-      window.geoJSONAircraft = L.geoJSON().addTo(window.mapAircraft);
-      window.listAircraft.forEach((result, index) => {
-        if(result.location) {
-          var shapes = [];
-          if(Array.isArray(result.location))
-            shapes = shapes.concat(result.location);
-          else
-            shapes.push(result.location);
-          shapes.forEach(shape => {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleAircraft
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleAircraft(feature));
-              }
-            });
-            window.geoJSONAircraft.addLayer(layerGeoJson);
-          });
-        }
-        if(result.path) {
-          var shapes = [];
-          if(Array.isArray(result.path))
-            shapes = shapes.concat(result.path);
-          else
-            shapes.push(result.path);
-          shapes.forEach(shape => {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleAircraft
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleAircraft(feature));
-              }
-            });
-            window.geoJSONAircraft.addLayer(layerGeoJson);
-          });
-        }
-      });
-      window.mapAircraft.on('popupopen', function(e) {
-        if(e.popup._source) {
-          var feature = e.popup._source.feature;
-          jsTooltipAircraft(e, feature);
-        }
-      });
-      const drawnItems = new L.FeatureGroup();
-      window.mapAircraft.addLayer(drawnItems);
-      const drawControl = new L.Control.Draw({
-        position: 'topright'
-        , edit: {
-          featureGroup: drawnItems
-        }
-        , draw: {
-          polygon: true
-          , polyline: true
-          , rectangle: true
-          , circle: true
-          , marker: true
-        }
-      });
-      window.mapAircraft.addControl(drawControl);
-      window.mapAircraft.on(L.Draw.Event.CREATED, function (event) {
-        drawnItems.addLayer(event.layer);
-        var contextmenuItems = [];
-        if(event.layerType == 'marker') {
-          contextmenuItems.push({
-            text: 'Set location of ' + result.objectTitle
-            , callback: function(event2) {
-              patchAircraftLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
-            }
-          });
-        }
-        if(event.layerType == 'polygon') {
-          contextmenuItems.push({
-            text: 'Set path of ' + result.objectTitle
-            , callback: function(event2) {
-              var latLngs = [];
-              event.layer.getLatLngs().forEach(ll1 => {
-                var latLngs1 = [];
-                ll1.forEach(ll2 => {
-                  var latLngs2 = [ll2['lng'], ll2['lat']];
-                  latLngs1.push(latLngs2);
-                });
-                latLngs.push(latLngs1);
-              });
-              patchAircraftArea(event.layer, { coordinates: latLngs, type: "Polygon" });
-            }
-          });
-        }
-        if(event.layerType == 'polyline') {
-          contextmenuItems.push({
-            text: 'Set path of ' + result.objectTitle
-            , callback: function(event2) {
-              var latLngs = [];
-              event.layer.getLatLngs().forEach(ll1 => {
-                var latLngs1 = [ll1['lng'], ll1['lat']];
-                latLngs.push(latLngs1);
-              });
-              patchAircraftArea(event.layer, { coordinates: latLngs, type: "LineString" });
-            }
-          });
-        }
-        event.layer.bindContextMenu({
-          contextmenu: true
-          , contextmenuItems: contextmenuItems
-        });
-      });
-    }
   }
 }
 function patchAircraftLocation(target, location) {
@@ -1406,6 +1210,10 @@ function searchAircraftFilters($formFilters) {
     if(filterRoll != null && filterRoll !== '')
       filters.push({ name: 'fq', value: 'roll:' + filterRoll });
 
+    var filterGltfPath = $formFilters.querySelector('.valueGltfPath')?.value;
+    if(filterGltfPath != null && filterGltfPath !== '')
+      filters.push({ name: 'fq', value: 'gltfPath:' + filterGltfPath });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -1466,6 +1274,10 @@ function searchAircraftFilters($formFilters) {
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
+    var filterAltitudeMeters = $formFilters.querySelector('.valueAltitudeMeters')?.value;
+    if(filterAltitudeMeters != null && filterAltitudeMeters !== '')
+      filters.push({ name: 'fq', value: 'altitudeMeters:' + filterAltitudeMeters });
+
     var filterRotation = $formFilters.querySelector('.valueRotation')?.value;
     if(filterRotation != null && filterRotation !== '')
       filters.push({ name: 'fq', value: 'rotation:' + filterRotation });
@@ -1474,9 +1286,9 @@ function searchAircraftFilters($formFilters) {
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
   }
   return filters;
 }
@@ -2161,6 +1973,18 @@ async function patchAircraft($formFilters, $formValues, target, entityShortId, s
   if(removeRoll != null && removeRoll !== '')
     vals['removeRoll'] = removeRoll;
 
+  var valueGltfPath = $formValues.querySelector('.valueGltfPath')?.value;
+  var removeGltfPath = $formValues.querySelector('.removeGltfPath')?.value === 'true';
+  var setGltfPath = removeGltfPath ? null : $formValues.querySelector('.setGltfPath')?.value;
+  var addGltfPath = $formValues.querySelector('.addGltfPath')?.value;
+  if(removeGltfPath || setGltfPath != null && setGltfPath !== '')
+    vals['setGltfPath'] = setGltfPath;
+  if(addGltfPath != null && addGltfPath !== '')
+    vals['addGltfPath'] = addGltfPath;
+  var removeGltfPath = $formValues.querySelector('.removeGltfPath')?.value;
+  if(removeGltfPath != null && removeGltfPath !== '')
+    vals['removeGltfPath'] = removeGltfPath;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -2443,6 +2267,10 @@ function patchAircraftFilters($formFilters) {
     if(filterRoll != null && filterRoll !== '')
       filters.push({ name: 'fq', value: 'roll:' + filterRoll });
 
+    var filterGltfPath = $formFilters.querySelector('.valueGltfPath')?.value;
+    if(filterGltfPath != null && filterGltfPath !== '')
+      filters.push({ name: 'fq', value: 'gltfPath:' + filterGltfPath });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -2503,6 +2331,10 @@ function patchAircraftFilters($formFilters) {
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
+    var filterAltitudeMeters = $formFilters.querySelector('.valueAltitudeMeters')?.value;
+    if(filterAltitudeMeters != null && filterAltitudeMeters !== '')
+      filters.push({ name: 'fq', value: 'altitudeMeters:' + filterAltitudeMeters });
+
     var filterRotation = $formFilters.querySelector('.valueRotation')?.value;
     if(filterRotation != null && filterRotation !== '')
       filters.push({ name: 'fq', value: 'rotation:' + filterRotation });
@@ -2511,9 +2343,9 @@ function patchAircraftFilters($formFilters) {
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
   }
   return filters;
 }
@@ -2736,6 +2568,10 @@ async function postAircraft($formValues, target, success, error) {
   var valueRoll = $formValues.querySelector('.valueRoll')?.value;
   if(valueRoll != null && valueRoll !== '')
     vals['roll'] = valueRoll;
+
+  var valueGltfPath = $formValues.querySelector('.valueGltfPath')?.value;
+  if(valueGltfPath != null && valueGltfPath !== '')
+    vals['gltfPath'] = valueGltfPath;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')

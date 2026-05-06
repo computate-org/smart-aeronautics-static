@@ -287,6 +287,9 @@
         </div>
       </nav>
       <main id="site-main" class="wa-stack ">
+        {% if pageGraphLocation is defined -%}
+        {{ pageGraphLocation | default('') -}}
+        {% endif %}
         {% endblock htmBodyStartPageLayout -%}
         {% block htmBodyMiddlePageLayout -%}
         <main slot="main" class="pageContent wa-stack wa-gap-3xl ">

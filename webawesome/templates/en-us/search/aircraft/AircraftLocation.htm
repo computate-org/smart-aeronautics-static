@@ -5,6 +5,16 @@
           {% block htmBodyGraphLocationAircraftPage -%}
           {% if resultCount > 0 -%}
           <div id="htmBodyGraphLocationAircraftPage" class="mapbox-div htmBodyGraphLocation "></div>
+          <script>
+            const token = '{{ MAPBOX_TOKEN }}';
+            const zoom = {{ DEFAULT_MAP_ZOOM | default('18') }};
+            const center = [-75.16784320599977, 40.04582463155066];
+            const pitch = 60;
+            const container = document.querySelector('.mapbox-div');
+            const antialias = true;
+            const style = 'mapbox://styles/mapbox/standard';
+            const map = getMapBox(container, token, zoom, center, pitch, antialias, style);
+          </script>
           {% endif -%}
           {% endblock htmBodyGraphLocationAircraftPage -%}
 
