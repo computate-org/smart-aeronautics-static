@@ -118,7 +118,6 @@ async function websocketAircraftInner(apiRequest) {
         var inputPitch = null;
         var inputYaw = null;
         var inputRoll = null;
-        var inputGltfPath = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -137,7 +136,7 @@ async function websocketAircraftInner(apiRequest) {
         var inputAltitudeMeters = null;
         var inputRotation = null;
         var inputAreaServedColors = null;
-        var inputAreaServedLinks = null;
+        var inputAreaServedTitles = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Aircraft_Page_pk');
@@ -219,8 +218,6 @@ async function websocketAircraftInner(apiRequest) {
           inputYaw = $response.querySelector('.Aircraft_Page_yaw');
         if(vars.includes('roll'))
           inputRoll = $response.querySelector('.Aircraft_Page_roll');
-        if(vars.includes('gltfPath'))
-          inputGltfPath = $response.querySelector('.Aircraft_Page_gltfPath');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Aircraft_Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -257,12 +254,12 @@ async function websocketAircraftInner(apiRequest) {
           inputRotation = $response.querySelector('.Aircraft_Page_rotation');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.querySelector('.Aircraft_Page_areaServedColors');
-        if(vars.includes('areaServedLinks'))
-          inputAreaServedLinks = $response.querySelector('.Aircraft_Page_areaServedLinks');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.querySelector('.Aircraft_Page_areaServedTitles');
 
-        jsWebsocketAircraft(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
         window.listAircraft = JSON.parse($response.querySelector('.pageForm .listAircraft')?.value);
+        jsWebsocketAircraft(entityShortId, vars, $response);
 
 
         if(inputPk) {
@@ -665,16 +662,6 @@ async function websocketAircraftInner(apiRequest) {
           addGlow(document.querySelector('.Aircraft_Page_roll'));
         }
 
-        if(inputGltfPath) {
-          document.querySelectorAll('.Aircraft_Page_gltfPath').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputGltfPath.getAttribute('value');
-            else
-              item.textContent = inputGltfPath.textContent;
-          });
-          addGlow(document.querySelector('.Aircraft_Page_gltfPath'));
-        }
-
         if(inputClassCanonicalName) {
           document.querySelectorAll('.Aircraft_Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -855,14 +842,14 @@ async function websocketAircraftInner(apiRequest) {
           addGlow(document.querySelector('.Aircraft_Page_areaServedColors'));
         }
 
-        if(inputAreaServedLinks) {
-          document.querySelectorAll('.Aircraft_Page_areaServedLinks').forEach((item, index) => {
+        if(inputAreaServedTitles) {
+          document.querySelectorAll('.Aircraft_Page_areaServedTitles').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedLinks.getAttribute('value');
+              item.value = inputAreaServedTitles.getAttribute('value');
             else
-              item.textContent = inputAreaServedLinks.textContent;
+              item.textContent = inputAreaServedTitles.textContent;
           });
-          addGlow(document.querySelector('.Aircraft_Page_areaServedLinks'));
+          addGlow(document.querySelector('.Aircraft_Page_areaServedTitles'));
         }
 
           pageGraphAircraft();
@@ -1210,10 +1197,6 @@ function searchAircraftFilters($formFilters) {
     if(filterRoll != null && filterRoll !== '')
       filters.push({ name: 'fq', value: 'roll:' + filterRoll });
 
-    var filterGltfPath = $formFilters.querySelector('.valueGltfPath')?.value;
-    if(filterGltfPath != null && filterGltfPath !== '')
-      filters.push({ name: 'fq', value: 'gltfPath:' + filterGltfPath });
-
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -1286,9 +1269,9 @@ function searchAircraftFilters($formFilters) {
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
   }
   return filters;
 }
@@ -1973,18 +1956,6 @@ async function patchAircraft($formFilters, $formValues, target, entityShortId, s
   if(removeRoll != null && removeRoll !== '')
     vals['removeRoll'] = removeRoll;
 
-  var valueGltfPath = $formValues.querySelector('.valueGltfPath')?.value;
-  var removeGltfPath = $formValues.querySelector('.removeGltfPath')?.value === 'true';
-  var setGltfPath = removeGltfPath ? null : $formValues.querySelector('.setGltfPath')?.value;
-  var addGltfPath = $formValues.querySelector('.addGltfPath')?.value;
-  if(removeGltfPath || setGltfPath != null && setGltfPath !== '')
-    vals['setGltfPath'] = setGltfPath;
-  if(addGltfPath != null && addGltfPath !== '')
-    vals['addGltfPath'] = addGltfPath;
-  var removeGltfPath = $formValues.querySelector('.removeGltfPath')?.value;
-  if(removeGltfPath != null && removeGltfPath !== '')
-    vals['removeGltfPath'] = removeGltfPath;
-
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -2267,10 +2238,6 @@ function patchAircraftFilters($formFilters) {
     if(filterRoll != null && filterRoll !== '')
       filters.push({ name: 'fq', value: 'roll:' + filterRoll });
 
-    var filterGltfPath = $formFilters.querySelector('.valueGltfPath')?.value;
-    if(filterGltfPath != null && filterGltfPath !== '')
-      filters.push({ name: 'fq', value: 'gltfPath:' + filterGltfPath });
-
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -2343,9 +2310,9 @@ function patchAircraftFilters($formFilters) {
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
   }
   return filters;
 }
@@ -2568,10 +2535,6 @@ async function postAircraft($formValues, target, success, error) {
   var valueRoll = $formValues.querySelector('.valueRoll')?.value;
   if(valueRoll != null && valueRoll !== '')
     vals['roll'] = valueRoll;
-
-  var valueGltfPath = $formValues.querySelector('.valueGltfPath')?.value;
-  if(valueGltfPath != null && valueGltfPath !== '')
-    vals['gltfPath'] = valueGltfPath;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')

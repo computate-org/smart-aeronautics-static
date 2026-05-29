@@ -172,7 +172,7 @@
           </a>
         </div>
         <div class="wa-grid " style="--min-column-size: 15ch; ">
-          <wa-button size="small" variant="brand" href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}" target="_blank">
+          <wa-button size="small" variant="brand" href="https://github.com/{{ GIT_ORG }}/{{ SITE_NAME }}" target="_blank">
             GitHub
             <i slot="start" label="View our source code on GitHub" class="fa-brands fa-github fa-2xl"></i>
           </wa-button>
@@ -298,8 +298,8 @@
         {% endblock htmBodyMiddlePageLayout -%}
         {% block htmBodyEndPageLayout -%}
         <footer class="no-gradient wa-cluster wa-align-items-center wa-stack " slot="main-footer">
-          {% if GITHUB_ORG is defined -%}
-          <wa-button size="small" variant="brand" href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}" target="_blank" appearance="filled outlined" class="tile">
+          {% if GIT_ORG is defined -%}
+          <wa-button size="small" variant="brand" href="https://github.com/{{ GIT_ORG }}/{{ SITE_NAME }}" target="_blank" appearance="filled outlined" class="tile">
             <div class="wa-cluster" style="gap: 1ch;">
               <span>This site is</span>
               <i class="fa-brands fa-github fa-xl"></i>

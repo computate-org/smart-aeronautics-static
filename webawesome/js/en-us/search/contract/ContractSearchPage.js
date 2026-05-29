@@ -341,17 +341,6 @@ Promise.all([
     facetStatsChange('Contract', 'employeeSubscriptionCostsPerYear', false);
   });
 
-  document.querySelector('#pageSelectSortContract_openshiftSSDStorageTiBPerYear')?.addEventListener('change', (event) => {
-    sort('Contract', 'openshiftSSDStorageTiBPerYear', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsContract_openshiftSSDStorageTiBPerYear')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Contract', 'openshiftSSDStorageTiBPerYear', true);
-  });
-  document.querySelector('#pageStatsContract_openshiftSSDStorageTiBPerYear')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Contract', 'openshiftSSDStorageTiBPerYear', false);
-  });
-
   document.querySelector('#pageSelectSortContract_openshiftControlPlaneNodes')?.addEventListener('change', (event) => {
     sort('Contract', 'openshiftControlPlaneNodes', event.currentTarget.value);
   });
@@ -374,15 +363,15 @@ Promise.all([
     facetStatsChange('Contract', 'openshiftControlPlaneCores', false);
   });
 
-  document.querySelector('#pageSelectSortContract_openshiftControlPlaneHourlyPrice')?.addEventListener('change', (event) => {
-    sort('Contract', 'openshiftControlPlaneHourlyPrice', event.currentTarget.value);
+  document.querySelector('#pageSelectSortContract_openshiftControlPlaneHourlyPricePerCore')?.addEventListener('change', (event) => {
+    sort('Contract', 'openshiftControlPlaneHourlyPricePerCore', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsContract_openshiftControlPlaneHourlyPrice')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Contract', 'openshiftControlPlaneHourlyPrice', true);
+  document.querySelector('#pageStatsContract_openshiftControlPlaneHourlyPricePerCore')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Contract', 'openshiftControlPlaneHourlyPricePerCore', true);
   });
-  document.querySelector('#pageStatsContract_openshiftControlPlaneHourlyPrice')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Contract', 'openshiftControlPlaneHourlyPrice', false);
+  document.querySelector('#pageStatsContract_openshiftControlPlaneHourlyPricePerCore')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Contract', 'openshiftControlPlaneHourlyPricePerCore', false);
   });
 
   document.querySelector('#pageSelectSortContract_openshiftInfraNodes')?.addEventListener('change', (event) => {
@@ -407,15 +396,15 @@ Promise.all([
     facetStatsChange('Contract', 'openshiftInfraCores', false);
   });
 
-  document.querySelector('#pageSelectSortContract_openshiftInfraHourlyPrice')?.addEventListener('change', (event) => {
-    sort('Contract', 'openshiftInfraHourlyPrice', event.currentTarget.value);
+  document.querySelector('#pageSelectSortContract_openshiftInfraHourlyPricePerCore')?.addEventListener('change', (event) => {
+    sort('Contract', 'openshiftInfraHourlyPricePerCore', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsContract_openshiftInfraHourlyPrice')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Contract', 'openshiftInfraHourlyPrice', true);
+  document.querySelector('#pageStatsContract_openshiftInfraHourlyPricePerCore')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Contract', 'openshiftInfraHourlyPricePerCore', true);
   });
-  document.querySelector('#pageStatsContract_openshiftInfraHourlyPrice')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Contract', 'openshiftInfraHourlyPrice', false);
+  document.querySelector('#pageStatsContract_openshiftInfraHourlyPricePerCore')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Contract', 'openshiftInfraHourlyPricePerCore', false);
   });
 
   document.querySelector('#pageSelectSortContract_openshiftWorkerNodes')?.addEventListener('change', (event) => {
@@ -440,37 +429,37 @@ Promise.all([
     facetStatsChange('Contract', 'openshiftWorkerCores', false);
   });
 
-  document.querySelector('#pageSelectSortContract_openshiftWorkerHourlyPrice')?.addEventListener('change', (event) => {
-    sort('Contract', 'openshiftWorkerHourlyPrice', event.currentTarget.value);
+  document.querySelector('#pageSelectSortContract_openshiftWorkerHourlyPricePerCore')?.addEventListener('change', (event) => {
+    sort('Contract', 'openshiftWorkerHourlyPricePerCore', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsContract_openshiftWorkerHourlyPrice')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Contract', 'openshiftWorkerHourlyPrice', true);
+  document.querySelector('#pageStatsContract_openshiftWorkerHourlyPricePerCore')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Contract', 'openshiftWorkerHourlyPricePerCore', true);
   });
-  document.querySelector('#pageStatsContract_openshiftWorkerHourlyPrice')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Contract', 'openshiftWorkerHourlyPrice', false);
-  });
-
-  document.querySelector('#pageSelectSortContract_openshiftSSDStoragePrice')?.addEventListener('change', (event) => {
-    sort('Contract', 'openshiftSSDStoragePrice', event.currentTarget.value);
+  document.querySelector('#pageStatsContract_openshiftWorkerHourlyPricePerCore')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Contract', 'openshiftWorkerHourlyPricePerCore', false);
   });
 
-  document.querySelector('#pageStatsContract_openshiftSSDStoragePrice')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Contract', 'openshiftSSDStoragePrice', true);
-  });
-  document.querySelector('#pageStatsContract_openshiftSSDStoragePrice')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Contract', 'openshiftSSDStoragePrice', false);
+  document.querySelector('#pageSelectSortContract_openshiftSSDStorageTiBPerYear')?.addEventListener('change', (event) => {
+    sort('Contract', 'openshiftSSDStorageTiBPerYear', event.currentTarget.value);
   });
 
-  document.querySelector('#pageSelectSortContract_openshiftCostsPerYear')?.addEventListener('change', (event) => {
-    sort('Contract', 'openshiftCostsPerYear', event.currentTarget.value);
+  document.querySelector('#pageStatsContract_openshiftSSDStorageTiBPerYear')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Contract', 'openshiftSSDStorageTiBPerYear', true);
+  });
+  document.querySelector('#pageStatsContract_openshiftSSDStorageTiBPerYear')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Contract', 'openshiftSSDStorageTiBPerYear', false);
   });
 
-  document.querySelector('#pageStatsContract_openshiftCostsPerYear')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Contract', 'openshiftCostsPerYear', true);
+  document.querySelector('#pageSelectSortContract_openshiftSSDStoragePricePerGiB')?.addEventListener('change', (event) => {
+    sort('Contract', 'openshiftSSDStoragePricePerGiB', event.currentTarget.value);
   });
-  document.querySelector('#pageStatsContract_openshiftCostsPerYear')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Contract', 'openshiftCostsPerYear', false);
+
+  document.querySelector('#pageStatsContract_openshiftSSDStoragePricePerGiB')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Contract', 'openshiftSSDStoragePricePerGiB', true);
+  });
+  document.querySelector('#pageStatsContract_openshiftSSDStoragePricePerGiB')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Contract', 'openshiftSSDStoragePricePerGiB', false);
   });
 
   document.querySelector('#pageSelectSortContract_classCanonicalName')?.addEventListener('change', (event) => {
@@ -702,6 +691,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsContract_totalOpenshiftWorkerCores')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('Contract', 'totalOpenshiftWorkerCores', false);
+  });
+
+  document.querySelector('#pageSelectSortContract_openshiftCostsPerYearDataset')?.addEventListener('change', (event) => {
+    sort('Contract', 'openshiftCostsPerYearDataset', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsContract_openshiftCostsPerYearDataset')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Contract', 'openshiftCostsPerYearDataset', true);
+  });
+  document.querySelector('#pageStatsContract_openshiftCostsPerYearDataset')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Contract', 'openshiftCostsPerYearDataset', false);
   });
           document.querySelector('#fqContract_created')?.addEventListener('change', (event) => {
             fqChange('Contract', event.currentTarget, facetChangeContractSuccess, facetChangeContractError);

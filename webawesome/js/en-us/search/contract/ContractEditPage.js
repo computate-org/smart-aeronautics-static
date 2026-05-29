@@ -616,27 +616,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH openshiftSSDStorageTiBPerYear
-          document.querySelector('#Contract_Page_openshiftSSDStorageTiBPerYear')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_openshiftSSDStorageTiBPerYear');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
-                  , 'setOpenshiftSSDStorageTiBPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Contract_Page_openshiftSSDStorageTiBPerYear')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Contract_Page_openshiftSSDStorageTiBPerYear')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_openshiftSSDStorageTiBPerYear');
-            const valid = form.reportValidity();
-          });
-
           // PATCH openshiftControlPlaneNodes
           document.querySelector('#Contract_Page_openshiftControlPlaneNodes')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_openshiftControlPlaneNodes');
@@ -679,24 +658,24 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH openshiftControlPlaneHourlyPrice
-          document.querySelector('#Contract_Page_openshiftControlPlaneHourlyPrice')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_openshiftControlPlaneHourlyPrice');
+          // PATCH openshiftControlPlaneHourlyPricePerCore
+          document.querySelector('#Contract_Page_openshiftControlPlaneHourlyPricePerCore')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftControlPlaneHourlyPricePerCore');
             const valid = form.checkValidity();
             if(valid) {
               patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
-                  , 'setOpenshiftControlPlaneHourlyPrice', event.currentTarget.value
+                  , 'setOpenshiftControlPlaneHourlyPricePerCore', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Contract_Page_openshiftControlPlaneHourlyPrice')?.addEventListener('focus', (event) => {
+          document.querySelector('#Contract_Page_openshiftControlPlaneHourlyPricePerCore')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Contract_Page_openshiftControlPlaneHourlyPrice')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_openshiftControlPlaneHourlyPrice');
+          document.querySelector('#Contract_Page_openshiftControlPlaneHourlyPricePerCore')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftControlPlaneHourlyPricePerCore');
             const valid = form.reportValidity();
           });
 
@@ -742,24 +721,24 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH openshiftInfraHourlyPrice
-          document.querySelector('#Contract_Page_openshiftInfraHourlyPrice')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_openshiftInfraHourlyPrice');
+          // PATCH openshiftInfraHourlyPricePerCore
+          document.querySelector('#Contract_Page_openshiftInfraHourlyPricePerCore')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftInfraHourlyPricePerCore');
             const valid = form.checkValidity();
             if(valid) {
               patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
-                  , 'setOpenshiftInfraHourlyPrice', event.currentTarget.value
+                  , 'setOpenshiftInfraHourlyPricePerCore', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Contract_Page_openshiftInfraHourlyPrice')?.addEventListener('focus', (event) => {
+          document.querySelector('#Contract_Page_openshiftInfraHourlyPricePerCore')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Contract_Page_openshiftInfraHourlyPrice')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_openshiftInfraHourlyPrice');
+          document.querySelector('#Contract_Page_openshiftInfraHourlyPricePerCore')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftInfraHourlyPricePerCore');
             const valid = form.reportValidity();
           });
 
@@ -805,66 +784,66 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH openshiftWorkerHourlyPrice
-          document.querySelector('#Contract_Page_openshiftWorkerHourlyPrice')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_openshiftWorkerHourlyPrice');
+          // PATCH openshiftWorkerHourlyPricePerCore
+          document.querySelector('#Contract_Page_openshiftWorkerHourlyPricePerCore')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftWorkerHourlyPricePerCore');
             const valid = form.checkValidity();
             if(valid) {
               patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
-                  , 'setOpenshiftWorkerHourlyPrice', event.currentTarget.value
+                  , 'setOpenshiftWorkerHourlyPricePerCore', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Contract_Page_openshiftWorkerHourlyPrice')?.addEventListener('focus', (event) => {
+          document.querySelector('#Contract_Page_openshiftWorkerHourlyPricePerCore')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Contract_Page_openshiftWorkerHourlyPrice')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_openshiftWorkerHourlyPrice');
+          document.querySelector('#Contract_Page_openshiftWorkerHourlyPricePerCore')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftWorkerHourlyPricePerCore');
             const valid = form.reportValidity();
           });
 
-          // PATCH openshiftSSDStoragePrice
-          document.querySelector('#Contract_Page_openshiftSSDStoragePrice')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_openshiftSSDStoragePrice');
+          // PATCH openshiftSSDStorageTiBPerYear
+          document.querySelector('#Contract_Page_openshiftSSDStorageTiBPerYear')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftSSDStorageTiBPerYear');
             const valid = form.checkValidity();
             if(valid) {
               patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
-                  , 'setOpenshiftSSDStoragePrice', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Contract_Page_openshiftSSDStoragePrice')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Contract_Page_openshiftSSDStoragePrice')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_openshiftSSDStoragePrice');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH openshiftCostsPerYear
-          document.querySelector('#Contract_Page_openshiftCostsPerYear')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_openshiftCostsPerYear');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
-                  , 'setOpenshiftCostsPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , 'setOpenshiftSSDStorageTiBPerYear', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Contract_Page_openshiftCostsPerYear')?.addEventListener('focus', (event) => {
+          document.querySelector('#Contract_Page_openshiftSSDStorageTiBPerYear')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Contract_Page_openshiftCostsPerYear')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_openshiftCostsPerYear');
+          document.querySelector('#Contract_Page_openshiftSSDStorageTiBPerYear')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftSSDStorageTiBPerYear');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftSSDStoragePricePerGiB
+          document.querySelector('#Contract_Page_openshiftSSDStoragePricePerGiB')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftSSDStoragePricePerGiB');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftSSDStoragePricePerGiB', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftSSDStoragePricePerGiB')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftSSDStoragePricePerGiB')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftSSDStoragePricePerGiB');
             const valid = form.reportValidity();
           });
 
@@ -1159,6 +1138,27 @@ Promise.all([
           });
           document.querySelector('#Contract_Page_totalOpenshiftWorkerCores')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_totalOpenshiftWorkerCores');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH openshiftCostsPerYearDataset
+          document.querySelector('#Contract_Page_openshiftCostsPerYearDataset')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_openshiftCostsPerYearDataset');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchContractVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'contractId:' + event.currentTarget.getAttribute('data-contractId') }]
+                  , 'setOpenshiftCostsPerYearDataset', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Contract_Page_openshiftCostsPerYearDataset')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Contract_Page_openshiftCostsPerYearDataset')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_openshiftCostsPerYearDataset');
             const valid = form.reportValidity();
           });
 });

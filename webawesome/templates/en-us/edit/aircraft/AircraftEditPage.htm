@@ -1,14 +1,207 @@
 {% extends "en-us/edit/aircraft/AircraftGenEditPage.htm" %}
+{%- block jsWebsocketAircraftPage %}
+      updateMap();
+{% endblock jsWebsocketAircraftPage -%}
 {%- block htmScriptsAircraftPage %}
     {{ super() }}
     <script src="{{staticBaseUrl}}/js/en-us/search/aircraft/Aircraft.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.21.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.21.0/mapbox-gl.js"></script>
-        <script src="https://unpkg.com/three@0.126.0/build/three.min.js"></script>
-        <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.23.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.23.1/mapbox-gl.js"></script>
+    <!--
+    <script src="https://unpkg.com/three@0.126.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+    -->
     <style>
       #mapbox-div { height: 500px; width: 100%; }
     </style>
+    <script>
+
+        // Mathematical helper functions for animation interpolation
+        function clamp(v) {
+          return Math.max(0.0, Math.min(v, 1.0));
+        }
+
+        function mix(a, b, mixFactor) {
+          const f = clamp(mixFactor);
+          return a * (1 - f) + b * f;
+        }
+
+        function rad2deg(angRad) {
+          return (angRad * 180.0) / Math.PI;
+        }
+
+        class Airplane {
+          constructor() {
+            this.position = [0, 0];
+            this.altitude = 0;
+            this.bearing = 0;
+            this.pitch = 0;
+            this.roll = 0;
+            this.animTimeS = 0;
+          }
+
+          updateAbsolute(target) {
+            this.position = target.position;
+            this.altitude = target.altitude;
+            this.bearing = target.bearing;
+            this.pitch = target.pitch;
+            this.roll = 0;
+          }
+
+          update(target, dtimeMs) {
+            this.position[0] = mix(
+              this.position[0],
+              target.position[0],
+              dtimeMs * 0.05
+            );
+            this.position[1] = mix(
+              this.position[1],
+              target.position[1],
+              dtimeMs * 0.05
+            );
+            this.altitude = mix(this.altitude, target.altitude, dtimeMs * 0.05);
+            this.bearing = mix(this.bearing, target.bearing, dtimeMs * 0.01);
+            this.pitch = mix(this.pitch, target.pitch, dtimeMs * 0.01);
+            this.roll = rad2deg(
+              mix(
+                0,
+                Math.sin(this.animTimeS * Math.PI * 0.2) * 0.1,
+                (this.altitude - 50.0) / 100.0
+              )
+            );
+            this.animTimeS += dtimeMs / 1000.0;
+          }
+        }
+
+        function updateMap() {
+          const aircraft = window.listAircraft[0];
+          const center = aircraft.location.coordinates;
+          const pitch = {{ toDegree(pitch) }};
+          const bearing = 0;
+          // Animation constants for aircraft flight simulation
+          // Total animation duration in milliseconds
+          const animationDuration = 50000;
+          // Altitude range in meters when to speed up animation
+          const flightTravelAltitudeMin = 200;
+          const flightTravelAltitudeMax = 3000;
+
+          // phase determines how far through the animation we are
+          let phase = 0;
+          let lastFrameTime;
+          let routeElevation = 0;
+
+          function frame(time) {
+            if (!lastFrameTime) lastFrameTime = time;
+
+            // Calculate delta time and derive animation factors for procedural flight path simulation
+            const frameDeltaTime = time - lastFrameTime;
+            const animFade = clamp(
+                (routeElevation - flightTravelAltitudeMin) /
+                (flightTravelAltitudeMax - flightTravelAltitudeMin)
+            );
+
+            // Time-lapse factor used to accelerate animation once aircraft is airborne
+            const timelapseFactor = mix(0.001, 10.0, animFade * animFade);
+            phase += (frameDeltaTime * timelapseFactor) / animationDuration;
+            lastFrameTime = time;
+
+            // Phase is normalized between 0 and 1
+            // When the animation is finished, reset to loop continuously
+            if (phase > 1) {
+              phase = 0;
+              routeElevation = 0;
+            }
+
+            //// Sample route at current travel distance
+            //const alongRoute = flightRoute.sample(
+            //  flightRoute.totalLength * phase
+            //);
+            //if (alongRoute) {
+            //  routeElevation = alongRoute.altitude;
+
+            //  // Update airplane state based on sampled route point and frame delta time
+            //  airplane.update(alongRoute, frameDeltaTime);
+            //}
+
+            // Update 3D model layer based on current airplane state
+            var alongRoute = {
+              'altitude': parseFloat(aircraft.altitudeMeters)
+              , 'bearing': bearing
+              , 'pitch': pitch
+              , 'position': aircraft.location.coordinates
+            }
+            window.airplane.updateAbsolute(alongRoute, 0);
+            updateModelSourceAndFeatureState(map, window.airplane);
+
+            // Update camera position to follow the aircraft
+            const camera = window.map.getFreeCameraOptions();
+            const cameraOffset = [
+              mix(-0.0004, 0.0, routeElevation / 200.0),
+              mix(0.0004, 0, routeElevation / 200.0)
+            ];
+
+            // set the position and altitude of the camera
+            camera.position = mapboxgl.MercatorCoordinate.fromLngLat(
+              {
+                lng: window.airplane.position[0] + cameraOffset[0],
+                lat: window.airplane.position[1] + cameraOffset[1]
+              },
+              window.airplane.altitude + 50.0 + mix(0, 10000000.0, animFade)
+            );
+
+            // tell the camera to look at a point along the route
+            camera.lookAtPoint(
+              {
+                lng: window.airplane.position[0],
+                lat: window.airplane.position[1]
+              },
+              [0, 0, 1],
+              window.airplane.altitude
+            );
+            window.map.setFreeCameraOptions(camera);
+
+            //window.requestAnimationFrame(frame);
+          }
+
+          window.requestAnimationFrame(frame);
+        }
+
+        // Function demonstrates how to update model source and feature state of plane to drive animation of model.
+        function updateModelSourceAndFeatureState(map, airplane) {
+          window.listAircraft.forEach(aircraft => {
+            // Obtain model source
+            const modelSource = window.map.getSource(aircraft.entityShortId);
+            if (modelSource) {
+              // Update the model specification including position and orientation.
+              // Only changed properties are updated. This is efficient when the model URI remains the same.
+              // This approach is ideal for bulk updates of all models in a model source at once.
+              const modelsSpec = {
+                'plane': {
+                  'uri': aircraft.gltfPath
+                  , 'position': result.location.coordinates
+                  , 'orientation': [
+                    airplane.roll,
+                    airplane.pitch,
+                    airplane.bearing
+                  ]
+                }
+              };
+
+              modelSource.setModels(modelsSpec);
+            }
+
+            // Update feature state for plane.
+            // These properties are read in paint and layout expressions to override orientation and materials of model parts
+            const planeFeatureState = {
+              'z-elevation': airplane.altitude
+            };
+            window.map.setFeatureState(
+              { source: aircraft.entityShortId, sourceLayer: '', id: 'plane' },
+              planeFeatureState
+            );
+          });
+        }
+    </script>
 
 {%- endblock htmScriptsAircraftPage %}
         {% set pageGraphLocation -%}
@@ -20,120 +213,214 @@
         {% if resultCount > 0 -%}
         const token = '{{ MAPBOX_TOKEN }}';
         const zoom = {{ zoom }};
-        const center = window.listAircraft[0].location.coordinates;
+        const aircraft = window.listAircraft[0];
+        const center = aircraft.location.coordinates;
         const pitch = {{ toDegree(pitch) }};
+        const bearing = 0;
         const container = document.querySelector('.mapbox-div');
         const antialias = true;
-        const style = 'mapbox://styles/mapbox/standard';
-        const map = getMapBox(container, token, zoom, center, pitch, antialias, style);
-
-        window.listAircraft.forEach((result, index) => {
-          // parameters to ensure the model is georeferenced correctly on the map
-          var modelOrigin = result.location.coordinates;
-          const modelAltitude = result.altitudeMeters;
-          const modelRotate = result.rotation;
-
-          const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
-              modelOrigin,
-              modelAltitude
-          );
-
-          // transformation parameters to position, rotate and scale the 3D model onto the map
-          const modelTransform = {
-              translateX: modelAsMercatorCoordinate.x,
-              translateY: modelAsMercatorCoordinate.y,
-              translateZ: modelAsMercatorCoordinate.z,
-              rotateX: modelRotate[0],
-              rotateY: modelRotate[1],
-              rotateZ: modelRotate[2],
-              /* Since the 3D model is in real world meters, a scale transform needs to be
-               * applied since the CustomLayerInterface expects units in MercatorCoordinates.
-               */
-              scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
-          };
-
-          const THREE = window.THREE;
-
-          // configuration of the custom layer for a 3D model per the CustomLayerInterface
-          const customLayer = {
-              id: '3d-model',
-              type: 'custom',
-              renderingMode: '3d',
-              onAdd: function (map, gl) {
-                  this.camera = new THREE.Camera();
-                  this.scene = new THREE.Scene();
-
-                  // create two three.js lights to illuminate the model
-                  const directionalLight = new THREE.DirectionalLight(0xffffff);
-                  directionalLight.position.set(0, -70, 100).normalize();
-                  this.scene.add(directionalLight);
-
-                  const directionalLight2 = new THREE.DirectionalLight(0xffffff);
-                  directionalLight2.position.set(0, 70, 100).normalize();
-                  this.scene.add(directionalLight2);
-
-                  // use the three.js GLTF loader to add the 3D model to the three.js scene
-                  const loader = new THREE.GLTFLoader();
-                  loader.load(
-                      '{{ STATIC_BASE_URL }}/gltf/airplane/DC8_AFRC_AIR_0824.gltf',
-                      (gltf) => {
-                          this.scene.add(gltf.scene);
-                      }
-                  );
-                  this.map = map;
-
-                  // use the Mapbox GL JS map canvas for three.js
-                  this.renderer = new THREE.WebGLRenderer({
-                      canvas: map.getCanvas(),
-                      context: gl,
-                      antialias: true
-                  });
-
-                  this.renderer.autoClear = false;
-              },
-              render: function (gl, matrix) {
-                  const rotationX = new THREE.Matrix4().makeRotationAxis(
-                      new THREE.Vector3(1, 0, 0),
-                      modelTransform.rotateX
-                  );
-                  const rotationY = new THREE.Matrix4().makeRotationAxis(
-                      new THREE.Vector3(0, 1, 0),
-                      modelTransform.rotateY
-                  );
-                  const rotationZ = new THREE.Matrix4().makeRotationAxis(
-                      new THREE.Vector3(0, 0, 1),
-                      modelTransform.rotateZ
-                  );
-
-                  const m = new THREE.Matrix4().fromArray(matrix);
-                  const l = new THREE.Matrix4()
-                      .makeTranslation(
-                          modelTransform.translateX,
-                          modelTransform.translateY,
-                          modelTransform.translateZ
-                      )
-                      .scale(
-                          new THREE.Vector3(
-                              modelTransform.scale,
-                              -modelTransform.scale,
-                              modelTransform.scale
-                          )
-                      )
-                      .multiply(rotationX)
-                      .multiply(rotationY)
-                      .multiply(rotationZ);
-
-                  this.camera.projectionMatrix = m.multiply(l);
-                  this.renderer.resetState();
-                  this.renderer.render(this.scene, this.camera);
+        const sources = {};
+        const layers = [];
+        window.listAircraft.forEach(aircraft => {
+          sources[aircraft.entityShortId] = {
+            'type': 'model'
+            , 'models': {
+              'plane': {
+                'uri': aircraft.gltfPath
+                , 'position': aircraft.location.coordinates
+                , 'orientation': aircraft.rotation
               }
+            }
           };
-
-          map.on('style.load', () => {
-              map.addLayer(customLayer);
+          layers.push({
+            'id': aircraft.entityShortId
+            , 'type': 'model'
+            , 'source': aircraft.entityShortId
+            , 'slot': 'top'
+            , 'paint': {
+              // Altitude/elevation of plane is obtained from feature state
+              'model-translation': [
+                0
+                , 0
+                , ['feature-state', 'z-elevation']
+              ]
+              , 'model-scale': [
+                'interpolate'
+                , ['exponential', 0.5]
+                , ['zoom']
+                , 2.0
+                , ['literal', [40000.0, 40000.0, 40000.0]]
+                , 14.0
+                , ['literal', [1.0, 1.0, 1.0]]
+              ]
+            }
           });
-          map.triggerRepaint();
         });
+        const style = {
+          'version': 8
+          , 'imports': [
+            {
+              'id': 'basemap'
+              , 'url': 'mapbox://styles/mapbox/standard'
+              , 'config': {
+                'lightPreset': 'dusk'
+                , 'showPointOfInterestLabels': false
+                , 'showRoadLabels': false
+              }
+            }
+          ]
+          , 'sources': sources
+          , 'layers': layers
+        };
+
+        window.airplane = new Airplane();
+
+        window.map = (window.map = new mapboxgl.Map({
+          container: container
+          , projection: 'globe'
+          , style
+          , interaction: true
+          , center: center
+          , zoom: zoom
+          , bearing: bearing
+          , pitch: pitch
+        }));
+
+        window.map.on('load', () => {
+          updateMap();
+        });
+
+
+
+
+
+
+        //const map = getMapBox(container, token, zoom, center, pitch, antialias, style);
+
+        //window.listAircraft.forEach((result, index) => {
+        //  // parameters to ensure the model is georeferenced correctly on the map
+        //  var modelOrigin = result.location.coordinates;
+        //  const modelAltitude = result.altitudeMeters;
+        //  const modelRotate = result.rotation;
+
+        //  style.sources[result.solrId] = {
+        //    'type': 'model',
+        //    'models': {
+        //      'plane': {
+        //        'uri': '{{ STATIC_BASE_URL }}' + result.gltfPath,
+        //        'position': result.location.coordinates,
+        //        'orientation': result.rotation
+        //      }
+        //    }
+        //  };
+
+
+
+
+
+
+
+        //  const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
+        //      modelOrigin,
+        //      modelAltitude
+        //  );
+
+        //  // transformation parameters to position, rotate and scale the 3D model onto the map
+        //  const modelTransform = {
+        //      translateX: modelAsMercatorCoordinate.x,
+        //      translateY: modelAsMercatorCoordinate.y,
+        //      translateZ: modelAsMercatorCoordinate.z,
+        //      rotateX: modelRotate[0],
+        //      rotateY: modelRotate[1],
+        //      rotateZ: modelRotate[2],
+        //      /* Since the 3D model is in real world meters, a scale transform needs to be
+        //       * applied since the CustomLayerInterface expects units in MercatorCoordinates.
+        //       */
+        //      scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
+        //  };
+
+        //  const THREE = window.THREE;
+
+        //  // configuration of the custom layer for a 3D model per the CustomLayerInterface
+        //  const customLayer = {
+        //      id: '3d-model',
+        //      type: 'custom',
+        //      renderingMode: '3d',
+        //      onAdd: function (map, gl) {
+        //          this.camera = new THREE.Camera();
+        //          this.scene = new THREE.Scene();
+
+        //          // create two three.js lights to illuminate the model
+        //          const directionalLight = new THREE.DirectionalLight(0xffffff);
+        //          directionalLight.position.set(0, -70, 100).normalize();
+        //          this.scene.add(directionalLight);
+
+        //          const directionalLight2 = new THREE.DirectionalLight(0xffffff);
+        //          directionalLight2.position.set(0, 70, 100).normalize();
+        //          this.scene.add(directionalLight2);
+
+        //          // use the three.js GLTF loader to add the 3D model to the three.js scene
+        //          const loader = new THREE.GLTFLoader();
+        //          loader.load(
+        //              '{{ STATIC_BASE_URL }}/gltf/airplane/DC8_AFRC_AIR_0824.gltf',
+        //              (gltf) => {
+        //                  this.scene.add(gltf.scene);
+        //              }
+        //          );
+        //          this.map = map;
+
+        //          // use the Mapbox GL JS map canvas for three.js
+        //          this.renderer = new THREE.WebGLRenderer({
+        //              canvas: map.getCanvas(),
+        //              context: gl,
+        //              antialias: true
+        //          });
+
+        //          this.renderer.autoClear = false;
+        //      },
+        //      render: function (gl, matrix) {
+        //          const rotationX = new THREE.Matrix4().makeRotationAxis(
+        //              new THREE.Vector3(1, 0, 0),
+        //              modelTransform.rotateX
+        //          );
+        //          const rotationY = new THREE.Matrix4().makeRotationAxis(
+        //              new THREE.Vector3(0, 1, 0),
+        //              modelTransform.rotateY
+        //          );
+        //          const rotationZ = new THREE.Matrix4().makeRotationAxis(
+        //              new THREE.Vector3(0, 0, 1),
+        //              modelTransform.rotateZ
+        //          );
+
+        //          const m = new THREE.Matrix4().fromArray(matrix);
+        //          const l = new THREE.Matrix4()
+        //              .makeTranslation(
+        //                  modelTransform.translateX,
+        //                  modelTransform.translateY,
+        //                  modelTransform.translateZ
+        //              )
+        //              .scale(
+        //                  new THREE.Vector3(
+        //                      modelTransform.scale,
+        //                      -modelTransform.scale,
+        //                      modelTransform.scale
+        //                  )
+        //              )
+        //              .multiply(rotationX)
+        //              .multiply(rotationY)
+        //              .multiply(rotationZ);
+
+        //          this.camera.projectionMatrix = m.multiply(l);
+        //          this.renderer.resetState();
+        //          this.renderer.render(this.scene, this.camera);
+        //      }
+        //  };
+
+        //  map.on('style.load', () => {
+        //      map.addLayer(customLayer);
+        //  });
+        //  map.triggerRepaint();
+        //});
         {% endif -%}
         {% endset pageGraphLocationScript -%}
         {% block htmScriptInitAircraftPage -%}
